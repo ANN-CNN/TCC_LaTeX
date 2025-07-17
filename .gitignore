@@ -1,0 +1,111 @@
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+
+# LaTeX bibliography files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# LaTeX build tool files
+*.fdb_latexmk
+*.fls
+*.makefile
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# LaTeX glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+*.sgl
+*.slo
+*.sls
+*.alg
+*.ist
+
+# LaTeX index files
+*.idx
+*.ilg
+*.ind
+
+# LaTeX hyperref
+*.figlist
+*.makeidx
+*.nav
+*.snm
+*.vrb
+
+# LaTeX temporary files
+*.tmp
+*.backup
+*.bak
+*.swp
+*.swo
+*~
+
+# LaTeX specific to abntex2
+*.lol
+*.loa
+*.los
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# Output files (comment if you want to track PDFs)
+*.pdf
+
+# Backup files
+*~
+*.backup
+*.bak
+
+# Other auxiliary files
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+*.synctex
+*.loq
+*.loc
+*.brf
