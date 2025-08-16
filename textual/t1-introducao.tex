@@ -1,8 +1,6 @@
 \chapter{INTRODUÇÃO}
 \label{cap:introducao}
 
-\section{Problema e Contexto}
-
 Nos últimos anos, a combinação entre o avanço do poder computacional e o desenvolvimento de algoritmos mais sofisticados tem impulsionado significativamente a área de visão computacional. Essa área da inteligência artificial tem se mostrado essencial em diversas aplicações, desde sistemas de segurança e monitoramento, até diagnósticos médicos e veículos autônomos \cite{szeliski2022computer}. Nesse cenário, o reconhecimento de padrões e a detecção de objetos se tornaram tarefas cada vez mais precisas e eficientes, aproximando as capacidades das máquinas da percepção humana.
 
 O reconhecimento de objetos em imagens é uma atividade simples para humanos quando possuem expertise no assunto e está se tornando cada vez mais acessível aos computadores, devido aos avanços em estudos de visão computacional que utilizam redes neurais de aprendizagem profunda \cite{goodfellow2016deep}. Segundo \citeonline{haykin2009neural}, a aprendizagem profunda é "uma subárea da aprendizagem de máquina que emprega algoritmos inspirados no funcionamento do cérebro humano, simulando um conjunto de neurônios conectados e organizados em camadas, onde cada camada processa informações e transmite o resultado para a próxima".
@@ -11,40 +9,19 @@ Com a popularização de arquiteturas como as Redes Neurais Convolucionais (CNNs
 
 \section{Objetivos}
 
-O presente trabalho tem como objetivo comparar o desempenho de diferentes arquiteturas de detecção de objetos YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet utilizando datasets de referência, como COCO e PASCAL VOC. A análise abrangerá métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência, bem como uma discussão crítica sobre a aplicabilidade de cada modelo em diferentes cenários, visando fornecer subsídios para a escolha do algoritmo mais adequado a cada contexto.
-
-\subsection{Objetivo Geral}
-
-O objetivo geral deste trabalho é realizar uma análise comparativa de diferentes arquiteturas de redes neurais artificiais para a tarefa de detecção de objetos, avaliando seu desempenho em termos de acurácia, velocidade e eficiência computacional.
-
-\subsection{Objetivos Específicos}
-
-Para alcançar o objetivo geral proposto, foram definidos os seguintes objetivos específicos:
-\begin{itemize}
-
-\item Realizar uma revisão bibliográfica sobre os principais algoritmos de detecção de objetos baseados em redes neurais convolucionais;
-
-\item Selecionar e implementar os modelos YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet em ambiente TensorFlow;
-
-\item Preparar e pré-processar datasets públicos (COCO e PASCAL VOC) para treinamento e avaliação;
-
-\item Otimizar os hiperparâmetros de cada modelo para garantir uma comparação justa;
-
-\item Treinar os modelos selecionados e avaliar seu desempenho utilizando métricas padronizadas;
-
-\item Coletar e analisar métricas como mAP (mean Average Precision), precisão, recall e FPS (Frames per Second);
-
-\item Realizar uma análise crítica comparativa dos resultados obtidos, considerando as vantagens e limitações de cada arquitetura.
-
-\end{itemize}
+O presente trabalho terá como objetivo comparar o desempenho das diferentes arquiteturas de detecção de objetos utilizando os principais datasets de referência. A análise abrangerá métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência, bem como uma discussão crítica sobre a aplicabilidade de cada modelo em diferentes cenários, visando fornecer subsídios para a escolha do algoritmo mais adequado a cada contexto.
 
 \section{Justificativa}
 
-A evolução das arquiteturas de detecção de objetos, como YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet, impulsionou significativamente a precisão e a velocidade de sistemas de visão computacional \cite{redmon2016yolo, ren2017faster, liu2016ssd, tan2020efficientdet, lin2020focal}. No entanto, apesar dos avanços, cada modelo apresenta características, vantagens e limitações que podem torná-lo mais adequado para determinados contextos e restrições de hardware.
+A evolução das arquiteturas de detecção de objetos, como YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet, continuará a impulsionar significativamente a precisão e a velocidade de sistemas de visão computacional \cite{redmon2016yolo, ren2017faster, liu2016ssd, tan2020efficientdet, lin2020focal}. No entanto, apesar dos avanços, cada modelo continuará apresentando características, vantagens e limitações que poderão torná-lo mais adequado para determinados contextos e restrições de hardware.
 
 Como afirmam \citeonline{liu2016ssd}, modelos como o SSD se destacam pela alta velocidade de inferência, enquanto arquiteturas como Faster R-CNN \cite{ren2017faster} priorizam a precisão em detrimento do tempo de processamento. Já o YOLO, segundo \citeonline{redmon2016yolo}, "propõe uma abordagem unificada e em tempo real para a detecção de objetos, transformando o problema em uma única tarefa de regressão".
 
-Nesse sentido, torna-se fundamental compreender, de forma comparativa, o desempenho dessas arquiteturas frente a diferentes bases de dados e condições de inferência. Uma análise comparativa criteriosa permite identificar quais modelos oferecem melhor equilíbrio entre precisão e velocidade, considerando não apenas métricas quantitativas, mas também a complexidade de implementação e a escalabilidade. Essa abordagem auxilia na escolha da solução mais adequada e contribui para o avanço do estado da arte.
+Nesse sentido, será fundamental compreender, de forma comparativa, o desempenho dessas arquiteturas frente a diferentes bases de dados e condições de inferência. Uma análise comparativa criteriosa permitirá identificar quais modelos oferecerão melhor equilíbrio entre precisão e velocidade, considerando não apenas métricas quantitativas, mas também a complexidade de implementação e a escalabilidade. Essa abordagem auxiliará na escolha da solução mais adequada e contribuirá para o avanço do estado da arte.
+
+\section{Estrutura do Trabalho}
+
+Este trabalho está dividido em sete capítulos. O \autoref{cap:introducao} expõe o contexto do estudo, os objetivos e as justificativas desta pesquisa. O \autoref{cap:fundamentacao} apresenta a fundamentação teórica sobre redes neurais convolucionais, algoritmos de detecção de objetos e métricas de avaliação. O \autoref{cap:trabalhos} apresenta uma revisão dos trabalhos relacionados na área de detecção de objetos. O \autoref{cap:metodologia} descreve a metodologia empregada, os datasets utilizados e o ambiente experimental. O \autoref{cap:desenvolvimento} detalha a implementação dos modelos e os procedimentos de treinamento. O \autoref{cap:resultados} apresenta e discute os resultados obtidos na análise comparativa. Finalmente, o \autoref{cap:conclusão} apresenta as conclusões e sugere trabalhos futuros.
 
 \section{Estrutura do Trabalho}
 
