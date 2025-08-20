@@ -1,43 +1,24 @@
 \chapter{INTRODUÇÃO}
 \label{cap:introducao}
 
-A área de ciência e engenharia dos materiais abrange metalurgia, semicondutores, engenharia cerâmica e ciência dos polímeros. É um campo multidisciplinar que viabiliza a existência de novas tecnologias necessárias para enfrentar uma grande variedade de desafios críticos da sociedade \cite{goldberg2002design}.
+Nos últimos anos, a combinação entre o avanço do poder computacional e o desenvolvimento de algoritmos mais sofisticados tem impulsionado significativamente a área de visão computacional. Essa área da inteligência artificial tem se mostrado essencial em diversas aplicações, desde sistemas de segurança e monitoramento, até diagnósticos médicos e veículos autônomos \cite{szeliski2022computer}. Nesse cenário, o reconhecimento de padrões e a detecção de objetos se tornaram tarefas cada vez mais precisas e eficientes, aproximando as capacidades das máquinas da percepção humana.
 
+O reconhecimento de objetos em imagens é uma atividade simples para humanos quando possuem expertise no assunto e está se tornando cada vez mais acessível aos computadores, devido aos avanços em estudos de visão computacional que utilizam redes neurais de aprendizagem profunda \cite{goodfellow2016deep}. Segundo \citeonline{haykin2009neural}, a aprendizagem profunda é "uma subárea da aprendizagem de máquina que emprega algoritmos inspirados no funcionamento do cérebro humano, simulando um conjunto de neurônios conectados e organizados em camadas, onde cada camada processa informações e transmite o resultado para a próxima".
 
-\lipsum[1] %Apagar esta linha - Gerador de texto aleatório
-
-Desenvolver uma contextualização consistente aqui.
-
+Com a popularização de arquiteturas como as Redes Neurais Convolucionais (CNNs), tornou-se possível processar grandes volumes de dados visuais com alta acurácia. Essas redes têm a capacidade de extrair automaticamente características relevantes das imagens, dispensando a necessidade de intervenção manual no processo de extração de atributos \cite{lecun2015deep}. Como resultado, surgem soluções mais robustas e adaptáveis, contribuindo diretamente para a expansão de aplicações baseadas em visão computacional.
 
 \section{Objetivos}
 
-\lipsum[4] %Apagar esta linha - Gerador de texto aleatório
-
-\subsection{Objetivos Específicos}
-
-Dentre os objetivos específicos deste trabalho pode-se destacar:
-\begin{itemize}
-
-\item Criar uma base de conhecimento de PADI aplicado à caracterização...; 
-
-\item Desenvolver módulos para o...;
-
-\item Implementar recursos para permitir que... ;
-
-\item Criar dois assistentes de... ;
-
-\item Gerar dois estudos de caso para validar os assistentes... ;
-
-\item Viabilizar o uso do software por profissionais da área de... ;
-
-\end{itemize}
+O presente trabalho terá como objetivo comparar o desempenho das diferentes arquiteturas de detecção de objetos utilizando os principais datasets de referência. A análise abrangerá métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência, bem como uma discussão crítica sobre a aplicabilidade de cada modelo em diferentes cenários, visando fornecer subsídios para a escolha do algoritmo mais adequado a cada contexto.
 
 \section{Justificativa}
 
-Dado o contexto apresentado anteriormente, percebe-se que construir um \lipsum[2] %Apagar esta linha - Gerador de texto aleatório
+A evolução das arquiteturas de detecção de objetos, como YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet, continuará a impulsionar significativamente a precisão e a velocidade de sistemas de visão computacional \cite{redmon2016yolo, ren2017faster, liu2016ssd, tan2020efficientdet, lin2020focal}. No entanto, apesar dos avanços, cada modelo continuará apresentando características, vantagens e limitações que poderão torná-lo mais adequado para determinados contextos e restrições de hardware.
 
-\lipsum[3] %Apagar esta linha - Gerador de texto aleatório
+Como afirmam \citeonline{liu2016ssd}, modelos como o SSD se destacam pela alta velocidade de inferência, enquanto arquiteturas como Faster R-CNN \cite{ren2017faster} priorizam a precisão em detrimento do tempo de processamento. Já o YOLO, segundo \citeonline{redmon2016yolo}, "propõe uma abordagem unificada e em tempo real para a detecção de objetos, transformando o problema em uma única tarefa de regressão".
+
+Nesse sentido, será fundamental compreender, de forma comparativa, o desempenho dessas arquiteturas frente a diferentes bases de dados e condições de inferência. Uma análise comparativa criteriosa permitirá identificar quais modelos oferecerão melhor equilíbrio entre precisão e velocidade, considerando não apenas métricas quantitativas, mas também a complexidade de implementação e a escalabilidade. Essa abordagem auxiliará na escolha da solução mais adequada e contribuirá para o avanço do estado da arte.
 
 \section{Estrutura do Trabalho}
 
-Este trabalho está dividido em sete capítulos.  O \autoref{cap:introducao} expõe o contexto do estudo, as justificativas desta pesquisa e os objetivos a serem atingidos. O \autoref{cap:fundamentacao} apresenta conceitos de caracterização de materiais, relata algumas normas de organizações internacionais para este fim e faz uma explanação sobre a área de processamento e análise de imagens. O \autoref{cap:trabalhos}... . Finalmente, o \autoref{cap:conclusão} apresenta a conclusão e os potenciais trabalhos futuros a serem desenvolvidos.
+Este trabalho está dividido em sete capítulos. O \autoref{cap:introducao} expõe o contexto do estudo, os objetivos e as justificativas desta pesquisa. O \autoref{cap:fundamentacao} apresenta a fundamentação teórica sobre redes neurais convolucionais, algoritmos de detecção de objetos e métricas de avaliação. O \autoref{cap:trabalhos} apresenta uma revisão dos trabalhos relacionados na área de detecção de objetos. O \autoref{cap:metodologia} descreve a metodologia empregada, os datasets utilizados e o ambiente experimental. O \autoref{cap:desenvolvimento} detalha a implementação dos modelos e os procedimentos de treinamento. O \autoref{cap:resultados} apresenta e discute os resultados obtidos na análise comparativa. Finalmente, o \autoref{cap:conclusão} apresenta as conclusões e sugere trabalhos futuros.

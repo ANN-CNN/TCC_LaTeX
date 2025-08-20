@@ -30,13 +30,31 @@ Essas extensões permitem:
 
 ## ▶️ Como Compilar
 
+### 🚀 Compilação Automática (Recomendado)
+
 Abra a pasta do projeto no VS Code e pressione `Ctrl+Alt+B` para compilar com `latexmk` (atalho padrão da extensão LaTeX Workshop).
 
-Você também pode compilar manualmente via terminal com:
-
+**Ou via terminal:**
 ```bash
 latexmk -pdf Principal.tex
 ```
+
+### 🔧 Compilação Manual com Bibliografia
+
+Para casos específicos onde seja necessário controle total do processo:
+
+```bash
+pdflatex Principal.tex && bibtex Principal && pdflatex Principal.tex && pdflatex Principal.tex
+```
+
+#### 🔍 Por que 4 etapas?
+
+| Etapa | Comando | Função |
+|-------|---------|--------|
+| 1️⃣ | `pdflatex` | Gera arquivos auxiliares (.aux) e identifica citações |
+| 2️⃣ | `bibtex` | Processa a bibliografia do arquivo `Referencias.bib` |
+| 3️⃣ | `pdflatex` | Incorpora a bibliografia e resolve citações |
+| 4️⃣ | `pdflatex` | Finaliza referências cruzadas e numeração de páginas |
 
 ## 📄 Saída
 
