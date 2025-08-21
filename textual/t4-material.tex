@@ -1,12 +1,6 @@
 \chapter{MÉTODOS E RECURSOS}
 \label{cap:metodologia}
-Este capítulo apresentará a visão geral dos passos para a execução do trabalho, assim como os métodos e ferramentas que serão utilizados.
-
-\section{Visão Geral}
-
-Para alcançar os objetivos propostos neste trabalho, será adotada uma abordagem metodológica que integrará pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de arquiteturas de detecção de objetos. A pesquisa terá caráter aplicado, com o objetivo de analisar métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência, além de uma discussão crítica sobre a aplicabilidade de cada modelo em diferentes cenários.
-
-O processo metodológico poderá ser visualizado no fluxograma da \autoref{fig:fluxograma}. Ele se iniciará com o estudo teórico e a revisão bibliográfica, seguido pela seleção de modelos, que incluirão YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet. Em seguida, serão selecionados e pré-processados os datasets, como o COCO Dataset, PASCAL VOC Dataset e Kaggle Dataset. A pesquisa prosseguirá com a configuração do ambiente (TensorFlow) e a definição do hardware. Após a definição e otimização dos hiperparâmetros, os modelos serão treinados. A inferência será realizada com um conjunto de teste, as métricas de desempenho serão coletadas, e os resultados serão comparados e analisados quantitativamente. O processo se encerrará com a análise crítica e a discussão dos modelos, seguida da conclusão e sugestões para trabalhos futuros.
+Este capítulo apresentará os métodos e ferramentas que serão utilizados para o desenvolvimento do trabalho. Para alcançar os objetivos propostos, a pesquisa adotará uma abordagem que integra pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de arquiteturas de rede neural convolucional para detecção de objetos.O presente trabalho foi dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
 
 \begin{figure}[H]
 \caption{Diagrama de processos do desenvolvimento do TCC}
@@ -22,7 +16,7 @@ Nesta etapa, será realizado um estudo aprofundado sobre os fundamentos da visã
 
 \section{Seleção e Pré-processamento dos Datasets}
 
-Serão selecionados e pré-processados os principais datasets de referência para detecção de objetos, como o COCO Dataset, PASCAL VOC Dataset e Kaggle Dataset. O pré-processamento envolverá a preparação e organização dos dados para o treinamento dos modelos.
+Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
 
 \section{Configuração do Ambiente e Definição do Hardware}
 
