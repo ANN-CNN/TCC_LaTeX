@@ -10,34 +10,33 @@ Este capítulo apresentará os métodos e ferramentas que serão utilizados para
 \label{fig:fluxograma}
 \end{figure}
 
-\section{Estudo Teórico e Revisão Bibliográfica}
 
-Nesta etapa, será realizado um estudo aprofundado sobre os fundamentos da visão computacional e do aprendizado de máquina, com foco em redes neurais de aprendizagem profunda. Serão revisados os conceitos e as arquiteturas de detecção de objetos mais relevantes, como YOLO, Faster R-CNN, SSD, EfficientDet e RetinaNet. Esta fase buscará fundamentar teoricamente a pesquisa, compreendendo as características, vantagens e limitações de cada modelo.
+\section{Estudo Teórico e Revisão Bibliográfica}
+Nesta etapa, será realizado um estudo aprofundado sobre os fundamentos da visão computacional e do aprendizado de máquina, com foco em redes neurais de aprendizagem profunda. Serão revisados os conceitos e as arquiteturas de detecção de objetos mais relevantes, como YOLO, Faster R-CNN e SSD. Esta fase buscará fundamentar teoricamente a pesquisa, compreendendo as características, vantagens e limitações de cada modelo.
+
+\section{Seleção de Modelos}
+Para a análise comparativa, serão selecionadas três arquiteturas de detecção de objetos: YOLO (You Only Look Once), Faster R-CNN e SSD (Single Shot MultiBox Detector). A escolha desses modelos buscará representar as principais abordagens na área, abrangendo desde soluções otimizadas para velocidade em tempo real (YOLO e SSD) até aquelas que priorizam alta precisão (Faster R-CNN). Esta etapa visará estabelecer os algoritmos a serem avaliados, garantindo uma comparação representativa e relevante para a discussão sobre o equilíbrio entre desempenho e eficiência computacional.
 
 \section{Seleção e Pré-processamento dos Datasets}
-
 Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
 
 \section{Configuração do Ambiente e Definição do Hardware}
-
 A configuração do ambiente de desenvolvimento será feita utilizando o framework TensorFlow. O Google Colab, com runtime que utiliza placa de vídeo dedicada, será empregado para o treinamento dos modelos, devido à sua acessibilidade e capacidade de processamento. Serão definidos os requisitos de hardware, levando em consideração as necessidades computacionais de cada modelo para o treinamento e inferência.
 
 \section{Definição e Otimização dos Hiperparâmetros}
-
 Nesta etapa, serão definidos e otimizados os hiperparâmetros de cada modelo para garantir o melhor desempenho possível durante o treinamento. Este processo é crucial para ajustar os modelos aos datasets e ao hardware disponível.
 
-\section{Treinamento e Inferência dos Modelos}
-
+\section{Treinamento e Inferência dos conjunto de testes}
 Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o treinamento, a inferência será realizada em um conjunto de testes para avaliar o desempenho de cada modelo em dados não vistos.
 
 \section{Coleta de Métricas e Análise de Resultados}
-
 Serão coletadas métricas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência. Os resultados serão comparados e analisados quantitativamente para identificar o equilíbrio entre precisão e velocidade de cada arquitetura.
 
 \section{Análise Crítica e Discussão dos Modelos}
-
 Com base na análise quantitativa, será realizada uma discussão crítica sobre o desempenho de cada modelo. Esta etapa considerará não apenas as métricas, mas também a complexidade de implementação e a escalabilidade, fornecendo subsídios para a escolha do algoritmo mais adequado a cada contexto.
 
 \section{Conclusão e Sugestões para Trabalhos Futuros}
+O trabalho apresentará uma conclusão sobre os resultados obtidos e as principais contribuições da pesquisa. Serão feitas sugestões para trabalhos futuros, explorando possíveis melhorias e novas direções para a área de detecção de objetos.
 
-Por fim, o trabalho apresentará uma conclusão sobre os resultados obtidos e as principais contribuições da pesquisa. Serão feitas sugestões para trabalhos futuros, explorando possíveis melhorias e novas direções para a área de detecção de objetos.
+\section{Elaboração da Monografia}
+Por fim, a monografia será elaborada seguindo as normas de formatação acadêmica da instituição, com o objetivo de documentar e apresentar os resultados da pesquisa. A escrita ocorrerá após a conclusão das etapas práticas da metodologia, garantindo que o texto seja fundamentado nas análises e nos dados obtidos. Uma revisão cuidadosa será realizada para assegurar a clareza, a consistência da argumentação e a correção gramatical, visando a formalidade e a qualidade exigidas para o trabalho.
