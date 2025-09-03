@@ -1,41 +1,90 @@
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \label{cap:fundamentacao}
 
+Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente, serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais arquiteturas de detecção de objetos — YOLO, Faster R-CNN e SSD — que constituem o foco da análise comparativa deste estudo, além do framework e ambiente utilizados.
+
 \section{Visão Computacional e Aprendizado de Máquina}
 
+A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas para que os computadores possam "ver" e interpretar o conteúdo de imagens e vídeos digitais. Conforme aponta \citeonline{szeliski2022computer}, o objetivo é automatizar tarefas que o sistema visual humano pode fazer, permitindo que máquinas extraiam informações significativas do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais acessível e precisa devido aos avanços no Aprendizado de Máquina.
+
 \subsection{Fundamentos da Visão Computacional}
-% Adicione aqui o conteúdo sobre fundamentos da visão computacional
+
+Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "gato"), até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área exata de cada objeto em nível de pixel.
 
 \subsection{Introdução ao Aprendizado de Máquina e Redes Neurais Profundas}
-% Adicione aqui o conteúdo sobre aprendizado de máquina e redes neurais profundas
+
+O Aprendizado de Máquina é um subcampo da inteligência artificial que se concentra no desenvolvimento de algoritmos que permitem aos computadores aprender a partir de dados. Em vez de serem explicitamente programados com regras, esses sistemas utilizam padrões estatísticos nos dados para fazer previsões ou tomar decisões.
+
+A Aprendizagem Profunda (\textit{Deep Learning}) emergiu como uma subárea do Aprendizado de Máquina de particular sucesso, destacando-se pelo uso de Redes Neurais Artificiais com múltiplas camadas (profundas). Como afirmam \citeonline{goodfellow2016deep}, essa profundidade permite que o modelo aprenda uma hierarquia de representações de dados, com cada camada aprendendo características mais complexas com base nas saídas da camada anterior. \citeonline{haykin2009neural} descreve essas redes como algoritmos inspirados na neurociência, simulando um conjunto de neurônios interconectados que processam informações em cascata, de forma análoga ao cérebro humano.
 
 \section{Redes Neurais Convolucionais (CNNs)}
 
+As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se tornaram o padrão ouro para tarefas de análise de imagens. \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões visuais, pois sua arquitetura é projetada especificamente para extrair características hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
+
 \subsection{Conceitos Essenciais e Funcionamento das CNNs}
-% Adicione aqui o conteúdo sobre CNNs
+
+A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou \textit{kernels}) que detectam padrões visuais, como bordas, texturas e formas, diretamente dos dados de treinamento. Essa aprendizagem é possível graças a dois conceitos-chave: campos receptivos locais e pesos compartilhados. Em vez de cada neurônio se conectar a todos os pixels da imagem, ele se conecta apenas a uma pequena região (o campo receptivo), e o mesmo filtro (conjunto de pesos) é aplicado em toda a imagem, reduzindo drasticamente o número de parâmetros a serem aprendidos.
+
+A arquitetura típica de uma CNN inclui três tipos principais de camadas:
+
+\textbf{Camada Convolucional}: O núcleo da CNN, onde múltiplos filtros são aplicados à imagem de entrada para criar mapas de características que destacam padrões específicos.
+
+\textbf{Camada de Agrupamento (\textit{Pooling})}: Geralmente inserida após as convoluções, esta camada reduz a dimensionalidade espacial dos mapas de características (por exemplo, pegando o valor máximo de uma vizinhança), o que diminui a carga computacional e confere ao modelo uma certa invariância a pequenas translações na imagem.
+
+\textbf{Camada Totalmente Conectada (\textit{Fully Connected})}: Localizada ao final da rede, ela recebe os mapas de características de alto nível e os utiliza para realizar a tarefa final, como a classificação do objeto ou a regressão das coordenadas de sua caixa delimitadora.
+
+Essa estrutura hierárquica permite que a rede aprenda desde características visuais simples nas camadas iniciais (bordas, cores) até conceitos complexos e abstratos nas camadas mais profundas (formas de objetos, rostos).
 
 \section{Principais Arquiteturas de Detecção de Objetos}
 
+As arquiteturas de detecção de objetos evoluíram significativamente, buscando um equilíbrio ideal entre precisão e velocidade \cite{tan2020efficientdet}. Os modelos podem ser amplamente divididos em duas categorias: detectores de dois estágios, que priorizam a precisão, e detectores de um estágio, que focam na velocidade para aplicações em tempo real \cite{lin2020focal}.
+
 \subsection{You Only Look Once (YOLO)}
-% Adicione aqui o conteúdo específico sobre YOLO
+
+Proposto por \citeonline{redmon2016yolo}, o YOLO (\textit{You Only Look Once}) introduziu uma nova abordagem para a detecção de objetos ao enquadrar a tarefa como um problema único de regressão. O modelo processa a imagem inteira de uma só vez ("você só olha uma vez"), dividindo-a em uma grade e prevendo simultaneamente as caixas delimitadoras, as pontuações de confiança e as probabilidades de classe para cada célula. Essa abordagem unificada, descrita pelos seus desenvolvedores como um "sistema de detecção de objetos em tempo real de última geração" \cite{ultralytics2024yolo}, confere ao YOLO uma velocidade de inferência extremamente alta, tornando-o um dos modelos mais populares para aplicações em tempo real.
 
 \subsection{Faster R-CNN}
-% Adicione aqui o conteúdo específico sobre Faster R-CNN
+
+A Faster R-CNN, apresentada por \citeonline{ren2017faster}, é o ápice de uma família de detectores de dois estágios (R-CNN, Fast R-CNN). Sua principal inovação, conforme destacado em repositórios de referência como o TensorFlow Object Detection API \cite{tensorflow2024}, foi a introdução da Rede de Proposta de Regiões (\textit{Region Proposal Network} - RPN). Essa rede permite que o próprio modelo aprenda a identificar as áreas da imagem que provavelmente contêm objetos. No primeiro estágio, a RPN gera propostas de regiões de alta qualidade. No segundo estágio, essas regiões são analisadas por um detector para classificação e refinamento das caixas delimitadoras. Essa abordagem resulta em uma precisão de detecção estado da arte, mas geralmente com um custo computacional maior e menor velocidade de inferência em comparação com detectores de um estágio.
 
 \subsection{Single Shot MultiBox Detector (SSD)}
-% Adicione aqui o conteúdo específico sobre SSD
+
+O SSD (\textit{Single Shot MultiBox Detector}), conforme descrito por \citeonline{liu2016ssd}, foi desenvolvido para ser um detector de um estágio que combina as vantagens das abordagens anteriores. Ele busca alcançar a velocidade do YOLO mantendo uma precisão competitiva com a da Faster R-CNN. Para isso, o SSD realiza predições em múltiplos mapas de características de diferentes camadas da rede, uma abordagem que, segundo sua documentação oficial, elimina a necessidade de uma etapa de proposta de regiões e encapsula todo o cálculo em uma única rede \cite{tensorflow2024}. Mapas de características de camadas mais profundas (com menor resolução) são usados para detectar objetos maiores, enquanto mapas de camadas mais rasas (com maior resolução) detectam objetos menores. Essa estratégia de múltiplas escalas o torna uma solução versátil e equilibrada.
 
 \section{TensorFlow}
 
+O TensorFlow é descrito por seus criadores como uma plataforma de código aberto ponta a ponta para aprendizado de máquina. Ele oferece um ecossistema abrangente e flexível de ferramentas, bibliotecas e recursos comunitários que permitem aos pesquisadores e desenvolvedores construir e implantar facilmente aplicações baseadas em aprendizado de máquina em diversas plataformas, desde servidores a dispositivos móveis \cite{tensorflow2024}.
+
 \subsection{Utilização do Framework no Projeto}
-% Adicione aqui o conteúdo sobre como o TensorFlow será utilizado no projeto
+
+Neste projeto, o TensorFlow será o framework utilizado para implementar, treinar e avaliar as arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir grafos computacionais e otimizar operações para execução em Unidades de Processamento Gráfico (GPUs) é crucial para acelerar o tempo de treinamento dos modelos profundos, que pode levar de horas a dias.
 
 \section{Ambiente de Desenvolvimento}
 
+O treinamento de redes neurais profundas é uma tarefa computacionalmente intensiva, cujo sucesso recente está diretamente ligado ao avanço do hardware, especialmente das Unidades de Processamento Gráfico (GPUs) que permitem o processamento massivamente paralelo \cite{lecun2015deep}. Essa exigência de hardware especializado para treinar modelos em um tempo razoável faz com que a disponibilidade de poder de processamento seja um fator limitante para muitos pesquisadores e desenvolvedores \cite{goodfellow2016deep}.
+
 \subsection{Definição do Hardware (Google Colab)}
-% Adicione aqui detalhes sobre a configuração do ambiente no Google Colab
+
+O ambiente de desenvolvimento para este trabalho será o Google Colaboratory. De acordo com a sua documentação oficial, "O Colaboratory, ou 'Colab' para abreviar, permite que você escreva e execute Python no seu navegador com zero configuração necessária, acesso gratuito a GPUs e compartilhamento facilitado" \cite{google2024colab}. O serviço democratiza o acesso a recursos computacionais de alto desempenho, fornecendo ambientes de notebook Jupyter com suporte a GPUs e TPUs (Unidades de Processamento Tensorial) sem custo. Sua acessibilidade e infraestrutura robusta o tornam uma escolha ideal para este projeto, permitindo o treinamento e a experimentação com modelos complexos.
 
 \section{Datasets}
 
+O desempenho de qualquer modelo de aprendizado de máquina é intrinsecamente ligado à qualidade, quantidade e diversidade do conjunto de dados (\textit{dataset}) utilizado para o seu treinamento \cite{goodfellow2016deep}. Para tarefas de detecção de objetos, um dataset consiste em imagens e anotações que especificam a classe e as coordenadas da caixa delimitadora para cada objeto presente.
+
 \subsection{Seleção e Pré-processamento dos Datasets}
-% Adicione aqui detalhes sobre os datasets que serão utilizados e seu pré-processamento
+
+Para uma comparação justa e relevante entre diferentes arquiteturas, a utilização de benchmarks padronizados é essencial. Esses datasets públicos e amplamente adotados permitem que os resultados sejam reprodutíveis e comparáveis com outros trabalhos na área. A seguir, são descritos os principais datasets de referência que serão considerados para este estudo.
+
+\subsubsection{PASCAL VOC (Visual Object Classes)}
+
+O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos. Originado a partir de um desafio anual (2005-2012), ele contém imagens de 20 categorias de objetos comuns, como "carro", "pessoa" e "cachorro". Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o tornou fundamental para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para detecção, como a família R-CNN \cite{everingham2015pascal}.
+
+\subsubsection{COCO (Common Objects in Context)}
+
+O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. Ele representa um avanço significativo em relação ao PASCAL VOC em termos de escala e complexidade. O dataset contém 80 categorias de objetos, mais de 200.000 imagens rotuladas e um número muito maior de instâncias de objetos por imagem. Seu principal diferencial, como o nome sugere, é o foco em "objetos em seu contexto natural", apresentando cenas complexas com múltiplos objetos, muitas vezes sobrepostos e de diferentes escalas. Além das caixas delimitadoras, o COCO também fornece anotações de segmentação por pixel, permitindo o treinamento de modelos para tarefas mais refinadas \cite{lin2014microsoft}.
+
+\subsubsection{Kaggle Datasets}
+
+O Kaggle é uma plataforma online que hospeda uma vasta gama de competições de ciência de dados e datasets públicos. Embora não seja um benchmark acadêmico padronizado como o COCO ou o PASCAL VOC, o Kaggle oferece acesso a milhares de datasets de nicho e específicos para problemas do mundo real (por exemplo, detecção de doenças em imagens médicas ou identificação de produtos em prateleiras). Ele serve como um excelente recurso para explorar problemas mais específicos, mas para uma comparação fundamental de arquiteturas, os benchmarks acadêmicos são geralmente preferidos.
+
+Após a análise comparativa desses datasets, um deles será selecionado como o mais adequado para os objetivos deste trabalho. A etapa subsequente de pré-processamento envolverá a adequação dos formatos das imagens e das anotações para que sejam compatíveis com as arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
