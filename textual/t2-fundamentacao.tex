@@ -1,7 +1,7 @@
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \label{cap:fundamentacao}
 
-Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente, serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais arquiteturas de detecção de objetos — YOLO, Faster R-CNN e SSD — que constituem o foco da análise comparativa deste estudo, além do framework e ambiente utilizados.
+Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente, serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais arquiteturas de detecção de objetos: YOLO, Faster R-CNN e SSD que constituem o foco da análise comparativa deste estudo, além do framework e ambiente utilizados.
 
 \section{Visão Computacional e Aprendizado de Máquina}
 
@@ -9,7 +9,7 @@ A Visão Computacional é uma área interdisciplinar da ciência que busca desen
 
 \subsection{Fundamentos da Visão Computacional}
 
-Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "gato"), até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área exata de cada objeto em nível de pixel.
+Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "bicicleta"), até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área exata de cada objeto em nível de pixel.
 
 \subsection{Introdução ao Aprendizado de Máquina e Redes Neurais Profundas}
 
@@ -19,11 +19,11 @@ A Aprendizagem Profunda (\textit{Deep Learning}) emergiu como uma subárea do Ap
 
 \section{Redes Neurais Convolucionais (CNNs)}
 
-As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se tornaram o padrão ouro para tarefas de análise de imagens. \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões visuais, pois sua arquitetura é projetada especificamente para extrair características hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
+As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se tornaram o padrão ouro para tarefas de análise de imagens, um status consolidado após resultados como os da AlexNet na competição ImageNet \cite{krizhevsky2012imagenet}. \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões visuais, pois sua arquitetura é projetada especificamente para extrair características hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
 
 \subsection{Conceitos Essenciais e Funcionamento das CNNs}
 
-A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou \textit{kernels}) que detectam padrões visuais, como bordas, texturas e formas, diretamente dos dados de treinamento. Essa aprendizagem é possível graças a dois conceitos-chave: campos receptivos locais e pesos compartilhados. Em vez de cada neurônio se conectar a todos os pixels da imagem, ele se conecta apenas a uma pequena região (o campo receptivo), e o mesmo filtro (conjunto de pesos) é aplicado em toda a imagem, reduzindo drasticamente o número de parâmetros a serem aprendidos.
+A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou \textit{kernels}) que detectam padrões visuais, como bordas, texturas e formas, diretamente dos dados de treinamento \cite{lecun2015deep}. Essa aprendizagem é possível graças a dois conceitos-chave: campos receptivos locais e pesos compartilhados. Em vez de cada neurônio se conectar a todos os pixels da imagem, ele se conecta apenas a uma pequena região (o campo receptivo), e o mesmo filtro (conjunto de pesos) é aplicado em toda a imagem, reduzindo drasticamente o número de parâmetros a serem aprendidos.
 
 A arquitetura típica de uma CNN inclui três tipos principais de camadas:
 
