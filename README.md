@@ -34,10 +34,6 @@ Essas extensões permitem:
 
 ## ▶️ Como Compilar
 
-### 🚀 Compilação Automática
-
-Abra a pasta do projeto no VS Code e pressione `Ctrl+Alt+B` para compilar com `latexmk` (atalho padrão da extensão LaTeX Workshop).
-
 ### 🔧 Compilação Manual com Bibliografia
 
 Para controle total do processo:
