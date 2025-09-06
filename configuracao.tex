@@ -1,4 +1,5 @@
 
+%===================================================================================================================%
 % Desenvolvido por: Prof. Dr. David Buzatto
 % Adaptado por: Prof. Dr. Fernando Carvalho
 %
@@ -9,6 +10,7 @@
 %
 % Versão 1.5
 % Data: 03/09/2018
+%===================================================================================================================%
 
 
 \documentclass[
@@ -95,13 +97,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{bookmark}   			
-
-
-
-% ---------------------------------------------------------------------------------
-%                                   PACOTES
-% ---------------------------------------------------------------------------------
+\RequirePackage{bookmark}   
 
 
 % ---
@@ -109,7 +105,18 @@
 % ---
 \input{pendencias}
 
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
+% ---------------------------------------------------------------------------------
+%                                   Fontes
+% ---------------------------------------------------------------------------------
+% \usepackage{lmodern}			            % Usa a fonte Latin Modern	
+
+% Configuração da fonte Arial
+\usepackage{helvet}				            % Usa a fonte Helvetica (equivalente à Arial)
+\renewcommand{\familydefault}{\sfdefault}	% Define Arial como fonte padrão do documento
+
+% ---------------------------------------------------------------------------------
+%                                   PACOTES
+% ---------------------------------------------------------------------------------
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
@@ -150,8 +157,9 @@
 % ---
 % Pacotes de citações
 % ---
-\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[brazilian,hyperpageref]{backref}	   % Paginas com as citações na bibl
 % \usepackage[alf,abnt-emphasize=bf]{abntex2cite}  % Citações padrão ABNT
+
 \usepackage[alf]{abntex2cite}  % Citações padrão ABNT
 
 
