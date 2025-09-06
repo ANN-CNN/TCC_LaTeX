@@ -51,6 +51,24 @@ pdflatex Principal.tex && bibtex Principal && pdflatex Principal.tex && pdflatex
 | 3️⃣    | `pdflatex` | Incorpora a bibliografia e resolve citações           |
 | 4️⃣    | `pdflatex` | Finaliza referências cruzadas e numeração de páginas  |
 
+## 🧹 Limpeza de Arquivos Auxiliares
+
+Para remover os arquivos temporários gerados durante a compilação, use:
+
+```bash
+rm -f Principal.{aux,bbl,blg,brf,idx,lof,log,toc}
+```
+
+Este comando remove os seguintes arquivos auxiliares:
+- `.aux` - Informações auxiliares
+- `.bbl` - Bibliografia processada
+- `.blg` - Log do bibtex
+- `.brf` - Arquivo de brief
+- `.idx` - Índice
+- `.lof` - Lista de figuras
+- `.log` - Log de compilação
+- `.toc` - Sumário
+
 ## 📄 Saída
 
 O arquivo final compilado é um PDF localizado na mesma pasta do `Principal.tex`.
