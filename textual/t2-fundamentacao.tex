@@ -88,3 +88,59 @@ O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. 
 O Kaggle é uma plataforma online que hospeda uma vasta gama de competições de ciência de dados e datasets públicos \cite{kaggle2024}. Embora não seja um benchmark acadêmico padronizado como o COCO ou o PASCAL VOC, o Kaggle oferece acesso a milhares de datasets de nicho e específicos para problemas do mundo real (por exemplo, detecção de doenças em imagens médicas ou identificação de produtos em prateleiras). Ele serve como um excelente recurso para explorar problemas mais específicos, mas para uma comparação fundamental de arquiteturas, os benchmarks acadêmicos são geralmente preferidos.
 
 Após a análise comparativa desses datasets, um deles será selecionado como o mais adequado para os objetivos deste trabalho. A etapa subsequente de pré-processamento envolverá a adequação dos formatos das imagens e das anotações para que sejam compatíveis com as arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
+
+\section{Métricas de Desempenho e Visualização}
+
+A avaliação do desempenho de redes neurais é uma etapa fundamental para compreender a eficácia de um modelo e identificar pontos de melhoria. O uso de métricas de desempenho adequadas é essencial para garantir que o modelo atenda aos requisitos de precisão e robustez, especialmente em cenários onde a generalização para novos dados é crítica \cite{miguel2025uso}. Adicionalmente, a visualização dos resultados durante o treinamento ajuda a monitorar o progresso, detectar problemas e tomar decisões informadas sobre ajustes \cite{geron2023maos}.
+
+\subsection{Métricas de Desempenho}
+
+Existem diversas métricas utilizadas para avaliar o desempenho de modelos de aprendizado de máquina, principalmente em tarefas de classificação. Cada métrica oferece uma perspectiva diferente sobre a performance do modelo e sua utilidade varia conforme o contexto da aplicação \cite{geron2023maos}. As principais métricas incluem acurácia, perda (loss), precisão, recall e F1-Score \cite{miguel2025uso}.
+
+\subsubsection{Acurácia}
+
+A acurácia é uma das métricas mais simples e amplamente utilizadas. Ela representa a proporção de previsões corretas em relação ao número total de amostras analisadas \cite{miguel2025uso}. A fórmula para seu cálculo é dada por:
+
+\begin{equation}
+\text{Acurácia} = \frac{\text{Número de previsões verdadeiras}}{\text{Número total de previsões realizadas}}
+\end{equation}
+
+Embora seja uma métrica bastante útil, a acurácia pode ser enganosa, principalmente quando há um desequilíbrio entre as classes do conjunto de dados \cite{geron2023maos, miguel2025uso}.
+
+\subsubsection{Loss (Função de Perda)}
+
+A métrica de loss, ou erro, indica o quão distantes as previsões do modelo estão dos valores reais. A função de perda é utilizada durante a fase de treinamento para ajustar os parâmetros do modelo, com o objetivo de minimizá-la para que as previsões se tornem mais precisas \cite{miguel2025uso}. Uma loss baixa indica que o modelo está fazendo boas previsões e está bem ajustado aos dados.
+
+\subsubsection{Precisão (Precision)}
+
+A precisão é uma métrica que avalia a taxa de falsos positivos (FP). Ela mede a proporção de previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fórmula é:
+
+\begin{equation}
+\text{Precisão} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Positivos (FP)}}
+\end{equation}
+
+A precisão é particularmente importante em cenários onde um erro de falso positivo é considerado crítico e precisa ser minimizado \cite{geron2023maos}.
+
+\subsubsection{Recall (Revocação)}
+
+A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo recall pode ser um indicativo de que ele está sendo excessivamente conservador e falhando em identificar todas as instâncias relevantes \cite{miguel2025uso}.
+
+\subsubsection{F1-Score}
+
+Em cenários com classes desbalanceadas, o F1-Score é frequentemente utilizado para garantir um equilíbrio entre a precisão e o recall. Essa métrica corresponde à média harmônica da precisão e do recall, dando mais peso aos valores mais baixos e, portanto, penalizando modelos que possuem um desequilíbrio grande entre as duas métricas \cite{geron2023maos}.
+
+\subsection{Técnicas de Visualização}
+
+A visualização dos resultados do treinamento de redes neurais é essencial para monitorar o desempenho, detectar problemas de forma precoce e tomar decisões informadas \cite{miguel2025uso}. Ferramentas gráficas ajudam a compreender como o modelo está aprendendo e se ajustando aos dados, fornecendo insights cruciais para a melhoria da sua precisão e robustez \cite{geron2023maos}.
+
+\subsubsection{Gráficos de Acurácia e Loss}
+
+Os gráficos de acurácia e loss são duas das ferramentas mais comuns para monitorar o progresso do treinamento de uma rede neural \cite{miguel2025uso}.
+
+O gráfico de acurácia exibe a taxa de acertos do modelo ao longo das épocas de treinamento e validação. Ele permite identificar rapidamente se o modelo está aprendendo de forma consistente. Uma queda ou estagnação na acurácia de validação enquanto a de treinamento continua a subir é um forte indicativo de overfitting \cite{miguel2025uso}.
+
+Por sua vez, o gráfico de loss exibe a evolução da função de perda. O ideal é que ambas as perdas (treinamento e validação) diminuam ao longo do tempo. Se a perda de validação começar a aumentar enquanto a de treinamento continua a diminuir, isso também é um sinal de overfitting \cite{miguel2025uso}.
+
+\subsubsection{Matriz de Confusão}
+
+A matriz de confusão é uma técnica de visualização que oferece uma visão detalhada do comportamento do modelo em relação a cada classe. A ideia geral é contar o número de vezes que instâncias da classe A são classificadas como classe B \cite{geron2023maos}. Ela é especialmente útil para identificar se o modelo está cometendo erros sistemáticos. A partir da matriz, também é possível calcular métricas como precisão e recall para cada classe individualmente \cite{miguel2025uso}.
