@@ -17,6 +17,65 @@ O Aprendizado de Máquina é um subcampo da inteligência artificial que se conc
 
 A Aprendizagem Profunda (\textit{Deep Learning}) emergiu como uma subárea do Aprendizado de Máquina de particular sucesso, destacando-se pelo uso de Redes Neurais Artificiais com múltiplas camadas (profundas). Como afirmam \citeonline{goodfellow2016deep}, essa profundidade permite que o modelo aprenda uma hierarquia de representações de dados, com cada camada aprendendo características mais complexas com base nas saídas da camada anterior. \citeonline{haykin2009neural} descreve essas redes como algoritmos inspirados na neurociência, simulando um conjunto de neurônios interconectados que processam informações em cascata, de forma análoga ao cérebro humano.
 
+\section{Redes Neurais Artificiais}
+
+As Redes Neurais Artificiais (RNA) são técnicas de Inteligência Computacional que apresentam modelos matemáticos inspirados na estrutura e funcionamento do cérebro humano. A ideia central é que uma RNA seja capaz de adquirir conhecimento através da experiência, aprendendo com exemplos para tomar decisões e generalizar para novas situações. Essa abordagem busca simular um conjunto de neurônios biológicos interconectados e organizados em camadas, onde cada camada processa informações e as transmite para a camada seguinte \cite{andrade2011redes}.
+
+\subsection{Neurônio Artificial}
+
+A unidade fundamental de uma RNA é o neurônio artificial, um módulo que simula o funcionamento de um neurônio biológico. O modelo de um neurônio artificial consiste em um conjunto de entradas ($x_1, x_2, \ldots, x_n$), cada uma associada a um peso sináptico ($w_1, w_2, \ldots, w_n$) que pondera sua importância. Esses sinais ponderados são somados em uma junção somadora, cujo resultado passa por uma função de ativação. Essa função determina se o neurônio será "ativado" e qual será o sinal de saída ($y$) a ser propagado para outros neurônios da rede \cite{andrade2011redes}.
+
+A \autoref{fig:perceptron} ilustra a estrutura básica de um neurônio artificial, mostrando as entradas, os pesos sinápticos, a função de soma e a função de ativação.
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image Perceptron starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+    \caption{Estrutura de um neurônio artificial}
+    \begin{Center}
+        \includegraphics[width=0.8\textwidth]{./media/Perceptron.png}
+    \end{Center}
+    \label{fig:perceptron}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image Perceptron ends here %%%%%%%%%%%%%%%%%%%%
+
+\subsection{Rede de Neurônios}
+
+Uma Rede Neural Artificial é formada pela interconexão de múltiplos neurônios artificiais, tipicamente organizados em camadas que definem sua arquitetura. A estrutura mais comum é a \textit{Multi-Layer Perceptron} (MLP), que é composta por três tipos de camadas:
+
+\textbf{Camada de Entrada}: Recebe os dados brutos que são apresentados à rede.
+
+\textbf{Camadas Escondidas (ou Intermediárias)}: Uma ou mais camadas responsáveis pela maior parte do processamento e pela extração de características dos dados de entrada.
+
+\textbf{Camada de Saída}: Produz o resultado final da rede, como a classificação de um objeto.
+
+Nessa arquitetura, a informação flui de maneira progressiva (\textit{feedforward}), partindo da camada de entrada, passando pelas camadas escondidas e chegando até a camada de saída \cite{andrade2011redes}.
+
+\subsection{Aprendizado da Rede}
+
+A característica mais importante de uma RNA é sua capacidade de aprender a partir de exemplos. Esse processo consiste em um ajuste iterativo dos pesos das conexões, que ao final do treinamento, armazenam o conhecimento que a rede adquiriu. Existem dois paradigmas principais de aprendizado:
+
+\textbf{Aprendizado Supervisionado}: Neste paradigma, a rede é treinada com um conjunto de dados onde cada entrada já possui uma saída correspondente correta (um "supervisor"). A rede calcula sua própria saída para uma entrada, compara com a saída desejada e, a partir do erro gerado, ajusta seus pesos para que sua resposta se aproxime cada vez mais da resposta correta. É o método utilizado em problemas de mapeamento entre padrões de entrada e saída, como a classificação.
+
+\textbf{Aprendizado Não Supervisionado}: Neste caso, não há um supervisor externo; a rede recebe apenas os dados de entrada, sem saídas pré-rotuladas. O objetivo é que a própria rede, ao ser exposta continuamente aos dados, descubra padrões, regularidades e características estatisticamente relevantes, permitindo, por exemplo, a descoberta de agrupamentos ou classes nos dados \cite{andrade2011redes}.
+
+\subsection{Backpropagation}
+
+O algoritmo mais comum para o treinamento supervisionado de redes com múltiplas camadas é o \textit{error backpropagation} (retropropagação do erro). Este algoritmo é projetado para minimizar o erro médio quadrático entre a saída calculada pela rede e a saída desejada. O processo ocorre em duas fases:
+
+\textbf{Fase de Propagação (\textit{Forward Pass})}: Um vetor de entrada é apresentado à rede e propagado através de suas camadas até que uma saída seja gerada na camada final.
+
+\textbf{Fase de Retropropagação (\textit{Backward Pass})}: A saída gerada é comparada com a saída desejada, e um sinal de erro é calculado. Esse erro é então propagado de volta, da camada de saída para as camadas anteriores, ajustando os pesos de cada conexão de forma a minimizar o erro. Com um treinamento bem-sucedido, o erro diminui a cada iteração, e a rede converge para um conjunto estável de pesos \cite{andrade2011redes}.
+
+\subsection{Dificuldades de Dimensionamento}
+
+A definição da arquitetura de uma RNA, especialmente o número de camadas escondidas e de neurônios em cada uma delas, é de extrema importância para o seu desempenho e capacidade de generalização. Não existe uma regra geral que determine a arquitetura ideal para um problema, sendo essa definição normalmente baseada em uma análise prévia dos dados e da sua complexidade. O ajuste inadequado da complexidade da rede pode levar a dois efeitos indesejáveis:
+
+\textbf{\textit{Overfitting} (Sobreajuste)}: Ocorre quando a rede é superdimensionada (possui mais camadas ou neurônios que o necessário) ou é treinada por épocas demais. A rede "decora" os dados de treinamento, incluindo seus ruídos, e perde a capacidade de generalizar para novos dados que não foram vistos antes.
+
+\textbf{\textit{Underfitting} (Subajuste)}: Ocorre quando a rede é subdimensionada (muito simples para a complexidade do problema) ou não é treinada o suficiente. Nesse caso, a rede não consegue aprender os padrões presentes nos dados e falha em produzir resultados satisfatórios tanto para os dados de treino quanto para os de teste \cite{andrade2011redes}.
+
 \section{Redes Neurais Convolucionais (CNNs)}
 
 As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se tornaram o padrão ouro para tarefas de análise de imagens, um status consolidado após resultados como os da AlexNet na competição ImageNet \cite{krizhevsky2012imagenet}. \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões visuais, pois sua arquitetura é projetada especificamente para extrair características hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
