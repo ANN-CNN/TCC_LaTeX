@@ -3,7 +3,7 @@
 
 Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente, serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais arquiteturas de detecção de objetos: YOLO, Faster R-CNN e SSD que constituem o foco da análise comparativa deste estudo, além do framework e ambiente utilizados.
 
-\section{Visão Computacional e Aprendizado de Máquina}
+\section[Visão Computacional e Aprendizado de Máquina]{Visão Computacional e Aprendizado de\\Máquina}
 
 A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas para que os computadores possam "ver" e interpretar o conteúdo de imagens e vídeos digitais. Conforme aponta \citeonline{szeliski2022computer}, o objetivo é automatizar tarefas que o sistema visual humano pode fazer, permitindo que máquinas extraiam informações significativas do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais acessível e precisa devido aos avanços no Aprendizado de Máquina.
 
@@ -11,7 +11,7 @@ A Visão Computacional é uma área interdisciplinar da ciência que busca desen
 
 Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "bicicleta"), até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área exata de cada objeto em nível de pixel.
 
-\subsection{Introdução ao Aprendizado de Máquina e Redes Neurais Profundas}
+\subsection[Introdução ao Aprendizado de Máquina e Redes Neurais Profundas]{Introdução ao Aprendizado de Máquina e Redes Neurais\\Profundas}
 
 O Aprendizado de Máquina é um subcampo da inteligência artificial que se concentra no desenvolvimento de algoritmos que permitem aos computadores aprender a partir de dados. Em vez de serem explicitamente programados com regras, esses sistemas utilizam padrões estatísticos nos dados para fazer previsões ou tomar decisões.
 
@@ -142,7 +142,7 @@ Camadas Totalmente Conectadas (C5 e F6): Após a fase de extração de caracter�
 
 Camada de Saída: A camada final é composta por 10 neurônios, cada um correspondendo a uma das classes a serem preditas (por exemplo, os dígitos de 0 a 9). A ativação mais alta entre esses neurônios indica a classe que a rede atribuiu à imagem de entrada \cite{lecun1998gradient}.
 
-\section{Principais Arquiteturas de Detecção de Objetos}
+\section[Principais Arquiteturas de Detecção de Objetos]{Principais Arquiteturas de Detecção de\\Objetos}
 
 As arquiteturas de detecção de objetos evoluíram significativamente, buscando um equilíbrio ideal entre precisão e velocidade \cite{tan2020efficientdet}. Os modelos podem ser amplamente divididos em duas categorias: detectores de dois estágios, que priorizam a precisão, e detectores de um estágio, que focam na velocidade para aplicações em tempo real \cite{lin2020focal}.
 
