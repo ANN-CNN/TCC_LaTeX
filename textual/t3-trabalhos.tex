@@ -1,90 +1,38 @@
 \chapter{Trabalhos Relacionados}
 \label{cap:trabalhos}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sodales nibh quis ligula imperdiet sodales. Cras eleifend nulla eu elit pharetra, et lobortis risus semper. Nulla eu eros felis. Nam tincidunt velit ac velit pretium sagittis. Curabitur ultrices suscipit elit, commodo congue elit semper ut. Suspendisse dapibus sagittis tortor non euismod. Nullam fringilla arcu nunc, quis imperdiet ante condimentum vel. Nunc ornare leo nibh, ac pretium mauris porta vel. Nulla rhoncus, velit ac commodo blandit, tellus odio viverra erat, ac vehicula justo eros non ligula. Curabitur pretium aliquet eros, a maximus tellus suscipit nec. 
-%%%%%%%%%%%%%%%%%ALTERADO a estrutura, criado subsection %%% %%%%%%%%%%%%%%%%%%%%
 
-\section{Aplicativo...}
+A análise comparativa de arquiteturas de redes neurais para tarefas de visão computacional tem sido um campo fértil de pesquisa, buscando estabelecer os modelos mais eficientes para diferentes contextos de aplicação. Nesta seção, são apresentados trabalhos que, assim como este, se dedicaram a comparar o desempenho de diferentes arquiteturas, seja em problemas de classificação de imagens ou na detecção de objetos. A análise destes estudos é fundamental para contextualizar a presente pesquisa, identificar as metodologias consolidadas e destacar as lacunas que este trabalho se propõe a preencher.
 
-Os trabalhos pesquisados foram selecionados com base nas seguintes abordagens: sistemas web e \textit{mobile}, geolocalização e informações geográficas. Dentre os trabalhos selecionados dois se destacam, por estarem mais próximos dos objetivos desta monografia.
+\section{Análise Comparativa de CNNs para Triagem de Lesões de Pele}
 
-\subsection{Características..}
+Em um estudo focado na área médica, \cite{santos2019analise} realizou uma análise comparativa entre as arquiteturas ResNet, VGG e GoogLeNet para a tarefa de triagem e classificação de lesões de pele. O objetivo era avaliar a viabilidade de utilizar estas redes para apoiar o diagnóstico médico a partir de um vasto conjunto de dados de 140.446 imagens obtidas em um cenário real do sistema de saúde. 
 
-A Prefeitura Municipal de Juiz de Fora, disponibilizou em 2016 um aplicativo \textit{beta web} chamado Descarte.me (\autoref{fig:descarta}). Este sistema, apresenta o mapa exibindo a rota do serviço, a localização dos caminhões, a estimativa da passagem do veículo na rua e os dias e horários da coleta. De acordo com o prefeito, Bruno Siqueira, $``$As pessoas poderão ver quanto tempo falta para a próxima coleta, e o lixo poderá ser colocado para fora em um horário mais próximo, evitando que as ruas fiquem sujas e que o lixo seja revirado$"$  \cite{tribuna}.
+Após conduzir 42 cenários experimentais, variando arquiteturas, estratégias de inicialização de pesos e taxas de aprendizado, o autor concluiu que a arquitetura GoogLeNet, com inicialização randômica dos pesos, apresentou o melhor desempenho. O modelo atingiu 89,72\% de acurácia para sugestão diagnóstica e 96,03\% para o encaminhamento adequado do paciente. 
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 6 starts here %%%%%%%%%%%%%%%%%%%%
+O trabalho de \cite{santos2019analise} é relevante por comparar arquiteturas de base (\textit{backbones}) que também são utilizadas nos modelos de detecção de objetos, embora seu foco seja estritamente a classificação.
 
-\begin{figure}[H]
-    \caption{Tela Inicial do Aplicativo Descarte.me}
-	\begin{Center}
-		\includegraphics[width=0.95in,height=1.75in]{./media/image37.png}
-	\end{Center}
-	\label{fig:descarta}
-	\source{\cite{tribuna}.}
-\end{figure}
+\section[Estudo Comparativo de CNNs para Classificação de Imagens]{Estudo Comparativo de CNNs para\\Classificação de Imagens}
 
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 6 Ends here %%%%%%%%%%%%%%%%%%%%
+De forma semelhante, \cite{silva2018estudo} conduziu um estudo comparativo direto entre as arquiteturas VGG-16, ResNet-50 e Inception, aplicando-as a um problema de classificação de imagens de um domínio específico: a identificação de personagens do desenho ``Os Simpsons''. O autor buscou avaliar o poder de generalização dessas redes, pré-treinadas com o \textit{dataset} ImageNet, em um conjunto de dados visualmente distinto.
 
+Utilizando métricas como acurácia e \textit{log loss}, e testando diferentes otimizadores, o estudo concluiu que a ResNet-50 obteve a maior acurácia (93,4\%), enquanto a Inception alcançou o menor \textit{log loss} (0.26). Uma das principais constatações foi que a escolha do otimizador (SGD em vez de RMSprop) foi crucial para o bom desempenho das redes. Este trabalho corrobora a necessidade de uma análise empírica para determinar a arquitetura mais adequada para um dado problema de classificação.
 
+\section[Análise Comparativa de Modelos de Detecção de Objetos]{Análise Comparativa de Modelos de\\Detecção de Objetos}
 
-O trabalho citado acima difere-se deste projeto, nos seguintes pontos (\autoref{qua:descarta}):
+Diferentemente dos trabalhos anteriores que focam na classificação, \cite{su2025comparative} apresenta uma análise comparativa que aborda diretamente os três modelos centrais deste TCC: Faster R-CNN, SSD e YOLO. O autor realiza uma revisão sistemática, comparando as arquiteturas com base em dados de literatura sobre três eixos principais: precisão (mAP), velocidade (FPS) e consumo de recursos (GPU VRAM).
 
-%%%%%%%%%%%%%%%%%%%% Table No: 2 starts here %%%%%%%%%%%%%%%%%%%%
+A análise de \cite{su2025comparative} destaca o claro \textit{trade-off} entre os modelos: a Faster R-CNN, uma abordagem de dois estágios, alcança alta precisão (73.2\% mAP) sendo ideal para tarefas que não exigem tempo real, mas consome mais recursos; a YOLO, por sua vez, prioriza a velocidade (45 FPS), sendo adequada para aplicações em tempo real, ao custo de uma menor precisão (63.4\% mAP); por fim, a SSD se posiciona como uma solução de equilíbrio entre velocidade e acurácia. Este artigo fornece um referencial teórico robusto para a comparação que será realizada de forma prática neste trabalho.
 
-\begin{quadro}[H]
-\caption{Quadro Comparativo do Aplicativo Descarte.me}
-\label{qua:descarta}
-\centering
-\begin{tabular}{p{1.18in}p{2.3in}p{2.09in}}
-\hline
-%row no:1
-\multicolumn{1}{|p{1.18in}}{\Centering \textbf{Características}} & 
-\multicolumn{1}{|p{2.3in}}{\Centering \textbf{Descarta.me}} & 
-\multicolumn{1}{|p{2.09in}|}{\Centering \textbf{Este Projeto}} \\
-\hhline{---}
-%row no:2
-\multicolumn{1}{|p{1.18in}}{\textbf{Plataforma}} & 
-\multicolumn{1}{|p{2.3in}}{Web \par Android  \par iOS} & 
-\multicolumn{1}{|p{2.09in}|}{Android} \\
-\hhline{---}
-%row no:3
-\multicolumn{1}{|p{1.18in}}{\textbf{Tecnologias}} & 
-\multicolumn{1}{|p{2.3in}}{GPS \par HTML \par APIs Google Maps} & 
-\multicolumn{1}{|p{2.09in}|}{Android Studio \par APIs Google Maps \par Java \par Firebase \par Firebase Realtime Database \par GPS} \\
-\hhline{---}
-%row no:4
-\multicolumn{1}{|p{1.18in}}{\textbf{Funcionalidades}} & 
-\multicolumn{1}{|p{2.3in}}{Localização dos caminhões \par Previsão da passagem dos veículos  \par Dias e horários da coleta \par Rota } & 
-\multicolumn{1}{|p{2.09in}|}{Cadastro de perfil de usuários \par Rota informando a distância e a duração \par Solicitação do serviço da coleta} \\
-\hhline{---}
+\section[Aplicação de Redes Neurais na Identificação de Áreas Cafeeiras]{Aplicação de Redes Neurais na\\Identificação de Áreas Cafeeiras}
 
-\end{tabular}
-\end{quadro}
-%%%%%%%%%%%%%%%%%%%% Table No: 2 ends here %%%%%%%%%%%%%%%%%%%%
+A dissertação de \cite{andrade2011redes} demonstra uma aplicação prática de Redes Neurais Artificiais (RNA) do tipo \textit{Multi-Layer Perceptron} (MLP) para um problema complexo de classificação de imagens de satélite, com foco na identificação de áreas de cafeicultura. O principal desafio era a alta similaridade espectral entre a cultura do café e a vegetação nativa, o que dificultava a distinção por métodos tradicionais.
 
-No \autoref{qua:descarta} podemos observar os pontos diferentes entre o projeto Descarta.me e este projeto. Neste projeto teremos como vantagem a implementação do \textit{Firebase}, do \textit{Firebase Realtime Database} como banco de dados, da rota e da solicitação do serviço de coleta via aplicativo.
+Utilizando uma metodologia que envolvia pré-processamento para mascarar áreas irrelevantes e treinamento supervisionado com amostras representativas, o estudo alcançou um índice Kappa considerado ``bom'' (entre 67\% e 71,85\%) para as regiões analisadas, superando outros classificadores automáticos da literatura. 
 
-\subsection{Aplicativo Cataki}
+Embora utilize uma arquitetura mais antiga, o trabalho de \cite{andrade2011redes} é pertinente por ilustrar a aplicação de redes neurais para resolver problemas de classificação com alta confusão entre classes, um desafio também presente na detecção de múltiplos objetos em cenas complexas.
 
- O aplicativo Cataki foi criado pelo projeto \textit{Pimp My Carroça}, lançado em 2017, destinado para as seguintes plataformas móveis: \textit{Android }e \textit{iOS. }Seu objetivo é conectar catadores ou geradores de resíduos. O aplicativo não possui fins lucrativos e nem colaborativos. 
+\section[Síntese e Contribuição do Presente Trabalho]{Síntese e Contribuição do Presente\\Trabalho}
 
- No aplicativo é possível cadastrar catadores e cooperativas via \textit{site}, localizá-los através de um mapa, onde o catador é representado pelo ícone de uma carroça (\autoref{fig:cataki}). O mapa apresenta detalhes do coletor, como por exemplo: sua biografia, telefone, endereço, bairros que realiza as coletas e tipos de materiais. Para solicitar o serviço da coleta, é preciso entrar em contato com o coletor via mensagem ou ligação.
+Em síntese, a literatura apresenta diversas análises comparativas que validam a eficácia de diferentes arquiteturas de redes neurais para tarefas de visão computacional. Enquanto trabalhos como os de \cite{santos2019analise} e \cite{silva2018estudo} se concentram na comparação de arquiteturas para classificação de imagens, e \cite{andrade2011redes} demonstra uma aplicação específica de redes neurais, o estudo de \cite{su2025comparative} oferece um comparativo teórico direto dos modelos de detecção de objetos.
 
-
-
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 7 starts here %%%%%%%%%%%%%%%%%%%%
-
-\begin{figure}[H]
-	\caption{Tela Inicial do Aplicativo}
-	\begin{Center}
-		\includegraphics[width=1.75in,height=2.79in]{./media/image51.png}
-	\end{Center}
-	\label{fig:cataki}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%% Figure/Image No: 7 Ends here %%%%%%%%%%%%%%%%%%%%
-
- O trabalho citado acima difere-se deste projeto, nos seguintes pontos (\autoref{quad:cataki}):
-
-
-Pode-se observar que no ...
+O presente TCC se diferencia ao realizar uma validação experimental e quantitativa dessas três arquiteturas (YOLO, Faster R-CNN e SSD), aplicando-as aos principais \textit{datasets} de referência (PASCAL VOC e COCO) e analisando criticamente seu desempenho não apenas em métricas de precisão, mas também em tempo de inferência, preenchendo uma lacuna ao fornecer subsídios práticos para a escolha do modelo mais adequado a diferentes cenários.

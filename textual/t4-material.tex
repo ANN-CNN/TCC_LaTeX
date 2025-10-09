@@ -1,11 +1,11 @@
 \chapter{MÉTODOS E RECURSOS}
 \label{cap:metodologia}
-Este capítulo apresentará os métodos e ferramentas que serão utilizados para o desenvolvimento do trabalho. Para alcançar os objetivos propostos, a pesquisa adotará uma abordagem que integra pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de arquiteturas de rede neural convolucional para detecção de objetos.O presente trabalho foi dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
+Este capítulo apresentará os métodos e ferramentas que serão utilizados para o desenvolvimento do trabalho. Para alcançar os objetivos propostos, a pesquisa adotará uma abordagem que integra pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de arquiteturas de rede neural convolucional para detecção de objetos. O presente trabalho foi dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
 
 \begin{figure}[H]
 \caption{Diagrama de processos do desenvolvimento do TCC}
 \centering
-\includegraphics[width=0.8\textwidth]{media/fluxograma.png}
+\includegraphics[width=0.965\textwidth]{media/fluxograma.png}
 \fonte{Elaborado pelo autor (2025)}
 \label{fig:fluxograma}
 \end{figure}
@@ -20,16 +20,19 @@ Para a análise comparativa, serão selecionadas três arquiteturas de detecçã
 \section{Seleção e Pré-processamento dos Datasets}
 Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
 
-\section{Configuração do Ambiente e Definição do Hardware}
-A configuração do ambiente de desenvolvimento será feita utilizando o framework TensorFlow. O Google Colab, com runtime que utiliza placa de vídeo dedicada, será empregado para o treinamento dos modelos, devido à sua acessibilidade e capacidade de processamento. Serão definidos os requisitos de hardware, levando em consideração as necessidades computacionais de cada modelo para o treinamento e inferência.
+\section{Definição do Hardware}
+A etapa de treinamento dos modelos de detecção de objetos envolverá o processamento de grandes volumes de dados, o que implicará a necessidade de um ambiente com capacidade de aceleração, como o fornecido por Unidades de Processamento Gráfico (GPUs). O runtime principal para os experimentos será definido utilizando o Google Colaboratory (Colab), que será empregado por possibilitar o acesso a placas de vídeo dedicadas. Serão definidos os requisitos de hardware específicos para cada modelo, considerando-se as necessidades computacionais requeridas para o treinamento e a inferência.
 
-\section{Definição e Otimização dos Hiperparâmetros}
+\section{Configuração do Ambiente}
+A configuração do ambiente de desenvolvimento de software será realizada por meio do framework TensorFlow. Este framework foi escolhido para implementar, treinar e avaliar as arquiteturas de detecção de objetos selecionadas. Sua utilização é essencial, pois suas ferramentas permitirão construir os grafos computacionais e otimizar as operações para execução em hardware acelerado. O ambiente será configurado dentro do Google Colab, garantindo a compatibilidade necessária para que o treinamento e a avaliação das arquiteturas de detecção de objetos ocorram de forma eficiente.
+
+\section[Definição e Otimização dos Hiperparâmetros]{Definição e Otimização dos\\Hiperparâmetros}
 Nesta etapa, serão definidos e otimizados os hiperparâmetros de cada modelo para garantir o melhor desempenho possível durante o treinamento. Este processo é crucial para ajustar os modelos aos datasets e ao hardware disponível.
 
-\section{Treinamento e Inferência dos conjunto de testes}
+\section{Treinamento e Inferência dos Conjuntos de Testes}
 Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o treinamento, a inferência será realizada em um conjunto de testes para avaliar o desempenho de cada modelo em dados não vistos.
 
-\section{Coleta de Métricas e Análise de Resultados}
+\section[Coleta de Métricas e Análise de Resultados]{Coleta de Métricas e Análise de\\Resultados}
 Serão coletadas métricas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência. Os resultados serão comparados e analisados quantitativamente para identificar o equilíbrio entre precisão e velocidade de cada arquitetura.
 
 \section{Análise Crítica e Discussão dos Modelos}
