@@ -15,3 +15,7 @@ The thesis compares the performance of object detection architectures (YOLO, Fas
 ## Document Standard
 
 The document must comply with **ABNT (Associação Brasileira de Normas Técnicas)** academic formatting rules, enforced via the `abntex2` LaTeX class. The primary language is Brazilian Portuguese (`brazil` babel option). Citations follow the ABNT author-date style (`abntex2cite` with `alf` option).
+
+### Code Formatting
+
+- **Line Wrapping (Hard Wrap):** All LaTeX source files (`.tex`) should be formatted with hard line breaks at approximately **100 characters** per line. This is the adopted standard to ensure readability within the IDE without requiring horizontal scrolling or relying on the editor's word-wrap feature.

@@ -90,7 +90,7 @@ Thumbs.db
 .idea/
 
 # Output files (comment if you want to track PDFs)
-*.pdf
+# *.pdf
 
 # Backup files
 *~

@@ -398,36 +398,139 @@ adequação dos formatos das imagens e das anotações para que sejam compatíve
 arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de
 dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
 
+\subsubsection{Variantes e Dimensionamento dos Modelos}
+
+Ao realizar um estudo comparativo entre diferentes arquiteturas de redes neurais, a escolha
+da escala paramétrica dos modelos é uma decisão metodológica crucial para garantir a validade
+e a justiça dos resultados. Modelos com quantidades desproporcionais de parâmetros
+apresentarão comportamentos distorcidos de precisão e tempo de inferência, impossibilitando
+uma comparação direta do mérito das arquiteturas em si.
+
+No ecossistema de detecção de objetos contemporâneo, especialmente na família YOLO, é padrão
+que os desenvolvedores disponibilizem múltiplas variantes de uma mesma versão, escalonando a
+profundidade (\textit{depth}) e a largura (\textit{width}) da rede de acordo com o hardware
+alvo \cite{ultralytics2024yolo}. As principais variantes existentes na literatura incluem:
+
+\begin{itemize}
+    \item \textbf{Nano (n):} Variantes extremamente compactas, projetadas para
+        \textit{Edge Computing}, dispositivos móveis e sistemas de Internet das Coisas (IoT),
+        onde os recursos de memória e processamento são mínimos.
+
+    \item \textbf{Small (s):} Modelos leves que oferecem o melhor compromisso
+        (\textit{trade-off}) entre velocidade de inferência e precisão de detecção, sendo
+        amplamente adotados em aplicações de tempo real executadas em \textit{hardwares} de
+        capacidade moderada.
+
+    \item \textbf{Medium (m):} Voltadas para o processamento padrão em servidores, oferecendo
+        um balanço intermediário.
+
+    \item \textbf{Large (l) e Extra Large (x):} Redes massivas que priorizam a precisão
+        máxima (mAP) em detrimento absoluto do tempo de inferência. São indicadas para
+        aplicações computacionais robustas em nuvem que não operam restritas ao tempo real.
+\end{itemize}
+
+Neste trabalho, adotaram-se as variantes \textit{Small} (s) para a família YOLO (pesos
+\texttt{yolov5s.pt}, \texttt{yolov8s.pt} e \texttt{yolo11s.pt}) e a configuração
+\texttt{DEFAULT} para os modelos SSD e Faster R-CNN. Essa estruturação experimental foi
+definida com um objetivo metodológico categórico: isolar a eficiência arquitetural e
+anular o viés da força bruta paramétrica.
+
+O Faster R-CNN e o SSD, em suas implementações padrão na plataforma TensorFlow, operam
+intrinsecamente com \textit{backbones} clássicos e densos (como VGG-16 ou a família
+ResNet), preservando a complexidade conceitual idealizada por seus autores originais
+\cite{ren2017faster,liu2016ssd}. Para estabelecer um comparativo direto contra essas
+redes pesadas, a escolha da variante \textit{Small} do YOLO configura-se como a opção
+mais rigorosa e adequada. A utilização de variantes \textit{Medium} ou superiores da
+família YOLO injetaria um volume massivo de parâmetros no comparativo, o que mascararia
+o real mérito do \textit{design} unificado da rede sob o peso do poder computacional
+bruto.
+
+Ao restringir a família YOLO à sua versão leve e otimizada, o arcabouço experimental
+submete os algoritmos modernos a um teste de estresse de infraestrutura. Essa assimetria
+proposital garante que a performance obtida seja fruto exclusivo do salto tecnológico
+estrutural do modelo, e não de uma vantagem quantitativa de parâmetros. Dessa forma, a
+metodologia valida de forma inequívoca o \textit{trade-off} (compromisso) entre precisão,
+latência e economia de hardware exigido pela literatura contemporânea em visão
+computacional \cite{su2025comparative,redmon2016yolo}.
+
+\section{Hiperparâmetros}
+
+Os hiperparâmetros são variáveis de configuração externa cuja definição precede o início do
+treinamento de uma rede neural. Diferentemente dos pesos sinápticos, que são aprendidos e
+ajustados automaticamente pelo algoritmo de retropropagação, os hiperparâmetros governam a
+dinâmica do próprio processo de otimização. A escolha adequada desses valores é determinante
+para garantir a convergência do modelo, evitar o sobreajuste e otimizar a utilização dos
+recursos computacionais \cite{goodfellow2016deep}.
+
+\subsection{Épocas (\textit{Epochs})}
+
+Uma época corresponde a um ciclo completo de passagem de todo o conjunto de dados de
+treinamento pela rede neural. A definição do número total de épocas dita a duração máxima
+do treinamento. Um número muito baixo pode impedir que a rede extraia as características
+necessárias (resultando em \textit{underfitting}), enquanto um número excessivo pode
+forçar a rede a memorizar ruídos e detalhes específicos dos dados de treino, perdendo
+sua capacidade de generalização (\textit{overfitting}) \cite{goodfellow2016deep}.
+
+\subsection{Tamanho do Lote (\textit{Batch Size})}
+
+O tamanho do lote (\textit{batch size}) estipula a quantidade de amostras de imagens que
+serão propagadas simultaneamente pela rede antes que ocorra a atualização dos pesos
+sinápticos. Lotes maiores permitem uma estimativa mais estável do gradiente de erro e um
+processamento mais eficiente devido ao paralelismo das GPUs, porém, exigem uma capacidade de
+memória de vídeo (VRAM) consideravelmente maior \cite{goodfellow2016deep}.
+
+\subsection{Paciência (\textit{Patience}) e Melhor Época (\textit{Best Epoch})}
+
+Para mitigar o risco de \textit{overfitting}, adota-se a técnica de parada antecipada
+(\textit{early stopping}). O hiperparâmetro de Paciência (\textit{Patience}) define o
+número máximo de épocas consecutivas que o modelo continuará treinando sem apresentar
+melhorias na sua métrica de validação principal. Quando esse limite é atingido, o
+treinamento é interrompido. Nesse contexto, o modelo registra a Melhor Época
+(\textit{Best Epoch}), restaurando e salvando a matriz de pesos exata da iteração em
+que o modelo obteve o seu ápice de desempenho \cite{goodfellow2016deep}.
+
+\subsection{Trabalhadores (\textit{Workers})}
+
+Este parâmetro define a quantidade de subprocessos independentes (\textit{threads}) alocados
+na CPU exclusivamente para a tarefa de pré-processamento e carregamento das imagens do disco
+para a memória da GPU. Uma configuração ideal de \textit{workers} previne a ocorrência de
+gargalos de transferência (\textit{bottlenecks}), garantindo que a placa de vídeo não fique
+ociosa aguardando o fornecimento de novos dados \cite{goodfellow2016deep}.
+
+\subsection{Limiar de Confiança (\textit{Confidence Threshold})}
+
+Na detecção de objetos, o modelo emite uma pontuação de probabilidade para cada caixa
+delimitadora gerada. O limiar de confiança atua como um filtro rigoroso que descarta predições
+com pontuações abaixo desse valor, tratando-as como ruídos de fundo
+\cite{redmon2016yolo}. O ajuste desse limiar representa um compromisso (\textit{trade-off}):
+valores altos aumentam a precisão (cometendo menos alarmes falsos), mas reduzem o recall
+(ignorando mais objetos genuínos).
+
+\subsection[Limiar de IoU]{Limiar de IoU (\textit{Intersection over Union})}
+
+O \textit{Intersection over Union} (IoU) é o conceito que avalia a precisão da localização.
+É a métrica que mede o grau de sobreposição entre a caixa delimitadora prevista pela
+Inteligência Artificial (IA) e a caixa real anotada pelo humano (o gabarito, conhecido na
+literatura como \textit{ground truth}). Como hiperparâmetro, o limiar de IoU é fundamental
+para o algoritmo de Supressão de Não-Máximos, denominado \textit{Non-Maximum Suppression}
+(NMS) \cite{ren2017faster}. Ele define o grau de sobreposição aceitável para que múltiplas caixas
+redundantes apontando para o mesmo objeto sejam unificadas e filtradas em uma única detecção
+final.
+
 \section{Métricas de Desempenho e Visualização}
 
-A avaliação do desempenho de redes neurais é uma etapa fundamental para compreender a eficácia
-de um modelo e identificar pontos de melhoria. O uso de métricas de desempenho adequadas é
-essencial para garantir que o modelo atenda aos requisitos de precisão e robustez,
-especialmente em cenários onde a generalização para novos dados é crítica
-\cite{miguel2025uso}. Adicionalmente, a visualização dos resultados durante o treinamento
-ajuda a monitorar o progresso, detectar problemas e tomar decisões informadas sobre ajustes
-\cite{geron2023maos}.
+Após a definição arquitetural e paramétrica, a avaliação quantitativa e qualitativa do modelo
+torna-se a etapa mais crítica do desenvolvimento. O uso de métricas estatísticas robustas
+permite validar se a rede neural atendeu aos requisitos de localização e classificação
+propostos para o problema \cite{geron2023maos}.
 
-\subsection{Métricas de Desempenho}
+\subsection{Métricas Numéricas de Avaliação}
 
-Existem diversas métricas utilizadas para avaliar o desempenho de modelos de aprendizado de
-máquina, principalmente em tarefas de classificação. Cada métrica oferece uma perspectiva
-diferente sobre a performance do modelo e sua utilidade varia conforme o contexto da aplicação
-\cite{geron2023maos}. As principais métricas incluem acurácia, perda (loss), precisão, recall
-e F1-Score \cite{miguel2025uso}.
-
-\subsubsection{Acurácia}
-
-A acurácia é uma das métricas mais simples e amplamente utilizadas. Ela representa a proporção
-de previsões corretas em relação ao número total de amostras analisadas \cite{miguel2025uso}.
-A fórmula para seu cálculo é dada por:
-
-\begin{equation}
-\text{Acurácia} = \frac{\text{Número de previsões verdadeiras}}{\text{Número total de previsões realizadas}}
-\end{equation}
-
-Embora seja uma métrica bastante útil, a acurácia pode ser enganosa, principalmente quando há
-um desequilíbrio entre as classes do conjunto de dados \cite{geron2023maos, miguel2025uso}.
+As métricas de desempenho utilizadas neste trabalho foram selecionadas por sua relevância
+para a tarefa de detecção de objetos. Cada métrica oferece uma perspectiva diferente sobre a
+\textit{performance} do modelo, e sua utilidade varia conforme o contexto da aplicação
+\cite{geron2023maos}. As métricas adotadas são: \textit{Loss}, Precisão, Recall, F1-Score,
+mAP@0.5 e mAP@0.5:0.95, além dos tempos de treinamento e de inferência \cite{miguel2025uso}.
 
 \subsubsection{Loss (Função de Perda)}
 
@@ -454,43 +557,92 @@ considerado crítico e precisa ser minimizado \cite{geron2023maos}.
 A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas
 que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo
 recall pode ser um indicativo de que ele está sendo excessivamente conservador e falhando em
-identificar todas as instâncias relevantes \cite{miguel2025uso}.
+identificar todas as instâncias relevantes \cite{miguel2025uso}. Sua fórmula é:
+
+\begin{equation}
+\text{Recall} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Negativos (FN)}}
+\end{equation}
 
 \subsubsection{F1-Score}
 
-Em cenários com classes desbalanceadas, o F1-Score é frequentemente utilizado para garantir um
-equilíbrio entre a precisão e o recall. Essa métrica corresponde à média harmônica da precisão
-e do recall, dando mais peso aos valores mais baixos e, portanto, penalizando modelos que
-possuem um desequilíbrio grande entre as duas métricas \cite{geron2023maos}.
+O F1-Score atua como uma métrica de validação universalmente rigorosa. Embora a sua
+utilização seja frequentemente descrita como indispensável em cenários com classes
+desbalanceadas, a sua robustez matemática o torna um avaliador fundamental para qualquer
+contexto de detecção. O F1-Score corresponde à média harmônica entre a precisão e o recall
+\cite{geron2023maos}. Essa formulação penaliza severamente as arquiteturas que apresentam
+disparidades acentuadas entre as duas taxas, não permitindo que um valor extremo mascare a
+deficiência do outro. Consequentemente, um modelo apenas atinge um F1-Score elevado se
+demonstrar um desempenho simultaneamente alto e equilibrado, provando ser eficaz tanto em
+não cometer falsos alarmes quanto em não ignorar os objetos reais \cite{geron2023maos}.
+Sua fórmula é dada por:
+
+\begin{equation}
+\text{F1-Score} = 2 \cdot \frac{\text{Precisão} \times \text{Recall}}{\text{Precisão} + \text{Recall}}
+\end{equation}
+
+A \autoref{fig:medias_pitagoricas} ilustra a relação entre as três médias pitagóricas
+(aritmética, geométrica e harmônica), evidenciando por que a média harmônica é a escolha
+adequada para o F1-Score: ela sempre assume um valor menor ou igual às demais médias,
+penalizando de forma mais severa cenários em que precisão e recall divergem
+significativamente.
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image Médias Pitagóricas starts here %%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+    \caption{Relação entre as médias pitagóricas e o F1-Score}
+    \begin{Center}
+        \includegraphics[width=1.0\textwidth]{./media/médias pitagóricas.png}
+    \end{Center}
+    \label{fig:medias_pitagoricas}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image Médias Pitagóricas ends here %%%%%%%%%%%%%%%%%%%%
+
+\subsubsection[mAP]{Mean Average Precision (mAP)}
+
+Considerada o padrão-ouro na literatura de detecção de objetos, a \textit{Mean Average
+Precision} (mAP) resume, em um único valor, o desempenho do modelo ao longo de todas as
+classes detectáveis. O mAP@0.5 foi popularizado pelo desafio PASCAL VOC e calcula a média
+da área sob a curva Precisão-Recall exigindo que a sobreposição (IoU) entre a predição e o
+dado real seja de no mínimo 50\% \cite{everingham2015pascal}. Já o mAP@0.5:0.95, consolidado
+pelo dataset COCO \cite{lin2014microsoft}, é mais rigoroso: ele calcula a média do mAP em dez
+limiares crescentes de IoU (de 50\% a 95\%), exigindo que as caixas delimitadoras sejam
+progressivamente mais exatas em suas coordenadas espaciais.
+
+\subsubsection{Tempo de Treinamento e Inferência}
+
+O tempo de treinamento reflete o custo computacional global (em horas ou unidades de
+processamento). O tempo de inferência reflete a latência, medida em milissegundos por imagem
+(ms/img). Para que um modelo seja viável em aplicações de vídeo contínuo em tempo real, a
+literatura aponta que ele deve apresentar latências de inferência inferiores a 33 ms,
+garantindo o processamento de pelo menos 30 quadros por segundo \cite{redmon2016yolo}.
 
 \subsection{Técnicas de Visualização}
 
-A visualização dos resultados do treinamento de redes neurais é essencial para monitorar o
-desempenho, detectar problemas de forma precoce e tomar decisões informadas
-\cite{miguel2025uso}. Ferramentas gráficas ajudam a compreender como o modelo está aprendendo
-e se ajustando aos dados, fornecendo insights cruciais para a melhoria da sua precisão e
-robustez \cite{geron2023maos}.
+Além das métricas absolutas, ferramentas de suporte visual são empregadas para interpretar o
+comportamento da rede de maneira empírica:
 
-\subsubsection{Gráficos de Acurácia e Loss}
+\subsubsection{Curvas de Loss}
 
-Os gráficos de acurácia e loss são duas das ferramentas mais comuns para monitorar o progresso
-do treinamento de uma rede neural \cite{miguel2025uso}.
-
-O gráfico de acurácia exibe a taxa de acertos do modelo ao longo das épocas de treinamento e
-validação. Ele permite identificar rapidamente se o modelo está aprendendo de forma
-consistente. Uma queda ou estagnação na acurácia de validação enquanto a de treinamento
-continua a subir é um forte indicativo de overfitting \cite{miguel2025uso}.
-
-Por sua vez, o gráfico de loss exibe a evolução da função de perda. O ideal é que ambas as
-perdas (treinamento e validação) diminuam ao longo do tempo. Se a perda de validação começar a
-aumentar enquanto a de treinamento continua a diminuir, isso também é um sinal de overfitting
-\cite{miguel2025uso}.
+O gráfico de \textit{loss} exibe a evolução da função de perda ao longo das épocas de
+treinamento e validação. O ideal é que ambas as perdas diminuam progressivamente. Quando a
+perda de validação começa a aumentar enquanto a de treinamento continua a cair, isso configura
+um sinal claro de \textit{overfitting}, indicando que o modelo deixou de generalizar e passou
+a memorizar os dados de treino \cite{miguel2025uso}.
 
 \subsubsection{Matriz de Confusão}
 
-A matriz de confusão é uma técnica de visualização que oferece uma visão detalhada do
-comportamento do modelo em relação a cada classe. A ideia geral é contar o número de vezes que
-instâncias da classe A são classificadas como classe B \cite{geron2023maos}. Ela é
-especialmente útil para identificar se o modelo está cometendo erros sistemáticos. A partir da
-matriz, também é possível calcular métricas como precisão e recall para cada classe
-individualmente \cite{miguel2025uso}.
+A Matriz de Confusão é uma ferramenta de visualização que oferece uma visão detalhada do
+comportamento do modelo em relação a cada classe. A ideia central é contabilizar o número de
+vezes que instâncias da classe A são incorretamente classificadas como classe B
+\cite{geron2023maos}. Ela é especialmente útil para identificar erros sistemáticos, como a
+confusão entre categorias semanticamente próximas, e permite calcular métricas de precisão e
+recall individualmente por classe \cite{miguel2025uso}.
+
+\subsubsection{Análise Qualitativa por Amostragem}
+
+Consiste na projeção das caixas delimitadoras preditas sobre as imagens do conjunto de
+testes original. Isso permite ao pesquisador identificar falhas contextuais (como problemas
+de escala, oclusões severas e variações de iluminação) que os números estatísticos puros
+não conseguem expressar \cite{szeliski2022computer,geron2023maos}.
