@@ -1,31 +1,70 @@
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \label{cap:fundamentacao}
 
-Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente, serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais arquiteturas de detecção de objetos: YOLO, Faster R-CNN e SSD que constituem o foco da análise comparativa deste estudo, além do framework e ambiente utilizados.
+Este capítulo aborda os conceitos essenciais que fundamentam o presente trabalho. Inicialmente,
+serão apresentados os princípios da Visão Computacional e do Aprendizado de Máquina, com ênfase
+nas Redes Neurais Profundas, que são a base para as técnicas modernas de análise de imagens. Em
+seguida, será detalhado o funcionamento das Redes Neurais Convolucionais (CNNs), arquitetura
+fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas as principais
+arquiteturas de detecção de objetos: YOLO, Faster R-CNN e SSD que constituem o foco da análise
+comparativa deste estudo, além do framework e ambiente utilizados.
 
 \section[Visão Computacional e Aprendizado de Máquina]{Visão Computacional e Aprendizado de\\Máquina}
 
-A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas para que os computadores possam "ver" e interpretar o conteúdo de imagens e vídeos digitais. Conforme aponta \citeonline{szeliski2022computer}, o objetivo é automatizar tarefas que o sistema visual humano pode fazer, permitindo que máquinas extraiam informações significativas do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais acessível e precisa devido aos avanços no Aprendizado de Máquina.
+A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas
+para que os computadores possam "ver" e interpretar o conteúdo de imagens e vídeos digitais.
+Conforme aponta \citeonline{szeliski2022computer}, o objetivo é automatizar tarefas que o
+sistema visual humano pode fazer, permitindo que máquinas extraiam informações significativas
+do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais
+acessível e precisa devido aos avanços no Aprendizado de Máquina.
 
 \subsection{Fundamentos da Visão Computacional}
 
-Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "bicicleta"), até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área exata de cada objeto em nível de pixel.
+Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a
+compreensão de imagens. As tarefas podem ser organizadas por complexidade, desde a
+classificação, que consiste em atribuir um único rótulo a uma imagem inteira (ex: "bicicleta"),
+até a detecção de objetos, foco deste trabalho, que busca não apenas classificar, mas também
+localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras
+(\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área
+exata de cada objeto em nível de pixel.
 
 \subsection[Introdução ao Aprendizado de Máquina e Redes Neurais Profundas]{Introdução ao Aprendizado de Máquina e Redes Neurais\\Profundas}
 
-O Aprendizado de Máquina é um subcampo da inteligência artificial que se concentra no desenvolvimento de algoritmos que permitem aos computadores aprender a partir de dados. Em vez de serem explicitamente programados com regras, esses sistemas utilizam padrões estatísticos nos dados para fazer previsões ou tomar decisões.
+O Aprendizado de Máquina é um subcampo da inteligência artificial que se concentra no
+desenvolvimento de algoritmos que permitem aos computadores aprender a partir de dados. Em vez
+de serem explicitamente programados com regras, esses sistemas utilizam padrões estatísticos
+nos dados para fazer previsões ou tomar decisões.
 
-A Aprendizagem Profunda (\textit{Deep Learning}) emergiu como uma subárea do Aprendizado de Máquina de particular sucesso, destacando-se pelo uso de Redes Neurais Artificiais com múltiplas camadas (profundas). Como afirmam \citeonline{goodfellow2016deep}, essa profundidade permite que o modelo aprenda uma hierarquia de representações de dados, com cada camada aprendendo características mais complexas com base nas saídas da camada anterior. \citeonline{haykin2009neural} descreve essas redes como algoritmos inspirados na neurociência, simulando um conjunto de neurônios interconectados que processam informações em cascata, de forma análoga ao cérebro humano.
+A Aprendizagem Profunda (\textit{Deep Learning}) emergiu como uma subárea do Aprendizado de
+Máquina de particular sucesso, destacando-se pelo uso de Redes Neurais Artificiais com múltiplas
+camadas (profundas). Como afirmam \citeonline{goodfellow2016deep}, essa profundidade permite que
+o modelo aprenda uma hierarquia de representações de dados, com cada camada aprendendo
+características mais complexas com base nas saídas da camada anterior.
+\citeonline{haykin2009neural} descreve essas redes como algoritmos inspirados na neurociência,
+simulando um conjunto de neurônios interconectados que processam informações em cascata, de
+forma análoga ao cérebro humano.
 
 \section{Redes Neurais Artificiais}
 
-As Redes Neurais Artificiais (RNA) são técnicas de Inteligência Computacional que apresentam modelos matemáticos inspirados na estrutura e funcionamento do cérebro humano. A ideia central é que uma RNA seja capaz de adquirir conhecimento através da experiência, aprendendo com exemplos para tomar decisões e generalizar para novas situações. Essa abordagem busca simular um conjunto de neurônios biológicos interconectados e organizados em camadas, onde cada camada processa informações e as transmite para a camada seguinte \cite{andrade2011redes}.
+As Redes Neurais Artificiais (RNA) são técnicas de Inteligência Computacional que apresentam
+modelos matemáticos inspirados na estrutura e funcionamento do cérebro humano. A ideia central
+é que uma RNA seja capaz de adquirir conhecimento através da experiência, aprendendo com
+exemplos para tomar decisões e generalizar para novas situações. Essa abordagem busca simular
+um conjunto de neurônios biológicos interconectados e organizados em camadas, onde cada camada
+processa informações e as transmite para a camada seguinte \cite{andrade2011redes}.
 
 \subsection{Neurônio Artificial}
 
-A unidade fundamental de uma RNA é o neurônio artificial, um módulo que simula o funcionamento de um neurônio biológico. O modelo de um neurônio artificial consiste em um conjunto de entradas ($x_1, x_2, \ldots, x_n$), cada uma associada a um peso sináptico ($w_1, w_2, \ldots, w_n$) que pondera sua importância. Esses sinais ponderados são somados em uma junção somadora, cujo resultado passa por uma função de ativação. Essa função determina se o neurônio será "ativado" e qual será o sinal de saída ($y$) a ser propagado para outros neurônios da rede \cite{andrade2011redes}.
+A unidade fundamental de uma RNA é o neurônio artificial, um módulo que simula o funcionamento
+de um neurônio biológico. O modelo de um neurônio artificial consiste em um conjunto de
+entradas ($x_1, x_2, \ldots, x_n$), cada uma associada a um peso sináptico
+($w_1, w_2, \ldots, w_n$) que pondera sua importância. Esses sinais ponderados são somados em
+uma junção somadora, cujo resultado passa por uma função de ativação. Essa função determina se
+o neurônio será "ativado" e qual será o sinal de saída ($y$) a ser propagado para outros
+neurônios da rede \cite{andrade2011redes}.
 
-A \autoref{fig:perceptron} ilustra a estrutura básica de um neurônio artificial, mostrando as entradas, os pesos sinápticos, a função de soma e a função de ativação.
+A \autoref{fig:perceptron} ilustra a estrutura básica de um neurônio artificial, mostrando as
+entradas, os pesos sinápticos, a função de soma e a função de ativação.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Perceptron starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -42,15 +81,19 @@ A \autoref{fig:perceptron} ilustra a estrutura básica de um neurônio artificia
 
 \subsection{Rede de Neurônios}
 
-Uma Rede Neural Artificial é formada pela interconexão de múltiplos neurônios artificiais, tipicamente organizados em camadas que definem sua arquitetura. A estrutura mais comum é a \textit{Multi-Layer Perceptron} (MLP), que é composta por três tipos de camadas:
+Uma Rede Neural Artificial é formada pela interconexão de múltiplos neurônios artificiais,
+tipicamente organizados em camadas que definem sua arquitetura. A estrutura mais comum é a
+\textit{Multi-Layer Perceptron} (MLP), que é composta por três tipos de camadas:
 
 Camada de Entrada: Recebe os dados brutos que são apresentados à rede.
 
-Camadas Escondidas (ou Intermediárias): Uma ou mais camadas responsáveis pela maior parte do processamento e pela extração de características dos dados de entrada.
+Camadas Escondidas (ou Intermediárias): Uma ou mais camadas responsáveis pela maior parte do
+processamento e pela extração de características dos dados de entrada.
 
 Camada de Saída: Produz o resultado final da rede, como a classificação de um objeto.
 
-A \autoref{fig:rede_neural} ilustra uma arquitetura típica de rede neural artificial do tipo MLP, mostrando a organização das camadas e as conexões entre os neurônios.
+A \autoref{fig:rede_neural} ilustra uma arquitetura típica de rede neural artificial do tipo
+MLP, mostrando a organização das camadas e as conexões entre os neurônios.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Rede Neural starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -65,55 +108,113 @@ A \autoref{fig:rede_neural} ilustra uma arquitetura típica de rede neural artif
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Rede Neural ends here %%%%%%%%%%%%%%%%%%%%
 
-Nessa arquitetura, a informação flui de maneira progressiva (\textit{feedforward}), partindo da camada de entrada, passando pelas camadas escondidas e chegando até a camada de saída \cite{andrade2011redes}.
+Nessa arquitetura, a informação flui de maneira progressiva (\textit{feedforward}), partindo
+da camada de entrada, passando pelas camadas escondidas e chegando até a camada de saída
+\cite{andrade2011redes}.
 
 \subsection{Aprendizado da Rede}
 
-A característica mais importante de uma RNA é sua capacidade de aprender a partir de exemplos. Esse processo consiste em um ajuste iterativo dos pesos das conexões, que ao final do treinamento, armazenam o conhecimento que a rede adquiriu. Existem dois paradigmas principais de aprendizado:
+A característica mais importante de uma RNA é sua capacidade de aprender a partir de exemplos.
+Esse processo consiste em um ajuste iterativo dos pesos das conexões, que ao final do
+treinamento, armazenam o conhecimento que a rede adquiriu. Existem dois paradigmas principais
+de aprendizado:
 
-Aprendizado Supervisionado: Neste paradigma, a rede é treinada com um conjunto de dados onde cada entrada já possui uma saída correspondente correta (um "supervisor"). A rede calcula sua própria saída para uma entrada, compara com a saída desejada e, a partir do erro gerado, ajusta seus pesos para que sua resposta se aproxime cada vez mais da resposta correta. É o método utilizado em problemas de mapeamento entre padrões de entrada e saída, como a classificação.
+Aprendizado Supervisionado: Neste paradigma, a rede é treinada com um conjunto de dados onde
+cada entrada já possui uma saída correspondente correta (um "supervisor"). A rede calcula sua
+própria saída para uma entrada, compara com a saída desejada e, a partir do erro gerado, ajusta
+seus pesos para que sua resposta se aproxime cada vez mais da resposta correta. É o método
+utilizado em problemas de mapeamento entre padrões de entrada e saída, como a classificação.
 
-Aprendizado Não Supervisionado: Neste caso, não há um supervisor externo; a rede recebe apenas os dados de entrada, sem saídas pré-rotuladas. O objetivo é que a própria rede, ao ser exposta continuamente aos dados, descubra padrões, regularidades e características estatisticamente relevantes, permitindo, por exemplo, a descoberta de agrupamentos ou classes nos dados \cite{andrade2011redes}.
+Aprendizado Não Supervisionado: Neste caso, não há um supervisor externo; a rede recebe apenas
+os dados de entrada, sem saídas pré-rotuladas. O objetivo é que a própria rede, ao ser exposta
+continuamente aos dados, descubra padrões, regularidades e características estatisticamente
+relevantes, permitindo, por exemplo, a descoberta de agrupamentos ou classes nos dados
+\cite{andrade2011redes}.
 
 \subsection{Backpropagation}
 
-O algoritmo mais comum para o treinamento supervisionado de redes com múltiplas camadas é o \textit{error backpropagation} (retropropagação do erro). Este algoritmo é projetado para minimizar o erro médio quadrático entre a saída calculada pela rede e a saída desejada. O processo ocorre em duas fases:
+O algoritmo mais comum para o treinamento supervisionado de redes com múltiplas camadas é o
+\textit{error backpropagation} (retropropagação do erro). Este algoritmo é projetado para
+minimizar o erro médio quadrático entre a saída calculada pela rede e a saída desejada. O
+processo ocorre em duas fases:
 
-Fase de Propagação (\textit{Forward Pass}): Um vetor de entrada é apresentado à rede e propagado através de suas camadas até que uma saída seja gerada na camada final.
+Fase de Propagação (\textit{Forward Pass}): Um vetor de entrada é apresentado à rede e
+propagado através de suas camadas até que uma saída seja gerada na camada final.
 
-Fase de Retropropagação (\textit{Backward Pass}): A saída gerada é comparada com a saída desejada, e um sinal de erro é calculado. Esse erro é então propagado de volta, da camada de saída para as camadas anteriores, ajustando os pesos de cada conexão de forma a minimizar o erro. Com um treinamento bem-sucedido, o erro diminui a cada iteração, e a rede converge para um conjunto estável de pesos \cite{andrade2011redes}.
+Fase de Retropropagação (\textit{Backward Pass}): A saída gerada é comparada com a saída
+desejada, e um sinal de erro é calculado. Esse erro é então propagado de volta, da camada de
+saída para as camadas anteriores, ajustando os pesos de cada conexão de forma a minimizar o
+erro. Com um treinamento bem-sucedido, o erro diminui a cada iteração, e a rede converge para
+um conjunto estável de pesos \cite{andrade2011redes}.
 
 \subsection{Dificuldades de Dimensionamento}
 
-A definição da arquitetura de uma RNA, especialmente o número de camadas escondidas e de neurônios em cada uma delas, é de extrema importância para o seu desempenho e capacidade de generalização. Não existe uma regra geral que determine a arquitetura ideal para um problema, sendo essa definição normalmente baseada em uma análise prévia dos dados e da sua complexidade. O ajuste inadequado da complexidade da rede pode levar a dois efeitos indesejáveis:
+A definição da arquitetura de uma RNA, especialmente o número de camadas escondidas e de
+neurônios em cada uma delas, é de extrema importância para o seu desempenho e capacidade de
+generalização. Não existe uma regra geral que determine a arquitetura ideal para um problema,
+sendo essa definição normalmente baseada em uma análise prévia dos dados e da sua complexidade.
+O ajuste inadequado da complexidade da rede pode levar a dois efeitos indesejáveis:
 
-\textit{Overfitting} (Sobreajuste): Ocorre quando a rede é superdimensionada (possui mais camadas ou neurônios que o necessário) ou é treinada por épocas demais. A rede "decora" os dados de treinamento, incluindo seus ruídos, e perde a capacidade de generalizar para novos dados que não foram vistos antes.
+\textit{Overfitting} (Sobreajuste): Ocorre quando a rede é superdimensionada (possui mais
+camadas ou neurônios que o necessário) ou é treinada por épocas demais. A rede "decora" os
+dados de treinamento, incluindo seus ruídos, e perde a capacidade de generalizar para novos
+dados que não foram vistos antes.
 
-\textit{Underfitting} (Subajuste): Ocorre quando a rede é subdimensionada (muito simples para a complexidade do problema) ou não é treinada o suficiente. Nesse caso, a rede não consegue aprender os padrões presentes nos dados e falha em produzir resultados satisfatórios tanto para os dados de treino quanto para os de teste \cite{andrade2011redes}.
+\textit{Underfitting} (Subajuste): Ocorre quando a rede é subdimensionada (muito simples para
+a complexidade do problema) ou não é treinada o suficiente. Nesse caso, a rede não consegue
+aprender os padrões presentes nos dados e falha em produzir resultados satisfatórios tanto para
+os dados de treino quanto para os de teste \cite{andrade2011redes}.
 
 \section{Redes Neurais Convolucionais (CNNs)}
 
-As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se tornaram o padrão ouro para tarefas de análise de imagens, um status consolidado após resultados como os da AlexNet na competição ImageNet \cite{krizhevsky2012imagenet}. \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões visuais, pois sua arquitetura é projetada especificamente para extrair características hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
+As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se
+tornaram o padrão ouro para tarefas de análise de imagens, um status consolidado após
+resultados como os da AlexNet na competição ImageNet \cite{krizhevsky2012imagenet}.
+\citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as
+CNNs foram responsáveis por avanços revolucionários na área de reconhecimento de padrões
+visuais, pois sua arquitetura é projetada especificamente para extrair características
+hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
 
 \subsection{Conceitos Essenciais e Funcionamento das CNNs}
 
-A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou \textit{kernels}) que detectam padrões visuais, como bordas, texturas e formas, diretamente dos dados de treinamento \cite{lecun2015deep}. Essa aprendizagem é possível graças a dois conceitos-chave: campos receptivos locais e pesos compartilhados. Em vez de cada neurônio se conectar a todos os pixels da imagem, ele se conecta apenas a uma pequena região (o campo receptivo), e o mesmo filtro (conjunto de pesos) é aplicado em toda a imagem, reduzindo drasticamente o número de parâmetros a serem aprendidos.
+A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou
+\textit{kernels}) que detectam padrões visuais, como bordas, texturas e formas, diretamente
+dos dados de treinamento \cite{lecun2015deep}. Essa aprendizagem é possível graças a dois
+conceitos-chave: campos receptivos locais e pesos compartilhados. Em vez de cada neurônio se
+conectar a todos os pixels da imagem, ele se conecta apenas a uma pequena região (o campo
+receptivo), e o mesmo filtro (conjunto de pesos) é aplicado em toda a imagem, reduzindo
+drasticamente o número de parâmetros a serem aprendidos.
 
 A arquitetura típica de uma CNN inclui três tipos principais de camadas:
 
-Camada Convolucional: O núcleo da CNN, onde múltiplos filtros são aplicados à imagem de entrada para criar mapas de características que destacam padrões específicos.
+Camada Convolucional: O núcleo da CNN, onde múltiplos filtros são aplicados à imagem de
+entrada para criar mapas de características que destacam padrões específicos.
 
-Camada de Agrupamento (\textit{Pooling}): Geralmente inserida após as convoluções, esta camada reduz a dimensionalidade espacial dos mapas de características (por exemplo, pegando o valor máximo de uma vizinhança), o que diminui a carga computacional e confere ao modelo uma certa invariância a pequenas translações na imagem.
+Camada de Agrupamento (\textit{Pooling}): Geralmente inserida após as convoluções, esta camada
+reduz a dimensionalidade espacial dos mapas de características (por exemplo, pegando o valor
+máximo de uma vizinhança), o que diminui a carga computacional e confere ao modelo uma certa
+invariância a pequenas translações na imagem.
 
-Camada Totalmente Conectada (\textit{Fully Connected}): Localizada ao final da rede, ela recebe os mapas de características de alto nível e os utiliza para realizar a tarefa final, como a classificação do objeto ou a regressão das coordenadas de sua caixa delimitadora.
+Camada Totalmente Conectada (\textit{Fully Connected}): Localizada ao final da rede, ela
+recebe os mapas de características de alto nível e os utiliza para realizar a tarefa final,
+como a classificação do objeto ou a regressão das coordenadas de sua caixa delimitadora.
 
-Essa estrutura hierárquica permite que a rede aprenda desde características visuais simples nas camadas iniciais (bordas, cores) até conceitos complexos e abstratos nas camadas mais profundas (formas de objetos, rostos).
+Essa estrutura hierárquica permite que a rede aprenda desde características visuais simples nas
+camadas iniciais (bordas, cores) até conceitos complexos e abstratos nas camadas mais profundas
+(formas de objetos, rostos).
 
 \subsection{Análise da Arquitetura LeNet-5}
 
-Uma das arquiteturas pioneiras e mais influentes no campo das Redes Neurais Convolucionais é a LeNet, apresentada por \cite{lecun1998gradient}. Desenvolvida inicialmente para a tarefa de reconhecimento de caracteres manuscritos, sua estrutura estabeleceu um paradigma fundamental para a área, consistindo na alternância de camadas de convolução e subamostragem (\textit{pooling}) para a extração hierárquica de características, seguida por camadas totalmente conectadas para a classificação final. A análise do fluxo de dados em sua arquitetura permite compreender os estágios essenciais de uma CNN.
+Uma das arquiteturas pioneiras e mais influentes no campo das Redes Neurais Convolucionais é a
+LeNet, apresentada por \cite{lecun1998gradient}. Desenvolvida inicialmente para a tarefa de
+reconhecimento de caracteres manuscritos, sua estrutura estabeleceu um paradigma fundamental
+para a área, consistindo na alternância de camadas de convolução e subamostragem
+(\textit{pooling}) para a extração hierárquica de características, seguida por camadas
+totalmente conectadas para a classificação final. A análise do fluxo de dados em sua
+arquitetura permite compreender os estágios essenciais de uma CNN.
 
-A \autoref{fig:lenet} ilustra a estrutura completa da arquitetura LeNet-5, mostrando o fluxo de dados através de suas camadas convolucionais e de subamostragem.
+A \autoref{fig:lenet} ilustra a estrutura completa da arquitetura LeNet-5, mostrando o fluxo
+de dados através de suas camadas convolucionais e de subamostragem.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image LeNet starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -130,124 +231,266 @@ A \autoref{fig:lenet} ilustra a estrutura completa da arquitetura LeNet-5, mostr
 
 O processamento na LeNet-5 ocorre em etapas sequenciais:
 
-Camada de Entrada: A rede recebe como entrada uma imagem com dimensões de 32×32 pixels. Esta camada serve apenas para a aquisição dos dados que serão processados pelas camadas subsequentes.
+Camada de Entrada: A rede recebe como entrada uma imagem com dimensões de 32×32 pixels. Esta
+camada serve apenas para a aquisição dos dados que serão processados pelas camadas
+subsequentes.
 
-Primeira Camada Convolucional (C1): A primeira etapa de processamento consiste em uma camada convolucional que aplica seis filtros (ou \textit{kernels}) de 5×5 sobre a imagem de entrada. O resultado dessa operação são seis mapas de características (\textit{feature maps}) de 28×28 pixels, onde cada mapa realça a presença de um padrão visual específico (como bordas ou cantos) na imagem original.
+Primeira Camada Convolucional (C1): A primeira etapa de processamento consiste em uma camada
+convolucional que aplica seis filtros (ou \textit{kernels}) de 5×5 sobre a imagem de entrada.
+O resultado dessa operação são seis mapas de características (\textit{feature maps}) de 28×28
+pixels, onde cada mapa realça a presença de um padrão visual específico (como bordas ou
+cantos) na imagem original.
 
-Primeira Camada de Subamostragem (S2): Para reduzir a dimensionalidade espacial dos dados e criar uma representação mais robusta a pequenas translações, uma camada de subamostragem (\textit{subsampling} ou \textit{pooling}) é aplicada. Esta camada reduz cada mapa de características de 28×28 para 14×14 pixels, geralmente através da operação de \textit{max-pooling}, que seleciona o valor máximo em janelas de 2×2 pixels.
+Primeira Camada de Subamostragem (S2): Para reduzir a dimensionalidade espacial dos dados e
+criar uma representação mais robusta a pequenas translações, uma camada de subamostragem
+(\textit{subsampling} ou \textit{pooling}) é aplicada. Esta camada reduz cada mapa de
+características de 28×28 para 14×14 pixels, geralmente através da operação de
+\textit{max-pooling}, que seleciona o valor máximo em janelas de 2×2 pixels.
 
-Segunda Camada Convolucional (C3) e de Subamostragem (S4): O processo é repetido para extrair características de maior complexidade. A camada C3 aplica 16 filtros de 5×5 sobre os mapas de S2, gerando 16 novos mapas de características de 10×10 pixels. Esses filtros são capazes de identificar combinações dos padrões mais simples detectados na primeira camada. Em seguida, a camada S4 realiza outra operação de subamostragem, reduzindo os mapas para 5×5 pixels.
+Segunda Camada Convolucional (C3) e de Subamostragem (S4): O processo é repetido para extrair
+características de maior complexidade. A camada C3 aplica 16 filtros de 5×5 sobre os mapas de
+S2, gerando 16 novos mapas de características de 10×10 pixels. Esses filtros são capazes de
+identificar combinações dos padrões mais simples detectados na primeira camada. Em seguida, a
+camada S4 realiza outra operação de subamostragem, reduzindo os mapas para 5×5 pixels.
 
-Camadas Totalmente Conectadas (C5 e F6): Após a fase de extração de características, os 16 mapas de 5×5 pixels da camada S4 são "achatados" (vetorizados) e servem como entrada para um conjunto de camadas totalmente conectadas, que funcionam de maneira análoga a uma rede \textit{Multi-Layer Perceptron} (MLP). A camada C5 possui 120 neurônios e a camada F6 possui 84 neurônios. A função dessas camadas é realizar a classificação com base nas características extraídas pelas camadas convolucionais.
+Camadas Totalmente Conectadas (C5 e F6): Após a fase de extração de características, os 16
+mapas de 5×5 pixels da camada S4 são "achatados" (vetorizados) e servem como entrada para um
+conjunto de camadas totalmente conectadas, que funcionam de maneira análoga a uma rede
+\textit{Multi-Layer Perceptron} (MLP). A camada C5 possui 120 neurônios e a camada F6 possui
+84 neurônios. A função dessas camadas é realizar a classificação com base nas características
+extraídas pelas camadas convolucionais.
 
-Camada de Saída: A camada final é composta por 10 neurônios, cada um correspondendo a uma das classes a serem preditas (por exemplo, os dígitos de 0 a 9). A ativação mais alta entre esses neurônios indica a classe que a rede atribuiu à imagem de entrada \cite{lecun1998gradient}.
+Camada de Saída: A camada final é composta por 10 neurônios, cada um correspondendo a uma das
+classes a serem preditas (por exemplo, os dígitos de 0 a 9). A ativação mais alta entre esses
+neurônios indica a classe que a rede atribuiu à imagem de entrada \cite{lecun1998gradient}.
 
 \section[Principais Arquiteturas de Detecção de Objetos]{Principais Arquiteturas de Detecção de\\Objetos}
 
-As arquiteturas de detecção de objetos evoluíram significativamente, buscando um equilíbrio ideal entre precisão e velocidade \cite{tan2020efficientdet}. Os modelos podem ser amplamente divididos em duas categorias: detectores de dois estágios, que priorizam a precisão, e detectores de um estágio, que focam na velocidade para aplicações em tempo real \cite{lin2020focal}.
+As arquiteturas de detecção de objetos evoluíram significativamente, buscando um equilíbrio
+ideal entre precisão e velocidade \cite{tan2020efficientdet}. Os modelos podem ser amplamente
+divididos em duas categorias: detectores de dois estágios, que priorizam a precisão, e
+detectores de um estágio, que focam na velocidade para aplicações em tempo real
+\cite{lin2020focal}.
 
 \subsection{You Only Look Once (YOLO)}
 
-Proposto por \citeonline{redmon2016yolo}, o YOLO (\textit{You Only Look Once}) introduziu uma nova abordagem para a detecção de objetos ao enquadrar a tarefa como um problema único de regressão. O modelo processa a imagem inteira de uma só vez ("você só olha uma vez"), dividindo-a em uma grade e prevendo simultaneamente as caixas delimitadoras, as pontuações de confiança e as probabilidades de classe para cada célula. Essa abordagem unificada, descrita pelos seus desenvolvedores como um "sistema de detecção de objetos em tempo real de última geração" \cite{ultralytics2024yolo}, confere ao YOLO uma velocidade de inferência extremamente alta, tornando-o um dos modelos mais populares para aplicações em tempo real.
+Proposto por \citeonline{redmon2016yolo}, o YOLO (\textit{You Only Look Once}) introduziu uma
+nova abordagem para a detecção de objetos ao enquadrar a tarefa como um problema único de
+regressão. O modelo processa a imagem inteira de uma só vez ("você só olha uma vez"),
+dividindo-a em uma grade e prevendo simultaneamente as caixas delimitadoras, as pontuações de
+confiança e as probabilidades de classe para cada célula. Essa abordagem unificada, descrita
+pelos seus desenvolvedores como um "sistema de detecção de objetos em tempo real de última
+geração" \cite{ultralytics2024yolo}, confere ao YOLO uma velocidade de inferência
+extremamente alta, tornando-o um dos modelos mais populares para aplicações em tempo real.
 
 \subsection{Faster R-CNN}
 
-A Faster R-CNN, apresentada por \citeonline{ren2017faster}, é o ápice de uma família de detectores de dois estágios (R-CNN, Fast R-CNN). Sua principal inovação, conforme destacado em repositórios de referência como o TensorFlow Object Detection API \cite{tensorflow2024}, foi a introdução da Rede de Proposta de Regiões (\textit{Region Proposal Network} - RPN). Essa rede permite que o próprio modelo aprenda a identificar as áreas da imagem que provavelmente contêm objetos. No primeiro estágio, a RPN gera propostas de regiões de alta qualidade. No segundo estágio, essas regiões são analisadas por um detector para classificação e refinamento das caixas delimitadoras. Essa abordagem de dois estágios permitiu que a Faster R-CNN alcançasse uma precisão que, na época de seu lançamento, era considerada o estado da arte, estabelecendo novos recordes em benchmarks de detecção. Contudo, essa alta acurácia vem com um custo computacional maior e, consequentemente, uma menor velocidade de inferência em comparação com os detectores de um estágio.
+A Faster R-CNN, apresentada por \citeonline{ren2017faster}, é o ápice de uma família de
+detectores de dois estágios (R-CNN, Fast R-CNN). Sua principal inovação, conforme destacado em
+repositórios de referência como o TensorFlow Object Detection API \cite{tensorflow2024}, foi a
+introdução da Rede de Proposta de Regiões (\textit{Region Proposal Network} - RPN). Essa rede
+permite que o próprio modelo aprenda a identificar as áreas da imagem que provavelmente contêm
+objetos. No primeiro estágio, a RPN gera propostas de regiões de alta qualidade. No segundo
+estágio, essas regiões são analisadas por um detector para classificação e refinamento das
+caixas delimitadoras. Essa abordagem de dois estágios permitiu que a Faster R-CNN alcançasse
+uma precisão que, na época de seu lançamento, era considerada o estado da arte, estabelecendo
+novos recordes em benchmarks de detecção. Contudo, essa alta acurácia vem com um custo
+computacional maior e, consequentemente, uma menor velocidade de inferência em comparação com
+os detectores de um estágio.
 
 \subsection{Single Shot MultiBox Detector (SSD)}
 
-O SSD (\textit{Single Shot MultiBox Detector}), conforme descrito por \citeonline{liu2016ssd}, foi desenvolvido para ser um detector de um estágio que combina as vantagens das abordagens anteriores. Ele busca alcançar a velocidade do YOLO mantendo uma precisão competitiva com a da Faster R-CNN. Para isso, o SSD realiza predições em múltiplos mapas de características de diferentes camadas da rede, uma abordagem que, segundo sua documentação oficial, elimina a necessidade de uma etapa de proposta de regiões e encapsula todo o cálculo em uma única rede \cite{tensorflow2024}. Mapas de características de camadas mais profundas (com menor resolução) são usados para detectar objetos maiores, enquanto mapas de camadas mais rasas (com maior resolução) detectam objetos menores. Essa estratégia de múltiplas escalas o torna uma solução versátil e equilibrada.
+O SSD (\textit{Single Shot MultiBox Detector}), conforme descrito por
+\citeonline{liu2016ssd}, foi desenvolvido para ser um detector de um estágio que combina as
+vantagens das abordagens anteriores. Ele busca alcançar a velocidade do YOLO mantendo uma
+precisão competitiva com a da Faster R-CNN. Para isso, o SSD realiza predições em múltiplos
+mapas de características de diferentes camadas da rede, uma abordagem que, segundo sua
+documentação oficial, elimina a necessidade de uma etapa de proposta de regiões e encapsula
+todo o cálculo em uma única rede \cite{tensorflow2024}. Mapas de características de camadas
+mais profundas (com menor resolução) são usados para detectar objetos maiores, enquanto mapas
+de camadas mais rasas (com maior resolução) detectam objetos menores. Essa estratégia de
+múltiplas escalas o torna uma solução versátil e equilibrada.
 
 \section{TensorFlow}
 
-O TensorFlow é descrito por seus criadores como uma plataforma de código aberto ponta a ponta para aprendizado de máquina. Ele oferece um ecossistema abrangente e flexível de ferramentas, bibliotecas e recursos comunitários que permitem aos pesquisadores e desenvolvedores construir e implantar facilmente aplicações baseadas em aprendizado de máquina em diversas plataformas, desde servidores a dispositivos móveis \cite{tensorflow2024}.
+O TensorFlow é descrito por seus criadores como uma plataforma de código aberto ponta a ponta
+para aprendizado de máquina. Ele oferece um ecossistema abrangente e flexível de ferramentas,
+bibliotecas e recursos comunitários que permitem aos pesquisadores e desenvolvedores construir
+e implantar facilmente aplicações baseadas em aprendizado de máquina em diversas plataformas,
+desde servidores a dispositivos móveis \cite{tensorflow2024}.
 
 \subsection{Utilização do Framework no Projeto}
 
-Neste projeto, o TensorFlow será o framework utilizado para implementar, treinar e avaliar as arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir grafos computacionais e otimizar operações para execução em Unidades de Processamento Gráfico (GPUs) é crucial para acelerar o tempo de treinamento dos modelos profundos, que pode levar de horas a dias.
+Neste projeto, o TensorFlow será o framework utilizado para implementar, treinar e avaliar as
+arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir grafos
+computacionais e otimizar operações para execução em Unidades de Processamento Gráfico (GPUs)
+é crucial para acelerar o tempo de treinamento dos modelos profundos, que pode levar de horas
+a dias.
 
 \section{Ambiente de Desenvolvimento}
 
-O treinamento de redes neurais profundas é uma tarefa computacionalmente intensiva, cujo sucesso recente está diretamente ligado ao avanço do hardware, especialmente das Unidades de Processamento Gráfico (GPUs) que permitem o processamento massivamente paralelo \cite{lecun2015deep}. Essa exigência de hardware especializado para treinar modelos em um tempo razoável faz com que a disponibilidade de poder de processamento seja um fator limitante para muitos pesquisadores e desenvolvedores \cite{goodfellow2016deep}.
+O treinamento de redes neurais profundas é uma tarefa computacionalmente intensiva, cujo
+sucesso recente está diretamente ligado ao avanço do hardware, especialmente das Unidades de
+Processamento Gráfico (GPUs) que permitem o processamento massivamente paralelo
+\cite{lecun2015deep}. Essa exigência de hardware especializado para treinar modelos em um tempo
+razoável faz com que a disponibilidade de poder de processamento seja um fator limitante para
+muitos pesquisadores e desenvolvedores \cite{goodfellow2016deep}.
 
 \subsection{Definição do Hardware (Google Colab)}
 
-O ambiente de desenvolvimento para este trabalho será o Google Colaboratory. De acordo com a sua documentação oficial, "O Colaboratory, ou 'Colab' para abreviar, permite que você escreva e execute Python no seu navegador com zero configuração necessária, acesso gratuito a GPUs e compartilhamento facilitado" \cite{google2024colab}. O serviço democratiza o acesso a recursos computacionais de alto desempenho, fornecendo ambientes de notebook Jupyter com suporte a GPUs e TPUs (Unidades de Processamento Tensorial) sem custo. Sua acessibilidade e infraestrutura robusta o tornam uma escolha ideal para este projeto, permitindo o treinamento e a experimentação com modelos complexos \cite{goodfellow2016deep}.
+O ambiente de desenvolvimento para este trabalho será o Google Colaboratory. De acordo com a
+sua documentação oficial, "O Colaboratory, ou 'Colab' para abreviar, permite que você escreva
+e execute Python no seu navegador com zero configuração necessária, acesso gratuito a GPUs e
+compartilhamento facilitado" \cite{google2024colab}. O serviço democratiza o acesso a recursos
+computacionais de alto desempenho, fornecendo ambientes de notebook Jupyter com suporte a GPUs
+e TPUs (Unidades de Processamento Tensorial) sem custo. Sua acessibilidade e infraestrutura
+robusta o tornam uma escolha ideal para este projeto, permitindo o treinamento e a
+experimentação com modelos complexos \cite{goodfellow2016deep}.
 
 \section{Datasets}
 
-O desempenho de qualquer modelo de aprendizado de máquina é intrinsecamente ligado à qualidade, quantidade e diversidade do conjunto de dados (\textit{dataset}) utilizado para o seu treinamento \cite{goodfellow2016deep}. Para tarefas de detecção de objetos, um dataset consiste em imagens e anotações que especificam a classe e as coordenadas da caixa delimitadora para cada objeto presente.
+O desempenho de qualquer modelo de aprendizado de máquina é intrinsecamente ligado à
+qualidade, quantidade e diversidade do conjunto de dados (\textit{dataset}) utilizado para o
+seu treinamento \cite{goodfellow2016deep}. Para tarefas de detecção de objetos, um dataset
+consiste em imagens e anotações que especificam a classe e as coordenadas da caixa
+delimitadora para cada objeto presente.
 
 \subsection{Seleção e Pré-processamento dos Datasets}
 
-Para uma comparação justa e relevante entre diferentes arquiteturas, a utilização de benchmarks padronizados é essencial. Esses datasets públicos e amplamente adotados permitem que os resultados sejam reprodutíveis e comparáveis com outros trabalhos na área. A seguir, são descritos os principais datasets de referência que serão considerados para este estudo.
+Para uma comparação justa e relevante entre diferentes arquiteturas, a utilização de
+benchmarks padronizados é essencial. Esses datasets públicos e amplamente adotados permitem
+que os resultados sejam reprodutíveis e comparáveis com outros trabalhos na área. A seguir,
+são descritos os principais datasets de referência que serão considerados para este estudo.
 
 \subsubsection{PASCAL VOC (Visual Object Classes)}
 
-O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado a partir de um desafio anual que ocorreu entre 2005 e 2012 \cite{everingham2015pascal}. Ele contém imagens de 20 categorias de objetos comuns, como "carro", "pessoa" e "cachorro". Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o tornou fundamental para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para detecção, como a família R-CNN.
+O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado
+a partir de um desafio anual que ocorreu entre 2005 e 2012 \cite{everingham2015pascal}. Ele
+contém imagens de 20 categorias de objetos comuns, como "carro", "pessoa" e "cachorro".
+Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o tornou fundamental
+para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para
+detecção, como a família R-CNN.
 
 \subsubsection{COCO (Common Objects in Context)}
 
-O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. Ele representa um avanço significativo em relação ao PASCAL VOC em termos de escala e complexidade, contendo 80 categorias de objetos, mais de 200.000 imagens rotuladas e um número muito maior de instâncias de objetos por imagem. Seu principal diferencial, como o nome sugere, é o foco em "objetos em seu contexto natural", apresentando cenas complexas com múltiplos objetos, muitas vezes sobrepostos e de diferentes escalas. Além das caixas delimitadoras, o COCO também fornece anotações de segmentação por pixel, permitindo o treinamento de modelos para tarefas mais refinadas \cite{lin2014microsoft}.
+O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. Ele representa um
+avanço significativo em relação ao PASCAL VOC em termos de escala e complexidade, contendo 80
+categorias de objetos, mais de 200.000 imagens rotuladas e um número muito maior de instâncias
+de objetos por imagem. Seu principal diferencial, como o nome sugere, é o foco em "objetos em
+seu contexto natural", apresentando cenas complexas com múltiplos objetos, muitas vezes
+sobrepostos e de diferentes escalas. Além das caixas delimitadoras, o COCO também fornece
+anotações de segmentação por pixel, permitindo o treinamento de modelos para tarefas mais
+refinadas \cite{lin2014microsoft}.
 
 \subsubsection{Kaggle Datasets}
 
-O Kaggle é uma plataforma online que hospeda uma vasta gama de competições de ciência de dados e datasets públicos \cite{kaggle2024}. Embora não seja um benchmark acadêmico padronizado como o COCO ou o PASCAL VOC, o Kaggle oferece acesso a milhares de datasets de nicho e específicos para problemas do mundo real (por exemplo, detecção de doenças em imagens médicas ou identificação de produtos em prateleiras). Ele serve como um excelente recurso para explorar problemas mais específicos, mas para uma comparação fundamental de arquiteturas, os benchmarks acadêmicos são geralmente preferidos.
+O Kaggle é uma plataforma online que hospeda uma vasta gama de competições de ciência de dados
+e datasets públicos \cite{kaggle2024}. Embora não seja um benchmark acadêmico padronizado como
+o COCO ou o PASCAL VOC, o Kaggle oferece acesso a milhares de datasets de nicho e específicos
+para problemas do mundo real (por exemplo, detecção de doenças em imagens médicas ou
+identificação de produtos em prateleiras). Ele serve como um excelente recurso para explorar
+problemas mais específicos, mas para uma comparação fundamental de arquiteturas, os benchmarks
+acadêmicos são geralmente preferidos.
 
-Após a análise comparativa desses datasets, um deles será selecionado como o mais adequado para os objetivos deste trabalho. A etapa subsequente de pré-processamento envolverá a adequação dos formatos das imagens e das anotações para que sejam compatíveis com as arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
+Após a análise comparativa desses datasets, um deles será selecionado como o mais adequado
+para os objetivos deste trabalho. A etapa subsequente de pré-processamento envolverá a
+adequação dos formatos das imagens e das anotações para que sejam compatíveis com as
+arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de
+dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
 
 \section{Métricas de Desempenho e Visualização}
 
-A avaliação do desempenho de redes neurais é uma etapa fundamental para compreender a eficácia de um modelo e identificar pontos de melhoria. O uso de métricas de desempenho adequadas é essencial para garantir que o modelo atenda aos requisitos de precisão e robustez, especialmente em cenários onde a generalização para novos dados é crítica \cite{miguel2025uso}. Adicionalmente, a visualização dos resultados durante o treinamento ajuda a monitorar o progresso, detectar problemas e tomar decisões informadas sobre ajustes \cite{geron2023maos}.
+A avaliação do desempenho de redes neurais é uma etapa fundamental para compreender a eficácia
+de um modelo e identificar pontos de melhoria. O uso de métricas de desempenho adequadas é
+essencial para garantir que o modelo atenda aos requisitos de precisão e robustez,
+especialmente em cenários onde a generalização para novos dados é crítica
+\cite{miguel2025uso}. Adicionalmente, a visualização dos resultados durante o treinamento
+ajuda a monitorar o progresso, detectar problemas e tomar decisões informadas sobre ajustes
+\cite{geron2023maos}.
 
 \subsection{Métricas de Desempenho}
 
-Existem diversas métricas utilizadas para avaliar o desempenho de modelos de aprendizado de máquina, principalmente em tarefas de classificação. Cada métrica oferece uma perspectiva diferente sobre a performance do modelo e sua utilidade varia conforme o contexto da aplicação \cite{geron2023maos}. As principais métricas incluem acurácia, perda (loss), precisão, recall e F1-Score \cite{miguel2025uso}.
+Existem diversas métricas utilizadas para avaliar o desempenho de modelos de aprendizado de
+máquina, principalmente em tarefas de classificação. Cada métrica oferece uma perspectiva
+diferente sobre a performance do modelo e sua utilidade varia conforme o contexto da aplicação
+\cite{geron2023maos}. As principais métricas incluem acurácia, perda (loss), precisão, recall
+e F1-Score \cite{miguel2025uso}.
 
 \subsubsection{Acurácia}
 
-A acurácia é uma das métricas mais simples e amplamente utilizadas. Ela representa a proporção de previsões corretas em relação ao número total de amostras analisadas \cite{miguel2025uso}. A fórmula para seu cálculo é dada por:
+A acurácia é uma das métricas mais simples e amplamente utilizadas. Ela representa a proporção
+de previsões corretas em relação ao número total de amostras analisadas \cite{miguel2025uso}.
+A fórmula para seu cálculo é dada por:
 
 \begin{equation}
 \text{Acurácia} = \frac{\text{Número de previsões verdadeiras}}{\text{Número total de previsões realizadas}}
 \end{equation}
 
-Embora seja uma métrica bastante útil, a acurácia pode ser enganosa, principalmente quando há um desequilíbrio entre as classes do conjunto de dados \cite{geron2023maos, miguel2025uso}.
+Embora seja uma métrica bastante útil, a acurácia pode ser enganosa, principalmente quando há
+um desequilíbrio entre as classes do conjunto de dados \cite{geron2023maos, miguel2025uso}.
 
 \subsubsection{Loss (Função de Perda)}
 
-A métrica de loss, ou erro, indica o quão distantes as previsões do modelo estão dos valores reais. A função de perda é utilizada durante a fase de treinamento para ajustar os parâmetros do modelo, com o objetivo de minimizá-la para que as previsões se tornem mais precisas \cite{miguel2025uso}. Uma loss baixa indica que o modelo está fazendo boas previsões e está bem ajustado aos dados.
+A métrica de loss, ou erro, indica o quão distantes as previsões do modelo estão dos valores
+reais. A função de perda é utilizada durante a fase de treinamento para ajustar os parâmetros
+do modelo, com o objetivo de minimizá-la para que as previsões se tornem mais precisas
+\cite{miguel2025uso}. Uma loss baixa indica que o modelo está fazendo boas previsões e está
+bem ajustado aos dados.
 
 \subsubsection{Precisão (Precision)}
 
-A precisão é uma métrica que avalia a taxa de falsos positivos (FP). Ela mede a proporção de previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fórmula é:
+A precisão é uma métrica que avalia a taxa de falsos positivos (FP). Ela mede a proporção de
+previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fórmula é:
 
 \begin{equation}
 \text{Precisão} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Positivos (FP)}}
 \end{equation}
 
-A precisão é particularmente importante em cenários onde um erro de falso positivo é considerado crítico e precisa ser minimizado \cite{geron2023maos}.
+A precisão é particularmente importante em cenários onde um erro de falso positivo é
+considerado crítico e precisa ser minimizado \cite{geron2023maos}.
 
 \subsubsection{Recall (Revocação)}
 
-A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo recall pode ser um indicativo de que ele está sendo excessivamente conservador e falhando em identificar todas as instâncias relevantes \cite{miguel2025uso}.
+A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas
+que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo
+recall pode ser um indicativo de que ele está sendo excessivamente conservador e falhando em
+identificar todas as instâncias relevantes \cite{miguel2025uso}.
 
 \subsubsection{F1-Score}
 
-Em cenários com classes desbalanceadas, o F1-Score é frequentemente utilizado para garantir um equilíbrio entre a precisão e o recall. Essa métrica corresponde à média harmônica da precisão e do recall, dando mais peso aos valores mais baixos e, portanto, penalizando modelos que possuem um desequilíbrio grande entre as duas métricas \cite{geron2023maos}.
+Em cenários com classes desbalanceadas, o F1-Score é frequentemente utilizado para garantir um
+equilíbrio entre a precisão e o recall. Essa métrica corresponde à média harmônica da precisão
+e do recall, dando mais peso aos valores mais baixos e, portanto, penalizando modelos que
+possuem um desequilíbrio grande entre as duas métricas \cite{geron2023maos}.
 
 \subsection{Técnicas de Visualização}
 
-A visualização dos resultados do treinamento de redes neurais é essencial para monitorar o desempenho, detectar problemas de forma precoce e tomar decisões informadas \cite{miguel2025uso}. Ferramentas gráficas ajudam a compreender como o modelo está aprendendo e se ajustando aos dados, fornecendo insights cruciais para a melhoria da sua precisão e robustez \cite{geron2023maos}.
+A visualização dos resultados do treinamento de redes neurais é essencial para monitorar o
+desempenho, detectar problemas de forma precoce e tomar decisões informadas
+\cite{miguel2025uso}. Ferramentas gráficas ajudam a compreender como o modelo está aprendendo
+e se ajustando aos dados, fornecendo insights cruciais para a melhoria da sua precisão e
+robustez \cite{geron2023maos}.
 
 \subsubsection{Gráficos de Acurácia e Loss}
 
-Os gráficos de acurácia e loss são duas das ferramentas mais comuns para monitorar o progresso do treinamento de uma rede neural \cite{miguel2025uso}.
+Os gráficos de acurácia e loss são duas das ferramentas mais comuns para monitorar o progresso
+do treinamento de uma rede neural \cite{miguel2025uso}.
 
-O gráfico de acurácia exibe a taxa de acertos do modelo ao longo das épocas de treinamento e validação. Ele permite identificar rapidamente se o modelo está aprendendo de forma consistente. Uma queda ou estagnação na acurácia de validação enquanto a de treinamento continua a subir é um forte indicativo de overfitting \cite{miguel2025uso}.
+O gráfico de acurácia exibe a taxa de acertos do modelo ao longo das épocas de treinamento e
+validação. Ele permite identificar rapidamente se o modelo está aprendendo de forma
+consistente. Uma queda ou estagnação na acurácia de validação enquanto a de treinamento
+continua a subir é um forte indicativo de overfitting \cite{miguel2025uso}.
 
-Por sua vez, o gráfico de loss exibe a evolução da função de perda. O ideal é que ambas as perdas (treinamento e validação) diminuam ao longo do tempo. Se a perda de validação começar a aumentar enquanto a de treinamento continua a diminuir, isso também é um sinal de overfitting \cite{miguel2025uso}.
+Por sua vez, o gráfico de loss exibe a evolução da função de perda. O ideal é que ambas as
+perdas (treinamento e validação) diminuam ao longo do tempo. Se a perda de validação começar a
+aumentar enquanto a de treinamento continua a diminuir, isso também é um sinal de overfitting
+\cite{miguel2025uso}.
 
 \subsubsection{Matriz de Confusão}
 
-A matriz de confusão é uma técnica de visualização que oferece uma visão detalhada do comportamento do modelo em relação a cada classe. A ideia geral é contar o número de vezes que instâncias da classe A são classificadas como classe B \cite{geron2023maos}. Ela é especialmente útil para identificar se o modelo está cometendo erros sistemáticos. A partir da matriz, também é possível calcular métricas como precisão e recall para cada classe individualmente \cite{miguel2025uso}.
+A matriz de confusão é uma técnica de visualização que oferece uma visão detalhada do
+comportamento do modelo em relação a cada classe. A ideia geral é contar o número de vezes que
+instâncias da classe A são classificadas como classe B \cite{geron2023maos}. Ela é
+especialmente útil para identificar se o modelo está cometendo erros sistemáticos. A partir da
+matriz, também é possível calcular métricas como precisão e recall para cada classe
+individualmente \cite{miguel2025uso}.

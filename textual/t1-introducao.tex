@@ -1,22 +1,63 @@
 \chapter{INTRODUÇÃO}
 \label{cap:introducao}
 
-Nos últimos anos, a combinação entre o avanço do poder computacional e o desenvolvimento de algoritmos mais sofisticados tem impulsionado significativamente a área de visão computacional. Essa área da inteligência artificial tem se mostrado essencial em diversas aplicações, desde sistemas de segurança e monitoramento, até diagnósticos médicos e veículos autônomos \cite{szeliski2022computer}. Nesse cenário, o reconhecimento de padrões e a detecção de objetos se tornaram tarefas cada vez mais precisas e eficientes, aproximando as capacidades das máquinas da percepção humana.
+Nos últimos anos, a combinação entre o avanço do poder computacional e o desenvolvimento de
+algoritmos mais sofisticados tem impulsionado significativamente a área de visão computacional.
+Essa área da inteligência artificial tem se mostrado essencial em diversas aplicações, desde
+sistemas de segurança e monitoramento, até diagnósticos médicos e veículos autônomos
+\cite{szeliski2022computer}. Nesse cenário, o reconhecimento de padrões e a detecção de objetos
+se tornaram tarefas cada vez mais precisas e eficientes, aproximando as capacidades das máquinas
+da percepção humana.
 
-O reconhecimento de objetos em imagens é uma atividade simples para humanos quando possuem expertise no assunto e está se tornando cada vez mais acessível aos computadores, devido aos avanços em estudos de visão computacional que utilizam redes neurais de aprendizagem profunda \cite{goodfellow2016deep}. Segundo \citeonline{haykin2009neural}, a aprendizagem profunda é "uma subárea da aprendizagem de máquina que emprega algoritmos inspirados no funcionamento do cérebro humano, simulando um conjunto de neurônios conectados e organizados em camadas, onde cada camada processa informações e transmite o resultado para a próxima".
+O reconhecimento de objetos em imagens é uma atividade simples para humanos quando possuem
+expertise no assunto e está se tornando cada vez mais acessível aos computadores, devido aos
+avanços em estudos de visão computacional que utilizam redes neurais de aprendizagem profunda
+\cite{goodfellow2016deep}. Segundo \citeonline{haykin2009neural}, a aprendizagem profunda é
+"uma subárea da aprendizagem de máquina que emprega algoritmos inspirados no funcionamento do
+cérebro humano, simulando um conjunto de neurônios conectados e organizados em camadas, onde
+cada camada processa informações e transmite o resultado para a próxima".
 
-Dado a popularização de arquiteturas como as Redes Neurais Convolucionais (CNNs), tornou-se possível processar grandes volumes de dados visuais com alta acurácia. Essas redes têm a capacidade de extrair automaticamente características relevantes das imagens, dispensando a necessidade de intervenção manual no processo de extração de atributos \cite{lecun2015deep}. Como resultado, surgem soluções mais robustas e adaptáveis, contribuindo diretamente para a expansão de aplicações baseadas em visão computacional.
+Dado a popularização de arquiteturas como as Redes Neurais Convolucionais (CNNs), tornou-se
+possível processar grandes volumes de dados visuais com alta acurácia. Essas redes têm a
+capacidade de extrair automaticamente características relevantes das imagens, dispensando a
+necessidade de intervenção manual no processo de extração de atributos \cite{lecun2015deep}.
+Como resultado, surgem soluções mais robustas e adaptáveis, contribuindo diretamente para a
+expansão de aplicações baseadas em visão computacional.
 
-Com os avanços expressivos em visão computacional, a ampla variedade de arquiteturas de redes neurais disponíveis gera um cenário de complexidade na escolha da solução mais adequada. Cada modelo apresenta pontos fortes e limitações específicas, o que pode dificultar a definição de qual abordagem é mais eficiente para determinado contexto. Essa diversidade, ao mesmo tempo em que amplia as possibilidades de aplicação, também se torna um obstáculo para a tomada de decisão.
+Com os avanços expressivos em visão computacional, a ampla variedade de arquiteturas de redes
+neurais disponíveis gera um cenário de complexidade na escolha da solução mais adequada. Cada
+modelo apresenta pontos fortes e limitações específicas, o que pode dificultar a definição de
+qual abordagem é mais eficiente para determinado contexto. Essa diversidade, ao mesmo tempo em
+que amplia as possibilidades de aplicação, também se torna um obstáculo para a tomada de
+decisão.
 
 \section{Objetivo}
 
-O presente trabalho tem como objetivo comparar o desempenho das diferentes arquiteturas de detecção de objetos utilizando os principais datasets de referência. A análise abrangerá métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência, bem como uma discussão crítica sobre a aplicabilidade de cada modelo em diferentes cenários, visando fornecer subsídios para a escolha do algoritmo mais adequado a cada contexto.
+O presente trabalho tem como objetivo comparar o desempenho das diferentes arquiteturas de
+detecção de objetos utilizando os principais datasets de referência. A análise abrangerá
+métricas quantitativas de desempenho, como precisão, recall, mean Average Precision (mAP) e
+tempo de inferência, bem como uma discussão crítica sobre a aplicabilidade de cada modelo em
+diferentes cenários, visando fornecer subsídios para a escolha do algoritmo mais adequado a
+cada contexto.
 
 \section{Justificativa}
 
-A evolução das arquiteturas de detecção de objetos, como YOLO, Faster R-CNN e SSD, continuará a impulsionar significativamente a precisão e a velocidade de sistemas de visão computacional \cite{redmon2016yolo, ren2017faster, liu2016ssd, tan2020efficientdet, lin2020focal}. No entanto, apesar dos avanços, cada modelo continuará apresentando características, vantagens e limitações que poderão torná-lo mais adequado para determinados contextos e restrições de hardware.
+A evolução das arquiteturas de detecção de objetos, como YOLO, Faster R-CNN e SSD, continuará
+a impulsionar significativamente a precisão e a velocidade de sistemas de visão computacional
+\cite{redmon2016yolo, ren2017faster, liu2016ssd, tan2020efficientdet, lin2020focal}. No
+entanto, apesar dos avanços, cada modelo continuará apresentando características, vantagens e
+limitações que poderão torná-lo mais adequado para determinados contextos e restrições de
+hardware.
 
-Como afirmam \citeonline{liu2016ssd}, modelos como o SSD se destacam pela alta velocidade de inferência, enquanto arquiteturas como Faster R-CNN \cite{ren2017faster} priorizam a precisão em detrimento do tempo de processamento. Já o YOLO, segundo \citeonline{redmon2016yolo}, "propõe uma abordagem unificada e em tempo real para a detecção de objetos, transformando o problema em uma única tarefa de regressão".
+Como afirmam \citeonline{liu2016ssd}, modelos como o SSD se destacam pela alta velocidade de
+inferência, enquanto arquiteturas como Faster R-CNN \cite{ren2017faster} priorizam a precisão
+em detrimento do tempo de processamento. Já o YOLO, segundo \citeonline{redmon2016yolo},
+"propõe uma abordagem unificada e em tempo real para a detecção de objetos, transformando o
+problema em uma única tarefa de regressão".
 
-Nesse sentido, será fundamental compreender, de forma comparativa, o desempenho dessas arquiteturas frente a diferentes classes de dados e condições de inferência. Uma análise comparativa criteriosa permitirá identificar quais modelos oferecerão melhor equilíbrio entre precisão e velocidade, considerando não apenas métricas quantitativas, mas também a complexidade de implementação e a escalabilidade. Essa abordagem auxiliará na escolha da solução mais adequada e contribuirá para o avanço do estado da arte.
+Nesse sentido, será fundamental compreender, de forma comparativa, o desempenho dessas
+arquiteturas frente a diferentes classes de dados e condições de inferência. Uma análise
+comparativa criteriosa permitirá identificar quais modelos oferecerão melhor equilíbrio entre
+precisão e velocidade, considerando não apenas métricas quantitativas, mas também a
+complexidade de implementação e a escalabilidade. Essa abordagem auxiliará na escolha da
+solução mais adequada e contribuirá para o avanço do estado da arte.

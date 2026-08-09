@@ -1,6 +1,10 @@
 \chapter{MÉTODOS E RECURSOS}
 \label{cap:metodologia}
-Este capítulo apresentará os métodos e ferramentas que serão utilizados para o desenvolvimento do trabalho. Para alcançar os objetivos propostos, a pesquisa adotará uma abordagem que integra pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de arquiteturas de rede neural convolucional para detecção de objetos. O presente trabalho foi dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
+Este capítulo apresentará os métodos e ferramentas que serão utilizados para o desenvolvimento
+do trabalho. Para alcançar os objetivos propostos, a pesquisa adotará uma abordagem que integra
+pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de
+arquiteturas de rede neural convolucional para detecção de objetos. O presente trabalho foi
+dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
 
 \begin{figure}[H]
 \caption{Diagrama de processos do desenvolvimento do TCC}
@@ -12,34 +16,75 @@ Este capítulo apresentará os métodos e ferramentas que serão utilizados para
 
 
 \section{Estudo Teórico e Revisão Bibliográfica}
-Nesta etapa, será realizado um estudo aprofundado sobre os fundamentos da visão computacional e do aprendizado de máquina, com foco em redes neurais de aprendizagem profunda. Serão revisados os conceitos e as arquiteturas de detecção de objetos mais relevantes, como YOLO, Faster R-CNN e SSD. Esta fase buscará fundamentar teoricamente a pesquisa, compreendendo as características, vantagens e limitações de cada modelo.
+Nesta etapa, será realizado um estudo aprofundado sobre os fundamentos da visão computacional
+e do aprendizado de máquina, com foco em redes neurais de aprendizagem profunda. Serão
+revisados os conceitos e as arquiteturas de detecção de objetos mais relevantes, como YOLO,
+Faster R-CNN e SSD. Esta fase buscará fundamentar teoricamente a pesquisa, compreendendo as
+características, vantagens e limitações de cada modelo.
 
 \section{Seleção de Modelos}
-Para a análise comparativa, serão selecionadas três arquiteturas de detecção de objetos: YOLO (You Only Look Once), Faster R-CNN e SSD (Single Shot MultiBox Detector). A escolha desses modelos buscará representar as principais abordagens na área, abrangendo desde soluções otimizadas para velocidade em tempo real (YOLO e SSD) até aquelas que priorizam alta precisão (Faster R-CNN). Esta etapa visará estabelecer os algoritmos a serem avaliados, garantindo uma comparação representativa e relevante para a discussão sobre o equilíbrio entre desempenho e eficiência computacional.
+Para a análise comparativa, serão selecionadas três arquiteturas de detecção de objetos: YOLO
+(You Only Look Once), Faster R-CNN e SSD (Single Shot MultiBox Detector). A escolha desses
+modelos buscará representar as principais abordagens na área, abrangendo desde soluções
+otimizadas para velocidade em tempo real (YOLO e SSD) até aquelas que priorizam alta precisão
+(Faster R-CNN). Esta etapa visará estabelecer os algoritmos a serem avaliados, garantindo uma
+comparação representativa e relevante para a discussão sobre o equilíbrio entre desempenho e
+eficiência computacional.
 
 \section{Seleção e Pré-processamento dos Datasets}
-Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
+Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de
+objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado
+ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e
+organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
 
 \section{Definição do Hardware}
-A etapa de treinamento dos modelos de detecção de objetos envolverá o processamento de grandes volumes de dados, o que implicará a necessidade de um ambiente com capacidade de aceleração, como o fornecido por Unidades de Processamento Gráfico (GPUs). O runtime principal para os experimentos será definido utilizando o Google Colaboratory (Colab), que será empregado por possibilitar o acesso a placas de vídeo dedicadas. Serão definidos os requisitos de hardware específicos para cada modelo, considerando-se as necessidades computacionais requeridas para o treinamento e a inferência.
+A etapa de treinamento dos modelos de detecção de objetos envolverá o processamento de grandes
+volumes de dados, o que implicará a necessidade de um ambiente com capacidade de aceleração,
+como o fornecido por Unidades de Processamento Gráfico (GPUs). O runtime principal para os
+experimentos será definido utilizando o Google Colaboratory (Colab), que será empregado por
+possibilitar o acesso a placas de vídeo dedicadas. Serão definidos os requisitos de hardware
+específicos para cada modelo, considerando-se as necessidades computacionais requeridas para o
+treinamento e a inferência.
 
 \section{Configuração do Ambiente}
-A configuração do ambiente de desenvolvimento de software será realizada por meio do framework TensorFlow. Este framework foi escolhido para implementar, treinar e avaliar as arquiteturas de detecção de objetos selecionadas. Sua utilização é essencial, pois suas ferramentas permitirão construir os grafos computacionais e otimizar as operações para execução em hardware acelerado. O ambiente será configurado dentro do Google Colab, garantindo a compatibilidade necessária para que o treinamento e a avaliação das arquiteturas de detecção de objetos ocorram de forma eficiente.
+A configuração do ambiente de desenvolvimento de software será realizada por meio do framework
+TensorFlow. Este framework foi escolhido para implementar, treinar e avaliar as arquiteturas
+de detecção de objetos selecionadas. Sua utilização é essencial, pois suas ferramentas
+permitirão construir os grafos computacionais e otimizar as operações para execução em
+hardware acelerado. O ambiente será configurado dentro do Google Colab, garantindo a
+compatibilidade necessária para que o treinamento e a avaliação das arquiteturas de detecção
+de objetos ocorram de forma eficiente.
 
 \section[Definição e Otimização dos Hiperparâmetros]{Definição e Otimização dos\\Hiperparâmetros}
-Nesta etapa, serão definidos e otimizados os hiperparâmetros de cada modelo para garantir o melhor desempenho possível durante o treinamento. Este processo é crucial para ajustar os modelos aos datasets e ao hardware disponível.
+Nesta etapa, serão definidos e otimizados os hiperparâmetros de cada modelo para garantir o
+melhor desempenho possível durante o treinamento. Este processo é crucial para ajustar os
+modelos aos datasets e ao hardware disponível.
 
 \section{Treinamento e Inferência dos Conjuntos de Testes}
-Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o treinamento, a inferência será realizada em um conjunto de testes para avaliar o desempenho de cada modelo em dados não vistos.
+Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o
+treinamento, a inferência será realizada em um conjunto de testes para avaliar o desempenho de
+cada modelo em dados não vistos.
 
 \section[Coleta de Métricas e Análise de Resultados]{Coleta de Métricas e Análise de\\Resultados}
-Serão coletadas métricas de desempenho, como precisão, recall, mean Average Precision (mAP) e tempo de inferência. Os resultados serão comparados e analisados quantitativamente para identificar o equilíbrio entre precisão e velocidade de cada arquitetura.
+Serão coletadas métricas de desempenho, como precisão, recall, mean Average Precision (mAP) e
+tempo de inferência. Os resultados serão comparados e analisados quantitativamente para
+identificar o equilíbrio entre precisão e velocidade de cada arquitetura.
 
 \section{Análise Crítica e Discussão dos Modelos}
-Com base na análise quantitativa, será realizada uma discussão crítica sobre o desempenho de cada modelo. Esta etapa considerará não apenas as métricas, mas também a complexidade de implementação e a escalabilidade, fornecendo subsídios para a escolha do algoritmo mais adequado a cada contexto.
+Com base na análise quantitativa, será realizada uma discussão crítica sobre o desempenho de
+cada modelo. Esta etapa considerará não apenas as métricas, mas também a complexidade de
+implementação e a escalabilidade, fornecendo subsídios para a escolha do algoritmo mais
+adequado a cada contexto.
 
 \section{Conclusão e Sugestões para Trabalhos Futuros}
-O trabalho apresentará uma conclusão sobre os resultados obtidos e as principais contribuições da pesquisa. Serão feitas sugestões para trabalhos futuros, explorando possíveis melhorias e novas direções para a área de detecção de objetos.
+O trabalho apresentará uma conclusão sobre os resultados obtidos e as principais contribuições
+da pesquisa. Serão feitas sugestões para trabalhos futuros, explorando possíveis melhorias e
+novas direções para a área de detecção de objetos.
 
 \section{Elaboração da Monografia}
-Por fim, a monografia será elaborada seguindo as normas de formatação acadêmica da instituição, com o objetivo de documentar e apresentar os resultados da pesquisa. A escrita ocorrerá após a conclusão das etapas práticas da metodologia, garantindo que o texto seja fundamentado nas análises e nos dados obtidos. Uma revisão cuidadosa será realizada para assegurar a clareza, a consistência da argumentação e a correção gramatical, visando a formalidade e a qualidade exigidas para o trabalho.
+Por fim, a monografia será elaborada seguindo as normas de formatação acadêmica da instituição,
+com o objetivo de documentar e apresentar os resultados da pesquisa. A escrita ocorrerá após a
+conclusão das etapas práticas da metodologia, garantindo que o texto seja fundamentado nas
+análises e nos dados obtidos. Uma revisão cuidadosa será realizada para assegurar a clareza, a
+consistência da argumentação e a correção gramatical, visando a formalidade e a qualidade
+exigidas para o trabalho.

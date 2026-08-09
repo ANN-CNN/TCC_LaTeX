@@ -1,6 +1,11 @@
 \chapter{DESENVOLVIMENTO}
 \label{cap:desenvolvimento}
-Vestibulum ac arcu suscipit, consequat orci sit amet, maximus dolor. Vestibulum condimentum nulla vitae fermentum venenatis. In sit amet tincidunt ex, quis molestie turpis. Proin eleifend fringilla tincidunt. Curabitur pellentesque nisi in risus iaculis, in tristique odio maximus. Donec condimentum massa a erat malesuada, ut lacinia elit maximus. Integer feugiat volutpat luctus. Vestibulum commodo varius venenatis. Ut diam ante, feugiat non consectetur id, suscipit at dolor. Duis tempor quam ligula, id volutpat ligula dapibus id. Phasellus at fermentum nibh.
+Vestibulum ac arcu suscipit, consequat orci sit amet, maximus dolor. Vestibulum condimentum
+nulla vitae fermentum venenatis. In sit amet tincidunt ex, quis molestie turpis. Proin eleifend
+fringilla tincidunt. Curabitur pellentesque nisi in risus iaculis, in tristique odio maximus.
+Donec condimentum massa a erat malesuada, ut lacinia elit maximus. Integer feugiat volutpat
+luctus. Vestibulum commodo varius venenatis. Ut diam ante, feugiat non consectetur id, suscipit
+at dolor. Duis tempor quam ligula, id volutpat ligula dapibus id. Phasellus at fermentum nibh.
 
 \section{Levantamento das Estórias}
 
@@ -35,7 +40,9 @@ Descrição: Permite que o usuário saia do sistema.
 
 \subsection{Diagrama de Classes}
 
-Na construção do diagrama de classes foi analisada as principais classes do sistema, suas características, seus relacionamentos e suas funcionalidades. É possível observar através da \autoref{fig:classe}, a estrutura do desenvolvimento do sistema.
+Na construção do diagrama de classes foi analisada as principais classes do sistema, suas
+características, seus relacionamentos e suas funcionalidades. É possível observar através da
+\autoref{fig:classe}, a estrutura do desenvolvimento do sistema.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 8 starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -49,17 +56,26 @@ Na construção do diagrama de classes foi analisada as principais classes do si
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 8 Ends here %%%%%%%%%%%%%%%%%%%%
 
-Na \autoref{fig:classe} citada acima podemos observar o Diagrama de Classes utilizado para a construção do aplicativo.
+Na \autoref{fig:classe} citada acima podemos observar o Diagrama de Classes utilizado para a
+construção do aplicativo.
 
-As classes Catador e Separador são extensões da classe Pessoa, que tem como objetivo informar seus dados, tirar dúvidas sobre a definição dos perfis, criar uma conta perfil, redefinir a senha esquecida, efetuar \textit{login}, salvar os dados do \textit{login} e realizar \textit{logoff}.
+As classes Catador e Separador são extensões da classe Pessoa, que tem como objetivo informar
+seus dados, tirar dúvidas sobre a definição dos perfis, criar uma conta perfil, redefinir a
+senha esquecida, efetuar \textit{login}, salvar os dados do \textit{login} e realizar
+\textit{logoff}.
 
-A classe Catador que faz parte de uma das contas perfil, é responsável pelo cadastro do usuário catador. Este usuário é encarregado por traçar a rota da coleta e recolher o material descartado.
+A classe Catador que faz parte de uma das contas perfil, é responsável pelo cadastro do usuário
+catador. Este usuário é encarregado por traçar a rota da coleta e recolher o material
+descartado.
 
-A classe Separador que faz parte de uma das contas perfil, é responsável pelo cadastro do usuário separador. Ao informar sua localização e o tipo de material, o usuário poderá solicitar o recolhimento do material descartado.
+A classe Separador que faz parte de uma das contas perfil, é responsável pelo cadastro do
+usuário separador. Ao informar sua localização e o tipo de material, o usuário poderá solicitar
+o recolhimento do material descartado.
 
 \subsection{Diagrama de Casos de Uso}
 
-Esse parágrafo descreve as funcionalidades do sistema e as interações entre os atores, através da \autoref{fig:casos}. 
+Esse parágrafo descreve as funcionalidades do sistema e as interações entre os atores, através
+da \autoref{fig:casos}.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 9 starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -73,13 +89,21 @@ Esse parágrafo descreve as funcionalidades do sistema e as interações entre o
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 9 Ends here %%%%%%%%%%%%%%%%%%%%
 
-Na \autoref{fig:casos} citada acima, podemos ver o Diagrama de Casos de Uso. Na tela inicial do aplicativo, o usuário poderá realizar as seguintes funções: logar no APP, cadastrar usuário, tirar dúvidas, efetuar \textit{logoff} e recuperar a senha. Se o usuário ainda não estiver cadastrado, irá se cadastrar no perfil desejado: Catador ou Separador. Caso já tenha cadastro, basta efetuar o \textit{login}, o qual pode ser salvo pelo sistema. Em caso de senha esquecida, o sistema permite a recuperação através do \textit{e-mail}.
+Na \autoref{fig:casos} citada acima, podemos ver o Diagrama de Casos de Uso. Na tela inicial
+do aplicativo, o usuário poderá realizar as seguintes funções: logar no APP, cadastrar usuário,
+tirar dúvidas, efetuar \textit{logoff} e recuperar a senha. Se o usuário ainda não estiver
+cadastrado, irá se cadastrar no perfil desejado: Catador ou Separador. Caso já tenha cadastro,
+basta efetuar o \textit{login}, o qual pode ser salvo pelo sistema. Em caso de senha esquecida,
+o sistema permite a recuperação através do \textit{e-mail}.
 
-A partir da inserção da localização e do tipo de material, o Separador poderá solicitar o recolhimento do rejeito. O Catador recebendo a solicitação do Separador, irá traçar a rota para a coleta do material. 
+A partir da inserção da localização e do tipo de material, o Separador poderá solicitar o
+recolhimento do rejeito. O Catador recebendo a solicitação do Separador, irá traçar a rota
+para a coleta do material.
 
 \paragraph*{5.2.2.1 Especificação dos Casos de Uso}
 
-Esse capítulo é responsável pelo detalhamento das funcionalidades do sistema. O (\autoref{quad:catador}), descreve o passo a passo para o cadastro do usuário Catador.
+Esse capítulo é responsável pelo detalhamento das funcionalidades do sistema. O
+(\autoref{quad:catador}), descreve o passo a passo para o cadastro do usuário Catador.
 
 %%%%%%%%%%%%%%%%%%%% Table No: 4 starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -130,7 +154,8 @@ Esse capítulo é responsável pelo detalhamento das funcionalidades do sistema.
 
 %%%%%%%%%%%%%%%%%%%% Table No: 4 ends here %%%%%%%%%%%%%%%%%%%%
 
-O caso de uso Cadastrar Catador (\autoref{quad:catador}), citado acima é responsável por avaliar as ações necessárias para realizar o cadastro do perfil catador. 
+O caso de uso Cadastrar Catador (\autoref{quad:catador}), citado acima é responsável por
+avaliar as ações necessárias para realizar o cadastro do perfil catador.
 
 O \autoref{qua:separador} descreve o passo a passo para o cadastro do usuário Separador.
 
@@ -139,7 +164,7 @@ O \autoref{qua:separador} descreve o passo a passo para o cadastro do usuário S
 
 \begin{quadro}[H]
 \caption{Cadastro Separador}
- \label{qua:separador}			\begin{tabular}{p{1.33in}p{3.96in}}
+ \label{qua:separador}		\begin{tabular}{p{1.33in}p{3.96in}}
 \hline
 %row no:1
 \multicolumn{1}{|p{1.33in}}{\textbf{Caso de Uso}} & 
@@ -173,7 +198,8 @@ O \autoref{qua:separador} descreve o passo a passo para o cadastro do usuário S
 
 %%%%%%%%%%%%%%%%%%%% Table No: 5 ends here %%%%%%%%%%%%%%%%%%%%
 
-O caso de uso Cadastrar Separador (\autoref{qua:separador}), citado acima é responsável por avaliar as ações necessárias para realizar o cadastro do perfil separador.
+O caso de uso Cadastrar Separador (\autoref{qua:separador}), citado acima é responsável por
+avaliar as ações necessárias para realizar o cadastro do perfil separador.
 
 
 
