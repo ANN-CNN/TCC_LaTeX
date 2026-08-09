@@ -110,5 +110,5 @@ Thumbs.db
 *.loc
 *.brf
 
-# kiro knowledgement
-.kiro/
+# AI knowledgement of context
+# .kiro/
