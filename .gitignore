@@ -109,3 +109,6 @@ Thumbs.db
 *.loq
 *.loc
 *.brf
+
+# kiro knowledgement
+.kiro/
