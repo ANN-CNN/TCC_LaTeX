@@ -12,7 +12,7 @@ comparativa deste estudo, além do framework e ambiente utilizados.
 \section[Visão Computacional e Aprendizado de Máquina]{Visão Computacional e Aprendizado de\\Máquina}
 
 A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas
-para que os computadores possam "ver" e interpretar o conteúdo de imagens e vídeos digitais.
+para que os computadores possam "ver"{} e interpretar o conteúdo de imagens e vídeos digitais.
 Conforme aponta \citeonline{szeliski2022computer}, o objetivo é automatizar tarefas que o
 sistema visual humano pode fazer, permitindo que máquinas extraiam informações significativas
 do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais
@@ -287,8 +287,8 @@ extremamente alta, tornando-o um dos modelos mais populares para aplicações em
 
 A Faster R-CNN, apresentada por \citeonline{ren2017faster}, é o ápice de uma família de
 detectores de dois estágios (R-CNN, Fast R-CNN). Sua principal inovação, conforme destacado em
-repositórios de referência como o TensorFlow Object Detection API \cite{tensorflow2024}, foi a
-introdução da Rede de Proposta de Regiões (\textit{Region Proposal Network} - RPN). Essa rede
+repositórios de referência como o \textit{TorchVision} \cite{torchvision2024}, foi a
+introdução da Rede de Proposta de Regiões (\textit{Region Proposal Network} -- RPN). Essa rede
 permite que o próprio modelo aprenda a identificar as áreas da imagem que provavelmente contêm
 objetos. No primeiro estágio, a RPN gera propostas de regiões de alta qualidade. No segundo
 estágio, essas regiões são analisadas por um detector para classificação e refinamento das
@@ -296,7 +296,7 @@ caixas delimitadoras. Essa abordagem de dois estágios permitiu que a Faster R-C
 uma precisão que, na época de seu lançamento, era considerada o estado da arte, estabelecendo
 novos recordes em benchmarks de detecção. Contudo, essa alta acurácia vem com um custo
 computacional maior e, consequentemente, uma menor velocidade de inferência em comparação com
-os detectores de um estágio.
+os detectores de um estágio \cite{ren2017faster}.
 
 \subsection{Single Shot MultiBox Detector (SSD)}
 
@@ -304,28 +304,30 @@ O SSD (\textit{Single Shot MultiBox Detector}), conforme descrito por
 \citeonline{liu2016ssd}, foi desenvolvido para ser um detector de um estágio que combina as
 vantagens das abordagens anteriores. Ele busca alcançar a velocidade do YOLO mantendo uma
 precisão competitiva com a da Faster R-CNN. Para isso, o SSD realiza predições em múltiplos
-mapas de características de diferentes camadas da rede, uma abordagem que, segundo sua
-documentação oficial, elimina a necessidade de uma etapa de proposta de regiões e encapsula
-todo o cálculo em uma única rede \cite{tensorflow2024}. Mapas de características de camadas
+mapas de características de diferentes camadas da rede, uma abordagem que elimina a
+necessidade de uma etapa de proposta de regiões e encapsula todo o cálculo em uma única
+rede. Mapas de características de camadas
 mais profundas (com menor resolução) são usados para detectar objetos maiores, enquanto mapas
 de camadas mais rasas (com maior resolução) detectam objetos menores. Essa estratégia de
-múltiplas escalas o torna uma solução versátil e equilibrada.
+múltiplas escalas o torna uma solução versátil e equilibrada \cite{liu2016ssd}.
 
-\section{TensorFlow}
+\section{PyTorch}
 
-O TensorFlow é descrito por seus criadores como uma plataforma de código aberto ponta a ponta
-para aprendizado de máquina. Ele oferece um ecossistema abrangente e flexível de ferramentas,
-bibliotecas e recursos comunitários que permitem aos pesquisadores e desenvolvedores construir
-e implantar facilmente aplicações baseadas em aprendizado de máquina em diversas plataformas,
-desde servidores a dispositivos móveis \cite{tensorflow2024}.
+O PyTorch é uma biblioteca de código aberto de Aprendizado de Máquina e Aprendizado Profundo
+desenvolvida originalmente pela equipe do Meta AI Research \cite{paszke2019pytorch} e
+atualmente gerida pela PyTorch Foundation \cite{pytorch2026}. Ele oferece um ecossistema
+abrangente e flexível de ferramentas, bibliotecas e recursos comunitários que permitem aos
+pesquisadores e desenvolvedores construir e implantar facilmente aplicações baseadas em
+aprendizado de máquina em diversas plataformas, desde servidores a dispositivos móveis
+\cite{pytorch2026}.
 
-\subsection{Utilização do Framework no Projeto}
+\subsection{Utilização do \textit{Framework} no Projeto}
 
-Neste projeto, o TensorFlow será o framework utilizado para implementar, treinar e avaliar as
-arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir grafos
-computacionais e otimizar operações para execução em Unidades de Processamento Gráfico (GPUs)
-é crucial para acelerar o tempo de treinamento dos modelos profundos, que pode levar de horas
-a dias.
+Neste projeto, o PyTorch será o \textit{framework} utilizado para implementar, treinar e
+avaliar as arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir
+grafos computacionais dinâmicos e otimizar operações para execução em Unidades de
+Processamento Gráfico (GPUs) é crucial para acelerar o tempo de treinamento dos modelos
+profundos, que pode levar de horas a dias.
 
 \section{Ambiente de Desenvolvimento}
 
@@ -365,11 +367,11 @@ são descritos os principais datasets de referência que serão considerados par
 \subsubsection{PASCAL VOC (Visual Object Classes)}
 
 O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado
-a partir de um desafio anual que ocorreu entre 2005 e 2012 \cite{everingham2015pascal}. Ele
+a partir de um desafio anual que ocorreu entre 2005 e 2012. Ele
 contém imagens de 20 categorias de objetos comuns, como "carro", "pessoa" e "cachorro".
 Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o tornou fundamental
 para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para
-detecção, como a família R-CNN.
+detecção, como a família R-CNN \cite{everingham2015pascal}.
 
 \subsubsection{COCO (Common Objects in Context)}
 
@@ -384,74 +386,49 @@ refinadas \cite{lin2014microsoft}.
 
 \subsubsection{Kaggle Datasets}
 
-O Kaggle é uma plataforma online que hospeda uma vasta gama de competições de ciência de dados
-e datasets públicos \cite{kaggle2024}. Embora não seja um benchmark acadêmico padronizado como
-o COCO ou o PASCAL VOC, o Kaggle oferece acesso a milhares de datasets de nicho e específicos
-para problemas do mundo real (por exemplo, detecção de doenças em imagens médicas ou
-identificação de produtos em prateleiras). Ele serve como um excelente recurso para explorar
-problemas mais específicos, mas para uma comparação fundamental de arquiteturas, os benchmarks
-acadêmicos são geralmente preferidos.
-
-Após a análise comparativa desses datasets, um deles será selecionado como o mais adequado
-para os objetivos deste trabalho. A etapa subsequente de pré-processamento envolverá a
-adequação dos formatos das imagens e das anotações para que sejam compatíveis com as
-arquiteturas de modelo e o framework TensorFlow, além da aplicação de técnicas de aumento de
-dados (\textit{data augmentation}) para melhorar a generalização dos modelos.
+O Kaggle é uma plataforma colaborativa de ciência de dados e aprendizado de máquina,
+amplamente conhecida por hospedar competições globais e um vasto repositório de conjuntos de
+dados públicos. Diferentemente de benchmarks acadêmicos de escopo geral, como o COCO e o
+PASCAL VOC, os repositórios do Kaggle caracterizam-se por fornecer dados orientados a domínios
+específicos e a problemas práticos da indústria. A plataforma disponibiliza coleções de
+imagens altamente nichadas, permitindo o treinamento de modelos voltados para demandas pontuais
+do mundo real, como o diagnóstico por imagens médicas, identificação agrícola ou automação
+visual no varejo \cite{kaggle2024}.
 
 \subsubsection{Variantes e Dimensionamento dos Modelos}
 
-Ao realizar um estudo comparativo entre diferentes arquiteturas de redes neurais, a escolha
-da escala paramétrica dos modelos é uma decisão metodológica crucial para garantir a validade
-e a justiça dos resultados. Modelos com quantidades desproporcionais de parâmetros
-apresentarão comportamentos distorcidos de precisão e tempo de inferência, impossibilitando
-uma comparação direta do mérito das arquiteturas em si.
+A evolução das arquiteturas de redes neurais profundas trouxe a necessidade de adaptar um
+mesmo modelo para diferentes restrições de hardware e requisitos de latência. Para atender a
+essa demanda, tornou-se padrão na literatura a técnica de dimensionamento de rede
+(\textit{network scaling}), que consiste em ajustar sistematicamente a profundidade
+(\textit{depth}) e a largura (\textit{width}) de uma arquitetura base para controlar a sua
+complexidade paramétrica \cite{tan2020efficientdet}.
 
-No ecossistema de detecção de objetos contemporâneo, especialmente na família YOLO, é padrão
-que os desenvolvedores disponibilizem múltiplas variantes de uma mesma versão, escalonando a
-profundidade (\textit{depth}) e a largura (\textit{width}) da rede de acordo com o hardware
-alvo \cite{ultralytics2024yolo}. As principais variantes existentes na literatura incluem:
+No ecossistema de detecção de objetos contemporâneo, especialmente na família YOLO, é comum
+que os desenvolvedores disponibilizem múltiplas variantes estruturais de uma mesma versão
+original \cite{ultralytics2024yolo}. As principais escalas adotadas incluem:
 
 \begin{itemize}
     \item \textbf{Nano (n):} Variantes extremamente compactas, projetadas para
         \textit{Edge Computing}, dispositivos móveis e sistemas de Internet das Coisas (IoT),
-        onde os recursos de memória e processamento são mínimos.
+        onde os recursos de memória e processamento são restritos.
 
-    \item \textbf{Small (s):} Modelos leves que oferecem o melhor compromisso
-        (\textit{trade-off}) entre velocidade de inferência e precisão de detecção, sendo
-        amplamente adotados em aplicações de tempo real executadas em \textit{hardwares} de
-        capacidade moderada.
+    \item \textbf{Small (s):} Modelos leves que oferecem um ponto de equilíbrio
+        (\textit{trade-off}) otimizado entre velocidade de inferência e precisão de detecção,
+        sendo amplamente adotados em aplicações de tempo real executadas em
+        \textit{hardwares} de capacidade moderada.
 
-    \item \textbf{Medium (m):} Voltadas para o processamento padrão em servidores, oferecendo
-        um balanço intermediário.
+    \item \textbf{Medium (m):} Redes voltadas para o processamento padrão em servidores,
+        oferecendo um balanço intermediário de consumo de recursos.
 
     \item \textbf{Large (l) e Extra Large (x):} Redes massivas que priorizam a precisão
         máxima (mAP) em detrimento absoluto do tempo de inferência. São indicadas para
         aplicações computacionais robustas em nuvem que não operam restritas ao tempo real.
 \end{itemize}
 
-Neste trabalho, adotaram-se as variantes \textit{Small} (s) para a família YOLO (pesos
-\texttt{yolov5s.pt}, \texttt{yolov8s.pt} e \texttt{yolo11s.pt}) e a configuração
-\texttt{DEFAULT} para os modelos SSD e Faster R-CNN. Essa estruturação experimental foi
-definida com um objetivo metodológico categórico: isolar a eficiência arquitetural e
-anular o viés da força bruta paramétrica.
-
-O Faster R-CNN e o SSD, em suas implementações padrão na plataforma TensorFlow, operam
-intrinsecamente com \textit{backbones} clássicos e densos (como VGG-16 ou a família
-ResNet), preservando a complexidade conceitual idealizada por seus autores originais
-\cite{ren2017faster,liu2016ssd}. Para estabelecer um comparativo direto contra essas
-redes pesadas, a escolha da variante \textit{Small} do YOLO configura-se como a opção
-mais rigorosa e adequada. A utilização de variantes \textit{Medium} ou superiores da
-família YOLO injetaria um volume massivo de parâmetros no comparativo, o que mascararia
-o real mérito do \textit{design} unificado da rede sob o peso do poder computacional
-bruto.
-
-Ao restringir a família YOLO à sua versão leve e otimizada, o arcabouço experimental
-submete os algoritmos modernos a um teste de estresse de infraestrutura. Essa assimetria
-proposital garante que a performance obtida seja fruto exclusivo do salto tecnológico
-estrutural do modelo, e não de uma vantagem quantitativa de parâmetros. Dessa forma, a
-metodologia valida de forma inequívoca o \textit{trade-off} (compromisso) entre precisão,
-latência e economia de hardware exigido pela literatura contemporânea em visão
-computacional \cite{su2025comparative,redmon2016yolo}.
+A compreensão prévia dessas variantes é fundamental para a análise técnica de detectores,
+uma vez que a escala paramétrica afeta diretamente o comportamento da arquitetura, ditando
+os limites físicos e matemáticos do seu desempenho \cite{goodfellow2016deep}.
 
 \section{Hiperparâmetros}
 
@@ -504,7 +481,7 @@ delimitadora gerada. O limiar de confiança atua como um filtro rigoroso que des
 com pontuações abaixo desse valor, tratando-as como ruídos de fundo
 \cite{redmon2016yolo}. O ajuste desse limiar representa um compromisso (\textit{trade-off}):
 valores altos aumentam a precisão (cometendo menos alarmes falsos), mas reduzem o recall
-(ignorando mais objetos genuínos).
+(ignorando mais objetos genuínos) \cite{redmon2016yolo}.
 
 \subsection[Limiar de IoU]{Limiar de IoU (\textit{Intersection over Union})}
 
@@ -515,7 +492,7 @@ literatura como \textit{ground truth}). Como hiperparâmetro, o limiar de IoU é
 para o algoritmo de Supressão de Não-Máximos, denominado \textit{Non-Maximum Suppression}
 (NMS) \cite{ren2017faster}. Ele define o grau de sobreposição aceitável para que múltiplas caixas
 redundantes apontando para o mesmo objeto sejam unificadas e filtradas em uma única detecção
-final.
+final \cite{ren2017faster}.
 
 \section{Métricas de Desempenho e Visualização}
 
@@ -529,8 +506,7 @@ propostos para o problema \cite{geron2023maos}.
 As métricas de desempenho utilizadas neste trabalho foram selecionadas por sua relevância
 para a tarefa de detecção de objetos. Cada métrica oferece uma perspectiva diferente sobre a
 \textit{performance} do modelo, e sua utilidade varia conforme o contexto da aplicação
-\cite{geron2023maos}. As métricas adotadas são: \textit{Loss}, Precisão, Recall, F1-Score,
-mAP@0.5 e mAP@0.5:0.95, além dos tempos de treinamento e de inferência \cite{miguel2025uso}.
+\cite{geron2023maos}.
 
 \subsubsection{Loss (Função de Perda)}
 
@@ -549,15 +525,12 @@ previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fó
 \text{Precisão} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Positivos (FP)}}
 \end{equation}
 
-A precisão é particularmente importante em cenários onde um erro de falso positivo é
-considerado crítico e precisa ser minimizado \cite{geron2023maos}.
-
 \subsubsection{Recall (Revocação)}
 
 A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas
 que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo
 recall pode ser um indicativo de que ele está sendo excessivamente conservador e falhando em
-identificar todas as instâncias relevantes \cite{miguel2025uso}. Sua fórmula é:
+identificar todas as instâncias relevantes \cite{goodfellow2016deep}. Sua fórmula é:
 
 \begin{equation}
 \text{Recall} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Negativos (FN)}}
@@ -606,9 +579,9 @@ Precision} (mAP) resume, em um único valor, o desempenho do modelo ao longo de 
 classes detectáveis. O mAP@0.5 foi popularizado pelo desafio PASCAL VOC e calcula a média
 da área sob a curva Precisão-Recall exigindo que a sobreposição (IoU) entre a predição e o
 dado real seja de no mínimo 50\% \cite{everingham2015pascal}. Já o mAP@0.5:0.95, consolidado
-pelo dataset COCO \cite{lin2014microsoft}, é mais rigoroso: ele calcula a média do mAP em dez
+pelo dataset COCO, é mais rigoroso: ele calcula a média do mAP em dez
 limiares crescentes de IoU (de 50\% a 95\%), exigindo que as caixas delimitadoras sejam
-progressivamente mais exatas em suas coordenadas espaciais.
+progressivamente mais exatas em suas coordenadas espaciais \cite{lin2014microsoft}.
 
 \subsubsection{Tempo de Treinamento e Inferência}
 
@@ -629,7 +602,7 @@ O gráfico de \textit{loss} exibe a evolução da função de perda ao longo das
 treinamento e validação. O ideal é que ambas as perdas diminuam progressivamente. Quando a
 perda de validação começa a aumentar enquanto a de treinamento continua a cair, isso configura
 um sinal claro de \textit{overfitting}, indicando que o modelo deixou de generalizar e passou
-a memorizar os dados de treino \cite{miguel2025uso}.
+a memorizar os dados de treino \cite{goodfellow2016deep}.
 
 \subsubsection{Matriz de Confusão}
 
@@ -638,7 +611,7 @@ comportamento do modelo em relação a cada classe. A ideia central é contabili
 vezes que instâncias da classe A são incorretamente classificadas como classe B
 \cite{geron2023maos}. Ela é especialmente útil para identificar erros sistemáticos, como a
 confusão entre categorias semanticamente próximas, e permite calcular métricas de precisão e
-recall individualmente por classe \cite{miguel2025uso}.
+recall individualmente por classe \cite{goodfellow2016deep}.
 
 \subsubsection{Análise Qualitativa por Amostragem}
 
