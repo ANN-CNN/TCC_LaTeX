@@ -32,10 +32,79 @@ comparação representativa e relevante para a discussão sobre o equilíbrio en
 eficiência computacional.
 
 \section{Seleção e Pré-processamento dos Datasets}
-Será conduzida uma pesquisa e comparação entre datasets de referência para detecção de
-objetos, como o COCO Dataset, PASCAL VOC e Kaggle Datasets, para a seleção do mais adequado
-ao projeto. O dataset escolhido passará por um pré-processamento, que incluirá a preparação e
-organização dos dados, garantindo que o formato seja compatível com o treinamento dos modelos.
+
+Para o treinamento e a avaliação dos modelos de detecção, selecionou-se o conjunto de dados
+COCO (\textit{Common Objects in Context}), versão 2017.
+A adoção deste \textit{dataset} justifica-se por ser amplamente reconhecido como um
+\textit{benchmark} de referência na literatura de visão computacional e pela alta
+complexidade e variabilidade contextual de suas cenas.
+Visando adequar o volume da base original ao escopo da pesquisa, desenvolveu-se um
+\textit{pipeline} estruturado de pré-processamento.
+Esse processo metodológico foi dividido em etapas sequenciais, conforme o fluxograma
+ilustrado na \autoref{fig:dataset_fluxograma}:
+
+\begin{figure}[H]
+    \caption{\textit{Pipeline} de pré-processamento do \textit{dataset} COCO 2017}
+    \centering
+    \includegraphics[width=1.0\textwidth]{media/dataset_fluxograma.png}
+    \label{fig:dataset_fluxograma}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+\begin{enumerate}
+
+    \item \textbf{Preparação do Ambiente:}
+    Inicialização do ambiente de desenvolvimento, estruturação dos diretórios de trabalho
+    e importação das bibliotecas essenciais para a manipulação de arquivos e processamento
+    dos dados.
+
+    \item \textbf{Carregar Conjunto de Dados:}
+    Importação da base de dados original do COCO para o ambiente de desenvolvimento,
+    englobando as imagens brutas e o arquivo unificado contendo as anotações.
+
+    \item \textbf{Selecionar Imagens:}
+    Aplicação de um filtro lógico para extrair exclusivamente cinco categorias de interesse
+    para o cenário de mobilidade urbana (\textit{person}, \textit{bicycle}, \textit{car},
+    \textit{motorcycle} e \textit{bus}).
+    Estabeleceu-se um teto de 3.000 imagens por classe e a exclusão de anotações com o
+    atributo \texttt{iscrowd}, resultando em um subconjunto balanceado de 10.332 imagens
+    únicas.
+
+    \item \textbf{Processar e Converter Anotações:}
+    Transformação matemática das coordenadas das caixas delimitadoras (\textit{bounding
+    boxes}) para atender aos requisitos de entrada de cada arquitetura.
+    Os dados foram ramificados em arquivos \texttt{.txt} (com coordenadas relativas) para
+    a família YOLO, arquivos XML (padrão PASCAL VOC, com coordenadas absolutas) para o
+    SSD, e a preservação do formato \texttt{.json} para o Faster R-CNN.
+
+    \item \textbf{Gerar Relatório:}
+    Exibição de um sumário analítico diretamente na saída do terminal (\textit{console}).
+    Esta etapa fornece uma validação quantitativa instantânea contendo a distribuição
+    estatística das classes, o total de imagens processadas, a contagem final de caixas
+    delimitadoras (\textit{bounding boxes}) e a média de objetos por imagem, servindo como
+    uma auditoria rápida para atestar a integridade do balanceamento antes do
+    particionamento.
+
+    \item \textbf{Dividir \textit{Dataset}:}
+    Fatiamento (\textit{split}) do subconjunto de imagens e anotações utilizando uma
+    semente aleatória matemática estática (\textit{seed} = 42).
+    O particionamento distribuiu os dados na proporção de 80\% para treinamento, 10\%
+    para validação e 10\% para o conjunto de testes final.
+
+    \item \textbf{Gerar Arquivo de Configuração:}
+    Criação dos arquivos estruturais indispensáveis para mapear as classes durante a
+    execução dos \textit{frameworks}.
+    Para o YOLO, gerou-se o arquivo \texttt{data.yaml}; para o SSD, o
+    \texttt{label\_map.pbtxt}; e para o Faster R-CNN, os metadados foram estruturados em
+    \texttt{train.json}, \texttt{val.json} e \texttt{test.json}.
+
+    \item \textbf{Compactar o \textit{Dataset}:}
+    Agrupamento final dos diretórios de imagens, rótulos e arquivos de configuração em
+    arquivos \texttt{.zip}.
+    Esta etapa encerra o \textit{pipeline}, consolidando o \textit{dataset} otimizado
+    para o envio eficiente à nuvem (Google Colaboratory).
+
+\end{enumerate}
 
 \section{Definição do Hardware}
 A etapa de treinamento dos modelos de detecção de objetos envolverá o processamento de grandes
