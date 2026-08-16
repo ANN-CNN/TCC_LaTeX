@@ -23,13 +23,35 @@ Faster R-CNN e SSD. Esta fase buscará fundamentar teoricamente a pesquisa, comp
 características, vantagens e limitações de cada modelo.
 
 \section{Seleção de Modelos}
-Para a análise comparativa, serão selecionadas três arquiteturas de detecção de objetos: YOLO
-(You Only Look Once), Faster R-CNN e SSD (Single Shot MultiBox Detector). A escolha desses
-modelos buscará representar as principais abordagens na área, abrangendo desde soluções
-otimizadas para velocidade em tempo real (YOLO e SSD) até aquelas que priorizam alta precisão
-(Faster R-CNN). Esta etapa visará estabelecer os algoritmos a serem avaliados, garantindo uma
-comparação representativa e relevante para a discussão sobre o equilíbrio entre desempenho e
-eficiência computacional.
+Para a análise comparativa deste trabalho, foram selecionadas três arquiteturas fundamentais de
+detecção de objetos: YOLO (\textit{You Only Look Once}), Faster R-CNN e SSD (\textit{Single
+Shot MultiBox Detector}). A escolha desses modelos buscou representar as principais abordagens
+da área, abrangendo desde soluções otimizadas para velocidade em tempo real (YOLO e SSD) até
+aquelas tradicionalmente reconhecidas por priorizarem a alta precisão (Faster R-CNN). Esta
+etapa visa estabelecer os algoritmos a serem avaliados, garantindo uma comparação
+representativa e relevante para a discussão sobre o equilíbrio entre desempenho e eficiência
+computacional.
+
+\subsection{Arquiteturas Selecionadas da Família YOLO}
+
+Dentro da família YOLO, optou-se por avaliar as versões YOLOv5, YOLOv8 e YOLO11. Essa seleção
+permite observar a evolução empírica da arquitetura ao longo de suas recentes atualizações,
+testando como cada geração otimizou a extração de características e o processamento em relação
+às suas predecessoras.
+
+\subsection{Variantes Paramétricas Selecionadas}
+
+Ao realizar um estudo comparativo entre diferentes arquiteturas de redes neurais, a escolha da
+escala paramétrica dos modelos é uma decisão metodológica crucial. Modelos com quantidades
+desproporcionais de parâmetros tendem a apresentar comportamentos distorcidos de precisão e
+tempo de inferência, o que impossibilita uma comparação direta do mérito das arquiteturas em
+si.
+
+Adotou-se exclusivamente a variante \textit{Small} (s) para a família YOLO, instanciada
+através dos pesos pré-treinados \texttt{yolov5s.pt}, \texttt{yolov8s.pt} e
+\texttt{yolo11s.pt}. Para os modelos SSD e Faster R-CNN, utilizou-se a configuração padrão
+(\texttt{DEFAULT}). Essa estruturação experimental atende a um rigoroso critério
+metodológico: isolar a eficiência arquitetural e anular o viés da força bruta paramétrica.
 
 \section{Seleção e Pré-processamento dos Datasets}
 
