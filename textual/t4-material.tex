@@ -153,9 +153,34 @@ visando a execução integral dos experimentos.
 
 % [] = sumário/cabeçalho | {} = corpo do doc. (\\  quebra linha manual para evitar hifenização)
 \section[Definição e Otimização dos Hiperparâmetros]{Definição e Otimização dos\\Hiperparâmetros}
-Nesta etapa, serão definidos e otimizados os hiperparâmetros de cada modelo para garantir o
-melhor desempenho possível durante o treinamento. Este processo é crucial para ajustar os
-modelos aos datasets e ao hardware disponível.
+Nesta etapa, foi realizada a definição estruturada dos hiperparâmetros experimentais para as
+arquiteturas YOLOv5, YOLOv8, YOLO11, SSD e Faster R-CNN. A calibragem adequada dessas
+variáveis de controle é fundamental para otimizar o tempo de convergência, mitigar o risco de
+sobreajuste (\textit{overfitting}) e adaptar a carga computacional à infraestrutura de
+\textit{hardware} selecionada. Para garantir a equidade na comparação de desempenho entre os
+algoritmos, os limiares lógicos de detecção foram rigorosamente padronizados. Tanto o limiar
+de confiança (\textit{Confidence Threshold}), utilizado para filtrar predições inseguras,
+quanto a Interseção sobre União (\textit{IoU}), aplicada na eliminação de predições
+redundantes, foram fixados em 0,5 para todas as redes.
+
+\vspace{1em}
+O dimensionamento de lotes e o processamento paralelo foram condicionados pela alocação de
+memória de vídeo (VRAM) da GPU. Aproveitando os 95,6 GB de VRAM da infraestrutura G4, os
+modelos da família YOLO e o SSD operaram com tamanhos de lote (\textit{batch size}) de 32 e
+256 imagens simultâneas. Em contrapartida, devido à alta densidade arquitetural inerente à sua
+estrutura de dois estágios, o Faster R-CNN exigiu configurações mais conservadoras, operando
+com lotes de 32 imagens na G4 e de apenas 8 imagens durante a fase exploratória na T4.
+Concomitantemente, o número de subprocessos da CPU (\textit{workers}) foi escalonado conforme
+a carga de dados, adotou-se 4 \textit{workers} para lotes de 32 imagens, e 16
+\textit{workers} para os lotes de 256 imagens, visando mitigar possíveis gargalos de
+pré-processamento de leitura.
+
+Por fim, a parametrização dos ciclos de treinamento (\textit{epochs}) foi dimensionada
+conforme as particularidades estruturais de cada rede. Estabeleceu-se um teto de 200 épocas
+para a família YOLO e SSD, e de 30 épocas para o Faster R-CNN. Implementou-se a técnica de 
+parada antecipada (\textit{Early Stopping}), a tolerância à estagnação (\textit{patience}) 
+obedeceu a um critério metodológico proporcional, sendo fixada em aproximadamente 15\% do 
+limite máximo de épocas para cada modelo.
 
 \section{Treinamento e Inferência dos Conjuntos de Testes}
 Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o
