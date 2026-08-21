@@ -182,10 +182,90 @@ parada antecipada (\textit{Early Stopping}), a tolerância à estagnação (\tex
 obedeceu a um critério metodológico proporcional, sendo fixada em aproximadamente 15\% do 
 limite máximo de épocas para cada modelo.
 
-\section{Treinamento e Inferência dos Conjuntos de Testes}
-Os modelos de detecção de objetos serão treinados com os datasets pré-processados. Após o
-treinamento, a inferência será realizada em um conjunto de testes para avaliar o desempenho de
-cada modelo em dados não vistos.
+\section{Treinamento dos Modelos}
+Para a realização dos experimentos, foi estabelecido um fluxo de processamento computacional
+específico para cada grupo de modelos avaliados. Os detectores da família YOLO foram treinados
+valendo-se do alto nível de abstração do \textit{framework} Ultralytics, enquanto as
+arquiteturas SSD e Faster R-CNN exigiram uma implementação programática explícita utilizando
+os recursos do \textit{framework} PyTorch. Apesar das diferenças na implementação, ambos os
+fluxos seguiram as mesmas etapas fundamentais: preparação dos dados, treinamento, seleção do
+melhor modelo e avaliação utilizando o conjunto de testes.
+
+\subsection{Procedimento para a Família YOLO}
+O ciclo de execução computacional para as arquiteturas YOLOv5s, YOLOv8s e YOLO11s
+caracterizou-se pelo encapsulamento de funções, estruturado nas seguintes etapas:
+
+\begin{enumerate}
+
+    \item \textbf{Preparação dos Dados e Inicialização:}
+    O processo iniciou-se com a leitura do arquivo de configuração \texttt{data.yaml}, que
+    mapeia os diretórios locais e as cinco classes filtradas do \textit{dataset} COCO. Na
+    sequência, a rede foi inicializada com o carregamento dos pesos pré-treinados da
+    variante selecionada.
+
+    \item \textbf{Treinamento:}
+    O aprendizado foi executado de forma encapsulada por meio da rotina nativa da
+    biblioteca (\texttt{yolo.train}). Este comando aplicou diretamente os hiperparâmetros
+    configurados (200 épocas e \textit{batch size} de 32), gerenciando internamente as
+    iterações, o cálculo de gradientes e a atualização dos pesos da rede.
+
+    \item \textbf{Seleção do Melhor Modelo:}
+    A prevenção de sobreajuste foi conduzida de forma embutida durante o próprio
+    treinamento. A ferramenta aplicou a técnica de \textit{Early Stopping} com tolerância
+    estipulada em torno de 15\% do número máximo de épocas do treino. Ao confirmar a
+    estagnação matemática, o processamento foi interrompido e os pesos ótimos foram
+    exportados automaticamente para o arquivo \texttt{best.pt}.
+
+    \item \textbf{Avaliação:}
+    O modelo consolidado (\texttt{best.pt}) foi submetido à inferência sobre o conjunto de
+    testes isolado. Essa etapa foi executada acionando-se a rotina \texttt{yolo.val}
+    direcionada exclusivamente aos dados não vistos, sendo responsável por calcular e
+    exportar as métricas finais de Precisão, \textit{Recall} e mAP.
+
+\end{enumerate}
+
+\subsection{Procedimento para os Modelos SSD e Faster R-CNN}
+Diferentemente da rotina anterior, a implementação das arquiteturas SSD e Faster R-CNN
+exigiu o controle programático explícito de tensores e gradientes via PyTorch, obedecendo ao
+seguinte encadeamento:
+
+\begin{enumerate}
+
+    \item \textbf{Preparação dos Dados e Inicialização:}
+    A ingestão de dados foi construída instanciando as classes \texttt{Dataset} e
+    \texttt{DataLoader}, responsáveis por converter as imagens em tensores e gerenciar os
+    lotes de processamento (\textit{batch size} e \textit{workers}). Na sequência, os
+    modelos base foram importados da biblioteca Torchvision, e seus respectivos cabeçalhos
+    de classificação foram adaptados manualmente para reconhecer as cinco classes do
+    estudo, mais o plano de fundo.
+
+    \item \textbf{Treinamento:}
+    O aprendizado demandou a construção explícita de um laço de repetição
+    (\textit{loop} de épocas). A cada iteração, a rede foi alocada no estado
+    \texttt{.train()}, executando passo a passo a propagação direta (\textit{forward}),
+    o cálculo da função de perda (\textit{loss}), a retropropagação (\textit{backward})
+    e a atualização pelo otimizador.
+
+    \item \textbf{Seleção do Melhor Modelo:}
+    Ao fim de cada época, a arquitetura transitava para a fase de validação sob o estado
+    \texttt{.eval()}. Para otimizar a memória de vídeo, o rastreamento de gradientes foi
+    desativado utilizando o comando \texttt{torch.no\_grad()}. O controle de
+    \textit{Early Stopping} foi implementado manualmente: se a métrica melhorasse, os
+    pesos atuais eram salvos; caso contrário, um contador de tolerância era incrementado.
+    Atingido o limite estipulado (cerca de 15\% do total de épocas), o treinamento era
+    interrompido e o melhor modelo era recarregado em memória.
+
+    \item \textbf{Avaliação:}
+    O estado de inferência (\texttt{.eval()}) foi reativado para processar o conjunto de
+    testes isolado. A predição sobre estes dados inéditos exigiu a passagem direta dos
+    tensores de imagem pela rede, cuja implementação nativa na biblioteca Torchvision já
+    engloba o pós-processamento interno das detecções. Assim, a extração dos resultados
+    consistiu apenas na filtragem das predições geradas por meio do limiar de confiança
+    preestabelecido (0,5), retornando as coordenadas das caixas delimitadoras e suas
+    respectivas pontuações, insumos diretos para o conjunto das métricas finais de
+    desempenho.
+
+\end{enumerate}
 
 % [] = sumário/cabeçalho | {} = corpo do doc. (\\  quebra linha manual para evitar hifenização)
 \section[Coleta de Métricas e Análise de Resultados]{Coleta de Métricas e Análise de\\Resultados}
