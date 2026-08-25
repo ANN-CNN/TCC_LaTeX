@@ -246,9 +246,25 @@ diretos para o conjunto das métricas finais de desempenho.
 
 % [] = sumário/cabeçalho | {} = corpo do doc. (\\  quebra linha manual para evitar hifenização)
 \section[Coleta de Métricas e Análise de Resultados]{Coleta de Métricas e Análise de\\Resultados}
-Serão coletadas métricas de desempenho, como precisão, recall, mean Average Precision (mAP) e
-tempo de inferência. Os resultados serão comparados e analisados quantitativamente para
-identificar o equilíbrio entre precisão e velocidade de cada arquitetura.
+Após a avaliação dos modelos no conjunto de testes, foram coletadas as métricas de Precisão,
+\textit{Recall}, \textit{F1-Score}, mAP@0.5 e mAP@0.5:0.95. Também foram registrados os
+tempos de treinamento e de inferência de cada experimento, permitindo caracterizar tanto o
+desempenho dos modelos na detecção quanto o custo temporal associado à sua execução. As
+métricas de desempenho foram obtidas a partir das predições realizadas durante a inferência
+sobre o conjunto de testes.
+
+Os resultados foram organizados individualmente para cada execução, juntamente com as
+respectivas configurações de \textit{hardware} e hiperparâmetros utilizados. Foram
+registrados, entre outros parâmetros, a GPU empregada, o número de épocas, o
+\textit{patience}, a melhor época, o \textit{batch size}, o número de \textit{workers} e os
+limiares de confiança e \textit{IoU}. Essa organização permitiu relacionar as métricas
+obtidas às condições de cada experimento e estabelecer a comparação entre as arquiteturas
+avaliadas.
+
+A análise quantitativa considerou conjuntamente as métricas de desempenho e os tempos
+registrados, permitindo avaliar as diferenças entre as arquiteturas e suas respectivas
+configuracões experimentais. Essa abordagem possibilitou observar as relações entre
+desempenho, velocidade de inferência e condições de execução dos modelos.
 
 \section{Análise Crítica e Discussão dos Modelos}
 Com base na análise quantitativa, será realizada uma discussão crítica sobre o desempenho de
