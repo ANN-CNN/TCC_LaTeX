@@ -1,3 +1,6 @@
+% ============================================================
+% CAPÍTULO 4 - MÉTODOS E RECURSOS
+% ============================================================
 \chapter{MÉTODOS E RECURSOS}
 \label{cap:metodologia}
 Este capítulo apresenta os métodos e ferramentas que foram utilizados para o desenvolvimento
@@ -15,6 +18,9 @@ dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
 \end{figure}
 
 
+% ------------------------------------------------------------
+% 4.1 Estudo Teórico e Revisão Bibliográfica
+% ------------------------------------------------------------
 \section{Estudo Teórico e Revisão Bibliográfica}
 Nesta etapa, foi realizado um estudo aprofundado sobre os fundamentos da visão computacional
 e do aprendizado de máquina, com foco em redes neurais de aprendizagem profunda. Foram
@@ -22,6 +28,9 @@ revisados os conceitos e as arquiteturas de detecção de objetos mais relevante
 Faster R-CNN e SSD. Esta fase buscou fundamentar teoricamente a pesquisa, compreendendo as
 características, vantagens e limitações de cada modelo.
 
+% ------------------------------------------------------------
+% 4.2 Seleção de Modelos
+% ------------------------------------------------------------
 \section{Seleção de Modelos}
 Para a análise comparativa deste trabalho, foram selecionadas três arquiteturas fundamentais de
 detecção de objetos: YOLO (\textit{You Only Look Once}), Faster R-CNN e SSD (\textit{Single
@@ -32,6 +41,7 @@ etapa visa estabelecer os algoritmos a serem avaliados, garantindo uma comparaç
 representativa e relevante para a discussão sobre o equilíbrio entre desempenho e eficiência
 computacional.
 
+% 4.2.1 Arquiteturas Selecionadas da Família YOLO
 \subsection{Arquiteturas Selecionadas da Família YOLO}
 
 Dentro da família YOLO, optou-se por avaliar as versões YOLOv5, YOLOv8 e YOLO11. Essa seleção
@@ -39,6 +49,7 @@ permite observar a evolução empírica da arquitetura ao longo de suas recentes
 testando como cada geração otimizou a extração de características e o processamento em relação
 às suas predecessoras.
 
+% 4.2.2 Variantes Paramétricas Selecionadas
 \subsection{Variantes Paramétricas Selecionadas}
 
 Ao realizar um estudo comparativo entre diferentes arquiteturas de redes neurais, a escolha da
@@ -53,6 +64,9 @@ através dos pesos pré-treinados \texttt{yolov5s.pt}, \texttt{yolov8s.pt} e
 (\texttt{DEFAULT}). Essa estruturação experimental atende a um rigoroso critério
 metodológico: isolar a eficiência arquitetural e anular o viés da disparidade paramétrica.
 
+% ------------------------------------------------------------
+% 4.3 Seleção e Pré-processamento dos Datasets
+% ------------------------------------------------------------
 \section{Seleção e Pré-processamento dos Datasets}
 
 Para o treinamento e a avaliação dos modelos de detecção, selecionou-se o conjunto de dados
@@ -73,15 +87,18 @@ ilustrado na \autoref{fig:dataset_fluxograma}:
     \source{Autoria própria (2025).}
 \end{figure}
 
+% 4.3.1 Preparação do Ambiente
 \subsection{Preparação do Ambiente}
 Inicialização do ambiente de desenvolvimento, estruturação dos diretórios de trabalho
 e importação das bibliotecas essenciais para a manipulação de arquivos e processamento
 dos dados.
 
+% 4.3.2 Carregar Conjunto de Dados
 \subsection{Carregar Conjunto de Dados}
 Importação da base de dados original do COCO para o ambiente de desenvolvimento,
 englobando as imagens brutas e o arquivo unificado contendo as anotações.
 
+% 4.3.3 Selecionar Imagens
 \subsection{Selecionar Imagens}
 Aplicação de um filtro lógico para extrair exclusivamente cinco categorias de interesse
 para o cenário de mobilidade urbana (\textit{person}, \textit{bicycle}, \textit{car},
@@ -90,6 +107,7 @@ Estabeleceu-se um teto de 3.000 imagens por classe e a exclusão de anotações 
 atributo \texttt{iscrowd}, resultando em um subconjunto balanceado de 10.332 imagens
 únicas.
 
+% 4.3.4 Processar e Converter Anotações
 \subsection{Processar e Converter Anotações}
 Transformação matemática das coordenadas das caixas delimitadoras (\textit{bounding
 boxes}) para atender aos requisitos de entrada de cada arquitetura.
@@ -97,6 +115,7 @@ Os dados foram ramificados em arquivos \texttt{.txt} (com coordenadas relativas)
 a família YOLO, arquivos XML (padrão PASCAL VOC, com coordenadas absolutas) para o
 SSD, e a preservação do formato \texttt{.json} para o Faster R-CNN.
 
+% 4.3.5 Gerar Relatório
 \subsection{Gerar Relatório}
 Exibição de um sumário analítico diretamente na saída do terminal (\textit{console}).
 Esta etapa fornece uma validação quantitativa instantânea contendo a distribuição
@@ -105,12 +124,14 @@ delimitadoras (\textit{bounding boxes}) e a média de objetos por imagem, servin
 uma auditoria rápida para atestar a integridade do balanceamento antes do
 particionamento.
 
+% 4.3.6 Dividir Dataset
 \subsection{Dividir \textit{Dataset}}
 Fatiamento (\textit{split}) do subconjunto de imagens e anotações utilizando uma
 semente aleatória matemática estática (\textit{seed} = 42).
 O particionamento distribuiu os dados na proporção de 80\% para treinamento, 10\%
 para validação e 10\% para o conjunto de testes final.
 
+% 4.3.7 Gerar Arquivo de Configuração
 \subsection{Gerar Arquivo de Configuração}
 Criação dos arquivos estruturais indispensáveis para mapear as classes durante a
 execução dos \textit{frameworks}.
@@ -118,12 +139,16 @@ Para o YOLO, gerou-se o arquivo \texttt{data.yaml}; para o SSD, o
 \texttt{label\_map.pbtxt}; e para o Faster R-CNN, os metadados foram estruturados em
 \texttt{train.json}, \texttt{val.json} e \texttt{test.json}.
 
+% 4.3.8 Compactar o Dataset
 \subsection{Compactar o \textit{Dataset}}
 Agrupamento final dos diretórios de imagens, rótulos e arquivos de configuração em
 arquivos \texttt{.zip}.
 Esta etapa encerra o \textit{pipeline}, consolidando o \textit{dataset} otimizado
 para o envio eficiente à nuvem (Google Colaboratory).
 
+% ------------------------------------------------------------
+% 4.4 Definição do Hardware
+% ------------------------------------------------------------
 \section{Definição do Hardware}
 O treinamento dos modelos exigiu alta capacidade de processamento paralelo, sendo conduzido no
 ambiente em nuvem Google Colaboratory. A arquitetura experimental foi dividida em duas fases de
@@ -147,7 +172,10 @@ seria exigido pela T4, consumindo um volume de créditos equivalente.
 Dessa forma, atestou-se a viabilidade técnica e econômica da migração para a arquitetura G4 
 visando a execução integral dos experimentos.
 
+% ------------------------------------------------------------
+% 4.5 Definição e Otimização dos Hiperparâmetros
 % [] = sumário/cabeçalho | {} = corpo do doc. (\\  quebra linha manual para evitar hifenização)
+% ------------------------------------------------------------
 \section[Definição e Otimização dos Hiperparâmetros]{Definição e Otimização dos\\Hiperparâmetros}
 Nesta etapa, foi realizada a definição estruturada dos hiperparâmetros experimentais para as
 arquiteturas YOLOv5, YOLOv8, YOLO11, SSD e Faster R-CNN. A calibragem adequada dessas
@@ -178,6 +206,9 @@ parada antecipada (\textit{Early Stopping}), a tolerância à estagnação (\tex
 obedeceu a um critério metodológico proporcional, sendo fixada em aproximadamente 15\% do 
 limite máximo de épocas para cada modelo.
 
+% ------------------------------------------------------------
+% 4.6 Treinamento dos Modelos
+% ------------------------------------------------------------
 \section{Treinamento dos Modelos}
 Para a realização dos experimentos, foram definidos fluxos de processamento específicos para
 cada grupo de modelos. Os detectores da família YOLO foram treinados por meio do
@@ -186,6 +217,7 @@ implementadas com os recursos do \textit{framework} PyTorch. Apesar das diferen�
 implementação, os modelos seguiram as mesmas etapas gerais: preparação dos dados,
 treinamento, seleção dos pesos correspondentes à melhor época e avaliação no conjunto de testes.
 
+% 4.6.1 Procedimento para a Família YOLO
 \subsection{Procedimento para a Família YOLO}
 O treinamento das arquiteturas YOLOv5, YOLOv8 e YOLO11 foi realizado por meio dos métodos
 disponibilizados pelo \textit{framework} Ultralytics. Inicialmente, foi carregado o arquivo de
@@ -209,6 +241,7 @@ isolado. Essa etapa foi executada acionando-se o comando \texttt{yolo.val} direc
 exclusivamente aos dados não vistos, sendo responsável por calcular e exportar as métricas
 finais de Precisão, \textit{Recall} e mAP.
 
+% 4.6.2 Procedimento para os Modelos SSD e Faster R-CNN
 \subsection{Procedimento para os Modelos SSD e Faster R-CNN}
 O treinamento das arquiteturas SSD e Faster R-CNN foi realizado de forma programática com o
 \textit{framework} PyTorch. Inicialmente, para o SSD, foi utilizado o arquivo de configuração
@@ -240,7 +273,10 @@ na filtragem das predições geradas por meio do limiar de confiança preestabel
 retornando as coordenadas das caixas delimitadoras e suas respectivas pontuações, insumos
 diretos para o conjunto das métricas finais de desempenho.
 
+% ------------------------------------------------------------
+% 4.7 Coleta de Métricas e Análise de Resultados
 % [] = sumário/cabeçalho | {} = corpo do doc. (\\  quebra linha manual para evitar hifenização)
+% ------------------------------------------------------------
 \section[Coleta de Métricas e Análise de Resultados]{Coleta de Métricas e Análise de\\Resultados}
 Após a avaliação dos modelos no conjunto de testes, foram coletadas as métricas de Precisão,
 \textit{Recall}, \textit{F1-Score}, mAP@0.5 e mAP@0.5:0.95. Também foram registrados os
@@ -273,6 +309,9 @@ desempenho, velocidade de inferência e condições de execução dos modelos.
 % da pesquisa. Serão feitas sugestões para trabalhos futuros, explorando possíveis melhorias e
 % novas direções para a área de detecção de objetos.
 
+% ------------------------------------------------------------
+% 4.8 Elaboração da Monografia
+% ------------------------------------------------------------
 \section{Elaboração da Monografia}
 A elaboração da monografia ocorreu de forma contínua ao longo do desenvolvimento da pesquisa,
 acompanhando as etapas de revisão bibliográfica, definição da metodologia, implementação dos

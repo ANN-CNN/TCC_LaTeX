@@ -1,3 +1,6 @@
+% ============================================================
+% CAPÍTULO 2 - FUNDAMENTAÇÃO TEÓRICA
+% ============================================================
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \label{cap:fundamentacao}
 
@@ -9,6 +12,9 @@ fundamental para o reconhecimento de padrões visuais. Por fim, serão descritas
 arquiteturas de detecção de objetos: YOLO, Faster R-CNN e SSD que constituem o foco da análise
 comparativa deste estudo, além do framework e ambiente utilizados.
 
+% ------------------------------------------------------------
+% 2.1 Visão Computacional e Aprendizado de Máquina
+% ------------------------------------------------------------
 \section[Visão Computacional e Aprendizado de Máquina]{Visão Computacional e Aprendizado de\\Máquina}
 
 A Visão Computacional é uma área interdisciplinar da ciência que busca desenvolver técnicas
@@ -18,6 +24,7 @@ sistema visual humano pode fazer, permitindo que máquinas extraiam informaçõe
 do mundo visual. A detecção de objetos, um dos seus principais desafios, tornou-se mais
 acessível e precisa devido aos avanços no Aprendizado de Máquina.
 
+% 2.1.1 Fundamentos da Visão Computacional
 \subsection{Fundamentos da Visão Computacional}
 
 Os fundamentos da Visão Computacional envolvem a aquisição, o processamento, a análise e a
@@ -28,6 +35,7 @@ localizar múltiplos objetos em uma imagem por meio de caixas delimitadoras
 (\textit{bounding boxes}). Um nível acima está a segmentação semântica, que delimita a área
 exata de cada objeto em nível de pixel.
 
+% 2.1.2 Introdução ao Aprendizado de Máquina e Redes Neurais Profundas
 \subsection[Introdução ao Aprendizado de Máquina e Redes Neurais Profundas]{Introdução ao Aprendizado de Máquina e Redes Neurais\\Profundas}
 
 O Aprendizado de Máquina é um subcampo da inteligência artificial que se concentra no
@@ -44,6 +52,9 @@ características mais complexas com base nas saídas da camada anterior.
 simulando um conjunto de neurônios interconectados que processam informações em cascata, de
 forma análoga ao cérebro humano.
 
+% ------------------------------------------------------------
+% 2.2 Redes Neurais Artificiais
+% ------------------------------------------------------------
 \section{Redes Neurais Artificiais}
 
 As Redes Neurais Artificiais (RNA) são técnicas de Inteligência Computacional que apresentam
@@ -53,6 +64,7 @@ exemplos para tomar decisões e generalizar para novas situações. Essa abordag
 um conjunto de neurônios biológicos interconectados e organizados em camadas, onde cada camada
 processa informações e as transmite para a camada seguinte \cite{andrade2011redes}.
 
+% 2.2.1 Neurônio Artificial
 \subsection{Neurônio Artificial}
 
 A unidade fundamental de uma RNA é o neurônio artificial, um módulo que simula o funcionamento
@@ -79,6 +91,7 @@ entradas, os pesos sinápticos, a função de soma e a função de ativação.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Perceptron ends here %%%%%%%%%%%%%%%%%%%%
 
+% 2.2.2 Rede de Neurônios
 \subsection{Rede de Neurônios}
 
 Uma Rede Neural Artificial é formada pela interconexão de múltiplos neurônios artificiais,
@@ -112,6 +125,7 @@ Nessa arquitetura, a informação flui de maneira progressiva (\textit{feedforwa
 da camada de entrada, passando pelas camadas escondidas e chegando até a camada de saída
 \cite{andrade2011redes}.
 
+% 2.2.3 Aprendizado da Rede
 \subsection{Aprendizado da Rede}
 
 A característica mais importante de uma RNA é sua capacidade de aprender a partir de exemplos.
@@ -131,6 +145,7 @@ continuamente aos dados, descubra padrões, regularidades e características est
 relevantes, permitindo, por exemplo, a descoberta de agrupamentos ou classes nos dados
 \cite{andrade2011redes}.
 
+% 2.2.4 Backpropagation
 \subsection{Backpropagation}
 
 O algoritmo mais comum para o treinamento supervisionado de redes com múltiplas camadas é o
@@ -147,6 +162,7 @@ saída para as camadas anteriores, ajustando os pesos de cada conexão de forma 
 erro. Com um treinamento bem-sucedido, o erro diminui a cada iteração, e a rede converge para
 um conjunto estável de pesos \cite{andrade2011redes}.
 
+% 2.2.5 Dificuldades de Dimensionamento
 \subsection{Dificuldades de Dimensionamento}
 
 A definição da arquitetura de uma RNA, especialmente o número de camadas escondidas e de
@@ -165,6 +181,9 @@ a complexidade do problema) ou não é treinada o suficiente. Nesse caso, a rede
 aprender os padrões presentes nos dados e falha em produzir resultados satisfatórios tanto para
 os dados de treino quanto para os de teste \cite{andrade2011redes}.
 
+% ------------------------------------------------------------
+% 2.3 Redes Neurais Convolucionais (CNNs)
+% ------------------------------------------------------------
 \section{Redes Neurais Convolucionais (CNNs)}
 
 As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se
@@ -175,6 +194,7 @@ CNNs foram responsáveis por avanços revolucionários na área de reconheciment
 visuais, pois sua arquitetura é projetada especificamente para extrair características
 hierárquicas de forma automática e eficiente a partir de dados brutos de pixels.
 
+% 2.3.1 Conceitos Essenciais e Funcionamento das CNNs
 \subsection{Conceitos Essenciais e Funcionamento das CNNs}
 
 A principal vantagem das CNNs reside em sua capacidade de aprender filtros (ou
@@ -203,6 +223,7 @@ Essa estrutura hierárquica permite que a rede aprenda desde características vi
 camadas iniciais (bordas, cores) até conceitos complexos e abstratos nas camadas mais profundas
 (formas de objetos, rostos).
 
+% 2.3.2 Análise da Arquitetura LeNet-5
 \subsection{Análise da Arquitetura LeNet-5}
 
 Uma das arquiteturas pioneiras e mais influentes no campo das Redes Neurais Convolucionais é a
@@ -264,6 +285,9 @@ Camada de Saída: A camada final é composta por 10 neurônios, cada um correspo
 classes a serem preditas (por exemplo, os dígitos de 0 a 9). A ativação mais alta entre esses
 neurônios indica a classe que a rede atribuiu à imagem de entrada \cite{lecun1998gradient}.
 
+% ------------------------------------------------------------
+% 2.4 Principais Arquiteturas de Detecção de Objetos
+% ------------------------------------------------------------
 \section[Principais Arquiteturas de Detecção de Objetos]{Principais Arquiteturas de Detecção de\\Objetos}
 
 As arquiteturas de detecção de objetos evoluíram significativamente, buscando um equilíbrio
@@ -272,6 +296,7 @@ divididos em duas categorias: detectores de dois estágios, que priorizam a prec
 detectores de um estágio, que focam na velocidade para aplicações em tempo real
 \cite{lin2020focal}.
 
+% 2.4.1 You Only Look Once (YOLO)
 \subsection{You Only Look Once (YOLO)}
 
 Proposto por \citeonline{redmon2016yolo}, o YOLO (\textit{You Only Look Once}) introduziu uma
@@ -283,6 +308,7 @@ pelos seus desenvolvedores como um "sistema de detecção de objetos em tempo re
 geração" \cite{ultralytics2024yolo}, confere ao YOLO uma velocidade de inferência
 extremamente alta, tornando-o um dos modelos mais populares para aplicações em tempo real.
 
+% 2.4.2 Faster R-CNN
 \subsection{Faster R-CNN}
 
 A Faster R-CNN, apresentada por \citeonline{ren2017faster}, é o ápice de uma família de
@@ -298,6 +324,7 @@ novos recordes em benchmarks de detecção. Contudo, essa alta acurácia vem com
 computacional maior e, consequentemente, uma menor velocidade de inferência em comparação com
 os detectores de um estágio \cite{ren2017faster}.
 
+% 2.4.3 Single Shot MultiBox Detector (SSD)
 \subsection{Single Shot MultiBox Detector (SSD)}
 
 O SSD (\textit{Single Shot MultiBox Detector}), conforme descrito por
@@ -311,6 +338,9 @@ mais profundas (com menor resolução) são usados para detectar objetos maiores
 de camadas mais rasas (com maior resolução) detectam objetos menores. Essa estratégia de
 múltiplas escalas o torna uma solução versátil e equilibrada \cite{liu2016ssd}.
 
+% ------------------------------------------------------------
+% 2.5 PyTorch
+% ------------------------------------------------------------
 \section{PyTorch}
 
 O PyTorch é uma biblioteca de código aberto de Aprendizado de Máquina e Aprendizado Profundo
@@ -321,6 +351,7 @@ pesquisadores e desenvolvedores construir e implantar facilmente aplicações ba
 aprendizado de máquina em diversas plataformas, desde servidores a dispositivos móveis
 \cite{pytorch2026}.
 
+% 2.5.1 Utilização do Framework no Projeto
 \subsection{Utilização do \textit{Framework} no Projeto}
 
 Neste projeto, o PyTorch será o \textit{framework} utilizado para implementar, treinar e
@@ -329,6 +360,9 @@ grafos computacionais dinâmicos e otimizar operações para execução em Unida
 Processamento Gráfico (GPUs) é crucial para acelerar o tempo de treinamento dos modelos
 profundos, que pode levar de horas a dias.
 
+% ------------------------------------------------------------
+% 2.6 Ambiente de Desenvolvimento
+% ------------------------------------------------------------
 \section{Ambiente de Desenvolvimento}
 
 O treinamento de redes neurais profundas é uma tarefa computacionalmente intensiva, cujo
@@ -338,6 +372,7 @@ Processamento Gráfico (GPUs) que permitem o processamento massivamente paralelo
 razoável faz com que a disponibilidade de poder de processamento seja um fator limitante para
 muitos pesquisadores e desenvolvedores \cite{goodfellow2016deep}.
 
+% 2.6.1 Definição do Hardware (Google Colab)
 \subsection{Definição do Hardware (Google Colab)}
 
 O ambiente de desenvolvimento para este trabalho será o Google Colaboratory. De acordo com a
@@ -349,6 +384,9 @@ e TPUs (Unidades de Processamento Tensorial) sem custo. Sua acessibilidade e inf
 robusta o tornam uma escolha ideal para este projeto, permitindo o treinamento e a
 experimentação com modelos complexos \cite{goodfellow2016deep}.
 
+% ------------------------------------------------------------
+% 2.7 Datasets
+% ------------------------------------------------------------
 \section{Datasets}
 
 O desempenho de qualquer modelo de aprendizado de máquina é intrinsecamente ligado à
@@ -357,6 +395,7 @@ seu treinamento \cite{goodfellow2016deep}. Para tarefas de detecção de objetos
 consiste em imagens e anotações que especificam a classe e as coordenadas da caixa
 delimitadora para cada objeto presente.
 
+% 2.7.1 Seleção e Pré-processamento dos Datasets
 \subsection{Seleção e Pré-processamento dos Datasets}
 
 Para uma comparação justa e relevante entre diferentes arquiteturas, a utilização de
@@ -364,6 +403,7 @@ benchmarks padronizados é essencial. Esses datasets públicos e amplamente adot
 que os resultados sejam reprodutíveis e comparáveis com outros trabalhos na área. A seguir,
 são descritos os principais datasets de referência que serão considerados para este estudo.
 
+% 2.7.1.1 PASCAL VOC (Visual Object Classes)
 \subsubsection{PASCAL VOC (Visual Object Classes)}
 
 O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado
@@ -373,6 +413,7 @@ Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o torn
 para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para
 detecção, como a família R-CNN \cite{everingham2015pascal}.
 
+% 2.7.1.2 COCO (Common Objects in Context)
 \subsubsection{COCO (Common Objects in Context)}
 
 O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. Ele representa um
@@ -384,6 +425,7 @@ sobrepostos e de diferentes escalas. Além das caixas delimitadoras, o COCO tamb
 anotações de segmentação por pixel, permitindo o treinamento de modelos para tarefas mais
 refinadas \cite{lin2014microsoft}.
 
+% 2.7.1.3 Kaggle Datasets
 \subsubsection{Kaggle Datasets}
 
 O Kaggle é uma plataforma colaborativa de ciência de dados e aprendizado de máquina,
@@ -395,6 +437,7 @@ imagens altamente nichadas, permitindo o treinamento de modelos voltados para de
 do mundo real, como o diagnóstico por imagens médicas, identificação agrícola ou automação
 visual no varejo \cite{kaggle2024}.
 
+% 2.7.1.4 Variantes e Dimensionamento dos Modelos
 \subsubsection{Variantes e Dimensionamento dos Modelos}
 
 A evolução das arquiteturas de redes neurais profundas trouxe a necessidade de adaptar um
@@ -430,6 +473,9 @@ A compreensão prévia dessas variantes é fundamental para a análise técnica 
 uma vez que a escala paramétrica afeta diretamente o comportamento da arquitetura, ditando
 os limites físicos e matemáticos do seu desempenho \cite{goodfellow2016deep}.
 
+% ------------------------------------------------------------
+% 2.8 Hiperparâmetros
+% ------------------------------------------------------------
 \section{Hiperparâmetros}
 
 Os hiperparâmetros são variáveis de configuração externa cuja definição precede o início do
@@ -439,6 +485,7 @@ dinâmica do próprio processo de otimização. A escolha adequada desses valore
 para garantir a convergência do modelo, evitar o sobreajuste e otimizar a utilização dos
 recursos computacionais \cite{goodfellow2016deep}.
 
+% 2.8.1 Épocas (Epochs)
 \subsection{Épocas (\textit{Epochs})}
 
 Uma época corresponde a um ciclo completo de passagem de todo o conjunto de dados de
@@ -448,6 +495,7 @@ necessárias (resultando em \textit{underfitting}), enquanto um número excessiv
 forçar a rede a memorizar ruídos e detalhes específicos dos dados de treino, perdendo
 sua capacidade de generalização (\textit{overfitting}) \cite{goodfellow2016deep}.
 
+% 2.8.2 Tamanho do Lote (Batch Size)
 \subsection{Tamanho do Lote (\textit{Batch Size})}
 
 O tamanho do lote (\textit{batch size}) estipula a quantidade de amostras de imagens que
@@ -456,6 +504,7 @@ sinápticos. Lotes maiores permitem uma estimativa mais estável do gradiente de
 processamento mais eficiente devido ao paralelismo das GPUs, porém, exigem uma capacidade de
 memória de vídeo (VRAM) consideravelmente maior \cite{goodfellow2016deep}.
 
+% 2.8.3 Paciência (Patience) e Melhor Época (Best Epoch)
 \subsection{Paciência (\textit{Patience}) e Melhor Época (\textit{Best Epoch})}
 
 Para mitigar o risco de \textit{overfitting}, adota-se a técnica de parada antecipada
@@ -466,6 +515,7 @@ treinamento é interrompido. Nesse contexto, o modelo registra a Melhor Época
 (\textit{Best Epoch}), restaurando e salvando a matriz de pesos exata da iteração em
 que o modelo obteve o seu ápice de desempenho \cite{goodfellow2016deep}.
 
+% 2.8.4 Trabalhadores (Workers)
 \subsection{Trabalhadores (\textit{Workers})}
 
 Este parâmetro define a quantidade de subprocessos independentes (\textit{threads}) alocados
@@ -474,6 +524,7 @@ para a memória da GPU. Uma configuração ideal de \textit{workers} previne a o
 gargalos de transferência (\textit{bottlenecks}), garantindo que a placa de vídeo não fique
 ociosa aguardando o fornecimento de novos dados \cite{goodfellow2016deep}.
 
+% 2.8.5 Limiar de Confiança (Confidence Threshold)
 \subsection{Limiar de Confiança (\textit{Confidence Threshold})}
 
 Na detecção de objetos, o modelo emite uma pontuação de probabilidade para cada caixa
@@ -483,6 +534,7 @@ com pontuações abaixo desse valor, tratando-as como ruídos de fundo
 valores altos aumentam a precisão (cometendo menos alarmes falsos), mas reduzem o recall
 (ignorando mais objetos genuínos) \cite{redmon2016yolo}.
 
+% 2.8.6 Limiar de Interseção sobre União (IoU)
 \subsection[Limiar de Interseção sobre União]{Limiar de Interseção sobre União (\textit{Intersection over Union})}
 
 O \textit{Intersection over Union} (IoU) é o conceito que avalia a precisão da localização.
@@ -494,6 +546,9 @@ para o algoritmo de Supressão de Não-Máximos, denominado \textit{Non-Maximum 
 redundantes apontando para o mesmo objeto sejam unificadas e filtradas em uma única detecção
 final \cite{ren2017faster}.
 
+% ------------------------------------------------------------
+% 2.9 Métricas de Desempenho e Visualização
+% ------------------------------------------------------------
 \section{Métricas de Desempenho e Visualização}
 
 Após a definição arquitetural e paramétrica, a avaliação quantitativa e qualitativa do modelo
@@ -501,6 +556,7 @@ torna-se a etapa mais crítica do desenvolvimento. O uso de métricas estatísti
 permite validar se a rede neural atendeu aos requisitos de localização e classificação
 propostos para o problema \cite{geron2023maos}.
 
+% 2.9.1 Métricas Numéricas de Avaliação
 \subsection{Métricas Numéricas de Avaliação}
 
 As métricas de desempenho utilizadas neste trabalho foram selecionadas por sua relevância
@@ -508,6 +564,7 @@ para a tarefa de detecção de objetos. Cada métrica oferece uma perspectiva di
 \textit{performance} do modelo, e sua utilidade varia conforme o contexto da aplicação
 \cite{geron2023maos}.
 
+% 2.9.1.1 Função de Perda (Loss)
 \subsubsection{Função de Perda (\textit{Loss})}
 
 A métrica de loss, ou erro, indica o quão distantes as previsões do modelo estão dos valores
@@ -516,6 +573,7 @@ do modelo, com o objetivo de minimizá-la para que as previsões se tornem mais 
 \cite{miguel2025uso}. Uma loss baixa indica que o modelo está fazendo boas previsões e está
 bem ajustado aos dados.
 
+% 2.9.1.2 Precisão (Precision)
 \subsubsection{Precisão (Precision)}
 
 A precisão é uma métrica que avalia a taxa de falsos positivos (FP). Ela mede a proporção de
@@ -525,6 +583,7 @@ previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fó
 \text{Precisão} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Positivos (FP)}}
 \end{equation}
 
+% 2.9.1.3 Revocação (Recall)
 \subsubsection{Revocação (\textit{Recall})}
 
 A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas
@@ -536,6 +595,7 @@ identificar todas as instâncias relevantes \cite{goodfellow2016deep}. Sua fórm
 \text{Recall} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Negativos (FN)}}
 \end{equation}
 
+% 2.9.1.4 F1-Score
 \subsubsection{F1-Score}
 
 O F1-Score atua como uma métrica de validação universalmente rigorosa. Embora a sua
@@ -572,6 +632,7 @@ significativamente.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Médias Pitagóricas ends here %%%%%%%%%%%%%%%%%%%%
 
+% 2.9.1.5 Mean Average Precision (mAP)
 \subsubsection[mAP]{Mean Average Precision (mAP)}
 
 Considerada o padrão-ouro na literatura de detecção de objetos, a \textit{Mean Average
@@ -583,6 +644,7 @@ pelo dataset COCO, é mais rigoroso: ele calcula a média do mAP em dez
 limiares crescentes de IoU (de 50\% a 95\%), exigindo que as caixas delimitadoras sejam
 progressivamente mais exatas em suas coordenadas espaciais \cite{lin2014microsoft}.
 
+% 2.9.1.6 Tempo de Treinamento e Inferência
 \subsubsection{Tempo de Treinamento e Inferência}
 
 O tempo de treinamento reflete o custo computacional global (em horas ou unidades de
@@ -591,11 +653,13 @@ processamento). O tempo de inferência reflete a latência, medida em milissegun
 literatura aponta que ele deve apresentar latências de inferência inferiores a 33 ms,
 garantindo o processamento de pelo menos 30 quadros por segundo \cite{redmon2016yolo}.
 
+% 2.9.2 Técnicas de Visualização
 \subsection{Técnicas de Visualização}
 
 Além das métricas absolutas, ferramentas de suporte visual são empregadas para interpretar o
 comportamento da rede de maneira empírica:
 
+% 2.9.2.1 Curvas de Loss
 \subsubsection{Curvas de Loss}
 
 O gráfico de \textit{loss} exibe a evolução da função de perda ao longo das épocas de
@@ -604,6 +668,7 @@ perda de validação começa a aumentar enquanto a de treinamento continua a cai
 um sinal claro de \textit{overfitting}, indicando que o modelo deixou de generalizar e passou
 a memorizar os dados de treino \cite{goodfellow2016deep}.
 
+% 2.9.2.2 Matriz de Confusão
 \subsubsection{Matriz de Confusão}
 
 A Matriz de Confusão é uma ferramenta de visualização que oferece uma visão detalhada do
@@ -613,6 +678,7 @@ vezes que instâncias da classe A são incorretamente classificadas como classe 
 confusão entre categorias semanticamente próximas, e permite calcular métricas de precisão e
 recall individualmente por classe \cite{goodfellow2016deep}.
 
+% 2.9.2.3 Análise Qualitativa por Amostragem
 \subsubsection{Análise Qualitativa por Amostragem}
 
 Consiste na projeção das caixas delimitadoras preditas sobre as imagens do conjunto de
