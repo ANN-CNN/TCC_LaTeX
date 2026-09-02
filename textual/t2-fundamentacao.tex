@@ -155,12 +155,12 @@ generalização. Não existe uma regra geral que determine a arquitetura ideal p
 sendo essa definição normalmente baseada em uma análise prévia dos dados e da sua complexidade.
 O ajuste inadequado da complexidade da rede pode levar a dois efeitos indesejáveis:
 
-\textit{Overfitting} (Sobreajuste): Ocorre quando a rede é superdimensionada (possui mais
+Sobreajuste (\textit{Overfitting}): Ocorre quando a rede é superdimensionada (possui mais
 camadas ou neurônios que o necessário) ou é treinada por épocas demais. A rede "decora" os
 dados de treinamento, incluindo seus ruídos, e perde a capacidade de generalizar para novos
 dados que não foram vistos antes.
 
-\textit{Underfitting} (Subajuste): Ocorre quando a rede é subdimensionada (muito simples para
+Subajuste (\textit{Underfitting}): Ocorre quando a rede é subdimensionada (muito simples para
 a complexidade do problema) ou não é treinada o suficiente. Nesse caso, a rede não consegue
 aprender os padrões presentes nos dados e falha em produzir resultados satisfatórios tanto para
 os dados de treino quanto para os de teste \cite{andrade2011redes}.
@@ -483,7 +483,7 @@ com pontuações abaixo desse valor, tratando-as como ruídos de fundo
 valores altos aumentam a precisão (cometendo menos alarmes falsos), mas reduzem o recall
 (ignorando mais objetos genuínos) \cite{redmon2016yolo}.
 
-\subsection[Limiar de IoU]{Limiar de IoU (\textit{Intersection over Union})}
+\subsection[Limiar de Interseção sobre União]{Limiar de Interseção sobre União (\textit{Intersection over Union})}
 
 O \textit{Intersection over Union} (IoU) é o conceito que avalia a precisão da localização.
 É a métrica que mede o grau de sobreposição entre a caixa delimitadora prevista pela
@@ -508,7 +508,7 @@ para a tarefa de detecção de objetos. Cada métrica oferece uma perspectiva di
 \textit{performance} do modelo, e sua utilidade varia conforme o contexto da aplicação
 \cite{geron2023maos}.
 
-\subsubsection{Loss (Função de Perda)}
+\subsubsection{Função de Perda (\textit{Loss})}
 
 A métrica de loss, ou erro, indica o quão distantes as previsões do modelo estão dos valores
 reais. A função de perda é utilizada durante a fase de treinamento para ajustar os parâmetros
@@ -525,7 +525,7 @@ previsões positivas que estão, de fato, corretas \cite{miguel2025uso}. Sua fó
 \text{Precisão} = \frac{\text{Verdadeiros Positivos (TP)}}{\text{Verdadeiros Positivos (TP) + Falsos Positivos (FP)}}
 \end{equation}
 
-\subsubsection{Recall (Revocação)}
+\subsubsection{Revocação (\textit{Recall})}
 
 A análise do recall, também chamado de sensibilidade, mede a proporção de instâncias positivas
 que são corretamente detectadas pelo classificador \cite{geron2023maos}. Um modelo com baixo
