@@ -5,7 +5,7 @@
 \label{cap:resultados}
 
 O objetivo desta seção é apresentar e discutir os resultados obtidos nos experimentos
-realizados com as arquiteturas YOLOv5s, YOLOv8s, YOLO11s, SSD e Faster R-CNN. A análise
+realizados com as arquiteturas YOLO5, YOLO8, YOLO11, SSD e Faster R-CNN. A análise
 considera as métricas de desempenho obtidas no conjunto de testes, os tempos de treinamento
 e inferência e as diferentes configurações de \textit{hardware} e hiperparâmetros empregadas.
 Além dos resultados quantitativos, são analisados os comportamentos observados durante o
@@ -17,6 +17,127 @@ diferenças entre as arquiteturas avaliadas.
 % ------------------------------------------------------------
 \section{Resultados Gerais dos Modelos}
 \label{sec:resultados-gerais}
+
+Os experimentos foram realizados utilizando diferentes configurações de \textit{hardware} e
+valores do hiperparâmetro \textit{batch size}. Nas tabelas desta seção, a coluna
+Configuração identifica a combinação entre o modelo avaliado e a GPU utilizada na
+execução, enquanto o \textit{batch size} indica a quantidade de amostras processadas
+simultaneamente em cada iteração de uma época de treinamento. Dessa forma, as diferentes
+combinações de configuração e \textit{batch size} representam as condições experimentais
+utilizadas para avaliar o desempenho das arquiteturas. Os resultados são apresentados por
+meio das métricas de Precisão, \textit{Recall}, \textit{F1-Score}, mAP@0.5 e
+mAP@0.5:0.95, obtidas sobre o conjunto de testes.
+
+% Tabela 1 - YOLO5
+\begin{table}[H]
+    \caption{Resultados do YOLO5 no conjunto de testes}
+    \label{tab:resultados-YOLO5}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Precisão} & \textbf{Recall} & \textbf{F1-Score} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+        \midrule
+        YOLO5 - T4 & 32  & 87,30\%  & 58,00\%  & 69,70\% & 73,90\% & 53,60\% \\
+        YOLO5 - G4 & 32  & 84,30\%  & 59,90\%  & 70,04\% & 73,60\% & 53,20\% \\
+        YOLO5 - G4 & 256 & 87,30\%  & 52,90\%  & 65,88\% & 71,30\% & 48,90\% \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 2 - YOLO8
+\begin{table}[H]
+    \caption{Resultados do YOLO8 no conjunto de testes}
+    \label{tab:resultados-YOLO8}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Precisão} & \textbf{Recall} & \textbf{F1-Score} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+        \midrule
+        YOLO8 - T4 & 32  & 88,20\%  & 55,50\%  & 68,13\% & 53,90\% & 39,60\% \\
+        YOLO8 - G4 & 32  & 85,20\%  & 60,10\%  & 70,48\% & 57,40\% & 41,90\% \\
+        YOLO8 - G4 & 256 & 83,00\%  & 58,50\%  & 68,63\% & 55,40\% & 39,80\% \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 3 - YOLO11
+\begin{table}[H]
+    \caption{Resultados do YOLO11 no conjunto de testes}
+    \label{tab:resultados-YOLO11}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Precisão} & \textbf{Recall} & \textbf{F1-Score} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+        \midrule
+        YOLO11 - T4 & 32  & 89,00\%  & 55,20\%  & 68,14\% & 53,40\% & 39,60\% \\
+        YOLO11 - G4 & 32  & 87,00\%  & 58,20\%  & 69,74\% & 56,10\% & 41,30\% \\
+        YOLO11 - G4 & 256 & 86,70\%  & 55,80\%  & 67,90\% & 53,80\% & 38,60\% \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 4 - SSD
+\begin{table}[H]
+    \caption{Resultados do SSD no conjunto de testes}
+    \label{tab:resultados-ssd}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Precisão} & \textbf{Recall} & \textbf{F1-Score} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+        \midrule
+        SSD - T4 & 32  & 85,80\% & 25,60\% & 39,43\% & 50,84\% & 29,34\% \\
+        SSD - G4 & 32  & 87,03\% & 24,90\% & 38,72\% & 50,50\% & 29,29\% \\
+        SSD - G4 & 256 & 86,98\% & 24,27\% & 37,95\% & 48,90\% & 28,57\% \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 5 - Faster R-CNN
+\begin{table}[H]
+    \caption{Resultados do Faster R-CNN no conjunto de testes}
+    \label{tab:resultados-faster-rcnn}
+    \centering
+    \small
+    \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Precisão} & \textbf{Recall} & \textbf{F1-Score} & \textbf{mAP@0.5} & \textbf{mAP@0.5:0.95} \\
+        \midrule
+        Faster R-CNN - T4 & 8   & 61,32\% & 80,43\% & 69,59\% & 79,19\% & 52,20\% \\
+        Faster R-CNN - G4 & 32  & 60,71\% & 82,39\% & 69,91\% & 81,30\% & 53,70\% \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+As configurações experimentais apresentadas nas tabelas seguiram, em sua maior parte, uma sequência
+progressiva de avaliação. Inicialmente, os modelos foram executados na GPU T4 com \textit{batch size} 32,
+estabelecendo uma configuração de referência. Em seguida, a execução foi transferida para a GPU G4,
+mantendo-se o mesmo \textit{batch size}, permitindo avaliar o comportamento dos modelos sob uma
+configuração de \textit{hardware} superior. A partir dessa configuração, o aumento do \textit{batch size}
+para 256 na G4 resultou em uma redução nas principais métricas de desempenho, caracterizando um
+comportamento menos favorável em relação à configuração anterior.
+
+A trajetória experimental dos modelos da família YOLO e do SSD apresentou comportamento semelhante
+ao longo das configurações avaliadas, com resultados mais favoráveis nas configurações com
+\textit{batch size} 32 em relação à extrapolação para 256. Apesar da semelhança na trajetória, os
+modelos da família YOLO apresentaram desempenho de detecção superior ao SSD nas principais métricas
+avaliadas, evidenciando diferenças entre as arquiteturas. O Faster R-CNN, por sua vez, apresentou uma
+trajetória distinta, associada à sua arquitetura de dois estágios, convergindo para seu melhor
+desempenho em poucas épocas, ao mesmo tempo em que apresentou maior demanda computacional durante
+o treinamento.
 
 % ------------------------------------------------------------
 % 5.2 Análise dos Treinamentos
