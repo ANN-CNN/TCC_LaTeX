@@ -145,6 +145,42 @@ o treinamento.
 \section{Análise dos Treinamentos}
 \label{sec:analise-treinamentos}
 
+Esta seção apresenta a análise do comportamento dos modelos ao longo do treinamento e validação,
+considerando a evolução das perdas e das métricas de desempenho obtidas durante as execuções.
+A análise busca identificar o processo de aprendizagem e estabilização do desempenho.
+
+Os modelos da família YOLO disponibilizaram, ao final do treinamento, registros gráficos contendo
+a evolução das principais funções de perda e métricas de desempenho ao longo das épocas. Para
+representar esse comportamento, foi selecionado um dos experimentos realizados, cuja curva é
+apresentada na Figura \ref{fig:yolo8-results}.
+
+\begin{figure}[H]
+    \caption{Evolução das funções de perda e métricas de desempenho YOLO8}
+    \label{fig:yolo8-results}
+    \centering
+    \includegraphics[width=\textwidth]{media/Yolo8-best-results.png}
+    \source{Autoria própria (2026).}
+\end{figure}
+
+A Figura \ref{fig:yolo8-results} apresenta a evolução das perdas e das métricas de desempenho
+durante o treinamento de uma configuração representativa da família YOLO. As três primeiras curvas
+correspondem às perdas calculadas durante o treinamento: \textit{box loss}, associada ao ajuste
+das caixas delimitadoras; \textit{classification loss}, relacionada à classificação das classes; e
+\textit{distribution focal loss} (DFL), utilizada no refinamento da localização das caixas. As
+mesmas perdas são apresentadas para o conjunto de validação, permitindo acompanhar o comportamento
+do modelo sobre dados não utilizados na atualização dos pesos. As demais curvas apresentam a
+evolução da Precisão, do \textit{Recall}, do mAP@0.5 e do mAP@0.5:0.95 durante a validação.
+
+Ao longo do treinamento, observa-se uma redução progressiva das funções de perda, tanto no conjunto
+de treinamento quanto no de validação, com maior variação nas primeiras épocas. Nas etapas posteriores,
+as perdas de treinamento continuam apresentando redução, enquanto as perdas de validação tendem à
+estabilização. Paralelamente, as métricas de Precisão, \textit{Recall}, mAP@0.5 e mAP@0.5:0.95
+apresentam crescimento inicial e posterior estabilização. Esse comportamento, caracterizado pela
+continuidade da redução das perdas de treinamento, pela estabilização das perdas de validação e pela
+estabilização das métricas de desempenho, indica que o modelo atingiu uma região de convergência.
+
+...
+
 % ------------------------------------------------------------
 % 5.3 Comparação do Desempenho de Detecção
 % ------------------------------------------------------------
