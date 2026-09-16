@@ -151,8 +151,9 @@ A análise busca identificar o processo de aprendizagem e estabilização do des
 
 Os modelos da família YOLO disponibilizaram, ao final do treinamento, registros gráficos contendo
 a evolução das principais funções de perda e métricas de desempenho ao longo das épocas. Para
-representar esse comportamento, foi selecionado um dos experimentos realizados, cuja curva é
-apresentada na Figura \ref{fig:yolo8-results}.
+representar esse comportamento, foi selecionado o experimento correspondente à configuração
+YOLO8 - G4, com \textit{batch size} 32, apresentado na linha intermediária da Tabela
+\ref{tab:resultados-YOLO8}, cuja curva é apresentada na Figura \ref{fig:yolo8-results}.
 
 \begin{figure}[H]
     \caption{Evolução das funções de perda e métricas de desempenho YOLO8}
@@ -171,6 +172,7 @@ mesmas perdas são apresentadas para o conjunto de validação, permitindo acomp
 do modelo sobre dados não utilizados na atualização dos pesos. As demais curvas apresentam a
 evolução da Precisão, do \textit{Recall}, do mAP@0.5 e do mAP@0.5:0.95 durante a validação.
 
+\vspace{1em}
 Ao longo do treinamento, observa-se uma redução progressiva das funções de perda, tanto no conjunto
 de treinamento quanto no de validação, com maior variação nas primeiras épocas. Nas etapas posteriores,
 as perdas de treinamento continuam apresentando redução, enquanto as perdas de validação tendem à
@@ -179,37 +181,61 @@ apresentam crescimento inicial e posterior estabilização. Esse comportamento, 
 continuidade da redução das perdas de treinamento, pela estabilização das perdas de validação e pela
 estabilização das métricas de desempenho, indica que o modelo atingiu uma região de convergência.
 
-...
+Para a análise do treinamento do SSD, foi considerada a execução correspondente à configuração
+SSD - G4, com \textit{batch size} 32, apresentada na linha intermediária da Tabela
+\ref{tab:resultados-ssd}. Essa configuração foi utilizada como referência para acompanhar o
+comportamento do modelo ao longo das épocas e identificar o momento de obtenção de seu melhor
+estado. Diferentemente dos modelos da família YOLO, que possuem registros gráficos da evolução do
+treinamento, o SSD foi analisado a partir dos registros numéricos obtidos durante sua execução.
+Nessa configuração, o melhor estado foi alcançado na 15ª época, estabelecendo o ponto de referência
+para a análise do treinamento.
+
+Para o Faster R-CNN, a análise concentrou-se na execução Faster R-CNN - G4, com \textit{batch size}
+32, correspondente à segunda linha da Tabela \ref{tab:resultados-faster-rcnn}. A escolha dessa
+configuração permitiu manter a análise concentrada em uma única execução representativa da
+arquitetura, acompanhando sua evolução ao longo das épocas a partir dos registros numéricos
+produzidos durante o treinamento. Assim como no SSD, não foi obtido um registro gráfico consolidado
+equivalente ao disponível para os modelos da família YOLO, de modo que a trajetória do treinamento
+foi analisada por meio desses registros. Nesse caso, o melhor estado foi alcançado já na 2ª época,
+caracterizando uma evolução concentrada nas etapas iniciais do treinamento.
+
+Os treinamentos apresentaram comportamentos distintos quanto à evolução e à estabilização do
+desempenho. Enquanto os modelos da família YOLO apresentaram evolução progressiva das funções
+de perda e das métricas ao longo das épocas, o SSD apresentou diferenças mais acentuadas entre as 
+configurações, especialmente quanto à época de obtenção do melhor estado. O Faster R-CNN, por sua 
+vez, apresentou seu melhor estado já nas primeiras épocas. Essas diferenças evidenciam que a 
+trajetória de treinamento varia de acordo com a arquitetura e a configuração de hiperparâmetros, 
+aspecto que será aprofundado nos próximos subcapítulos.
 
 % ------------------------------------------------------------
-% 5.3 Comparação do Desempenho de Detecção
-% ------------------------------------------------------------
-\section{Comparação do Desempenho de Detecção}
-\label{sec:comparacao-desempenho}
-
-% ------------------------------------------------------------
-% 5.4 Efeito do Batch Size no Desempenho
+% 5.3 Efeito do Batch Size no Desempenho
 % ------------------------------------------------------------
 \section[Efeito do Batch Size no Desempenho]{Efeito do \textit{Batch Size} no Desempenho}
 \label{sec:batch-size}
 
 % ------------------------------------------------------------
-% 5.5 Convergência e Early Stopping
+% 5.4 Convergência e Early Stopping
 % ------------------------------------------------------------
 \section[Convergência e Early Stopping]{Convergência e \textit{Early Stopping}}
 \label{sec:convergencia-early-stopping}
 
 % ------------------------------------------------------------
-% 5.6 Velocidade de Inferência e Desempenho Computacional
+% 5.5 Velocidade de Inferência
 % ------------------------------------------------------------
-\section{Velocidade de Inferência e Desempenho Computacional}
+\section{Velocidade de Inferência}
 \label{sec:velocidade-inferencia}
 
 % ------------------------------------------------------------
-% 5.7 Impacto do Hardware e Custo Computacional
+% 5.6 Custo Computacional
 % ------------------------------------------------------------
-\section[Impacto do Hardware e Custo Computacional]{Impacto do \textit{Hardware} e Custo Computacional}
-\label{sec:impacto-hardware}
+\section{Custo Computacional}
+\label{sec:custo-computacional}
+
+% ------------------------------------------------------------
+% 5.7 Comparação das Detecções
+% ------------------------------------------------------------
+\section{Comparação das Detecções}
+\label{sec:comparacao-deteccoes}
 
 % ------------------------------------------------------------
 % 5.8 Síntese Comparativa das Arquiteturas
