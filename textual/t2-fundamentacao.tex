@@ -497,12 +497,22 @@ sua capacidade de generalização (\textit{overfitting}) \cite{goodfellow2016dee
 
 % 2.8.2 Tamanho do Lote (Batch Size)
 \subsection{Tamanho do Lote (\textit{Batch Size})}
+\label{subsec:batch-size}
 
 O tamanho do lote (\textit{batch size}) estipula a quantidade de amostras de imagens que
 serão propagadas simultaneamente pela rede antes que ocorra a atualização dos pesos
 sinápticos. Lotes maiores permitem uma estimativa mais estável do gradiente de erro e um
 processamento mais eficiente devido ao paralelismo das GPUs, porém, exigem uma capacidade de
 memória de vídeo (VRAM) consideravelmente maior \cite{goodfellow2016deep}.
+
+O número de iterações por época corresponde à quantidade de lotes processados durante uma
+passagem completa pelo conjunto de treinamento. Considerando $N$ como o número de imagens
+disponíveis para treinamento, $B$ como o tamanho do lote (\textit{batch size}) e $I$ como o
+número de iterações por época, $I$ é dado por \cite{goodfellow2016deep}:
+
+\begin{equation}
+    I = \left\lfloor \frac{N}{B} \right\rfloor
+\end{equation}
 
 % 2.8.3 Paciência (Patience) e Melhor Época (Best Epoch)
 \subsection{Paciência (\textit{Patience}) e Melhor Época (\textit{Best Epoch})}

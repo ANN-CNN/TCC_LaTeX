@@ -213,6 +213,36 @@ aspecto que será aprofundado nos próximos subcapítulos.
 \section[Efeito do Batch Size no Desempenho]{Efeito do \textit{Batch Size} no Desempenho}
 \label{sec:batch-size}
 
+Nesta seção, é analisado o efeito do \textit{batch size} sobre o desempenho dos modelos,
+comparando-se as configurações executadas na GPU G4 com lotes de 32 e 256 imagens. A análise
+consider a as métricas obtidas no conjunto de testes, buscando identificar como o aumento do
+tamanho do lote influenciou o desempenho de detecção das arquiteturas avaliadas.
+
+No presente estudo, essa característica torna-se particularmente relevante devido ao volume
+do subconjunto de imagens utilizado para os experimentos. Considerando-se
+a relação entre o tamanho do lote e o número de iterações por época apresentada na
+Seção~\ref{subsec:batch-size}, a mudança do \textit{batch size} de 32 para 256
+representa um aumento de oito vezes na quantidade de imagens processadas em cada lote e,
+consequentemente, uma redução aproximada de oito vezes no número de iterações por época.
+
+Essa diferença é relevante para a dinâmica de aprendizagem. Com \textit{batch size} 32, a rede
+recebe diferentes subconjuntos das imagens de treinamento e realiza atualizações dos pesos com
+maior frequência dentro de cada época. Já com \textit{batch size} 256, uma parcela muito maior
+do conjunto é processada antes de cada atualização, fazendo com que o número de ajustes dos
+pesos seja consideravelmente menor ao longo de uma mesma época. O processo de aprendizagem,
+portanto, passa a ocorrer com uma quantidade menor de interações entre os lotes e o modelo.
+
+Essa análise não foi estendida ao Faster R-CNN porque essa arquitetura não foi submetida à
+configuração com \textit{batch size} 256. Conforme definido na metodologia, o modelo foi executado
+com \textit{batch size} 8 na GPU T4 e 32 na G4, como pode ser visto na Tabela
+\ref{tab:resultados-faster-rcnn}, devido à maior demanda computacional associada à sua arquitetura
+de dois estágios.
+
+Não há um número universalmente ideal de iterações por época na literatura, pois essa quantidade 
+depende do tamanho do conjunto de treinamento e do \textit{batch size} adotado. Neste trabalho, 
+a comparação experimental entre \textit{batch size} 32 e 256 permitiu observar que a configuração 
+com 32 imagens por lote apresentou resultados mais favoráveis para as arquiteturas YOLO e SSD avaliadas.
+
 % ------------------------------------------------------------
 % 5.4 Convergência e Early Stopping
 % ------------------------------------------------------------
