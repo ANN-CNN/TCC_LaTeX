@@ -249,6 +249,136 @@ com 32 imagens por lote apresentou resultados mais favoráveis para as arquitetu
 \section[Convergência e Early Stopping]{Convergência e \textit{Early Stopping}}
 \label{sec:convergencia-early-stopping}
 
+A convergência dos modelos foi analisada para identificar o momento em que o treinamento deixou
+de apresentar melhorias relevantes no desempenho de validação. Essa análise é necessária porque
+o número de épocas, por si só, não indica se o modelo ainda está aprendendo ou se já atingiu
+uma região de estabilização. Neste trabalho, a identificação desse comportamento foi realizada
+por meio do acompanhamento do desempenho de validação e do registro da época correspondente ao
+melhor estado obtido. Nos treinamentos submetidos ao \textit{early stopping}, considerou-se que
+não houve melhoria relevante quando a métrica utilizada para acompanhamento permaneceu sem
+evolução durante o número de épocas definido pelo parâmetro \textit{patience}.
+
+% Tabela - YOLO5
+\begin{table}[H]
+    \caption{Convergência do YOLO5}
+    \label{tab:convergencia-yolo5}
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Épocas} & \textbf{Patience} & \textbf{Melhor Época} \\
+        \midrule
+        YOLO5 - T4 & 32  & 25  & -  & -   \\
+        YOLO5 - G4 & 32  & 200 & 30 & 125 \\
+        YOLO5 - G4 & 256 & 200 & 30 & 9   \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela - YOLO8
+\begin{table}[H]
+    \caption{Convergência do YOLO8}
+    \label{tab:convergencia-yolo8}
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Épocas} & \textbf{Patience} & \textbf{Melhor Época} \\
+        \midrule
+        YOLO8 - T4 & 32  & 25  & -  & -  \\
+        YOLO8 - G4 & 32  & 200 & 30 & 89 \\
+        YOLO8 - G4 & 256 & 200 & 30 & 53 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela - YOLO11
+\begin{table}[H]
+    \caption{Convergência do YOLO11}
+    \label{tab:convergencia-yolo11}
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Épocas} & \textbf{Patience} & \textbf{Melhor Época} \\
+        \midrule
+        YOLO11 - T4 & 32  & 25  & -  & -  \\
+        YOLO11 - G4 & 32  & 200 & 30 & 88 \\
+        YOLO11 - G4 & 256 & 200 & 30 & 49 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela - SSD
+\begin{table}[H]
+    \caption{Convergência do SSD}
+    \label{tab:convergencia-ssd}
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Épocas} & \textbf{Patience} & \textbf{Melhor Época} \\
+        \midrule
+        SSD - T4 & 32  & 20  & -  & -   \\
+        SSD - G4 & 32  & 200 & 30 & 15  \\
+        SSD - G4 & 256 & 200 & 30 & 199 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela - Faster R-CNN
+\begin{table}[H]
+    \caption{Convergência do Faster R-CNN}
+    \label{tab:convergencia-faster-rcnn}
+    \centering
+    \small
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch} & \textbf{Épocas} & \textbf{Patience} & \textbf{Melhor Época} \\
+        \midrule
+        Faster R-CNN - T4 & 8  & 2  & - & - \\
+        Faster R-CNN - G4 & 32 & 30 & 5 & 2 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+Os resultados evidenciam comportamentos distintos entre as arquiteturas. Nos modelos da família
+YOLO executados na G4 com \textit{batch size} 32, os melhores estados foram obtidos nas épocas
+125, 89 e 88 para YOLO5, YOLO8 e YOLO11, respectivamente. Nas configurações com
+\textit{batch size} 256, esses estados foram identificados mais cedo, nas épocas 9, 53 e 49.
+O SSD apresentou maior diferença entre suas configurações, com o melhor estado sendo alcançado
+na 15ª época com \textit{batch size} 32 e na 199ª com \textit{batch size} 256. Já o Faster
+R-CNN apresentou seu melhor estado na 2ª época na configuração G4, com \textit{patience} de
+5 épocas.
+
+A definição do \textit{patience} foi estabelecida de forma empírica, adotando-se aproximadamente
+15\% do número máximo de épocas definido para cada arquitetura. Esse critério buscou estabelecer
+uma margem de tolerância suficiente para que o modelo pudesse apresentar novas melhorias durante
+o treinamento, sem permitir a continuidade excessiva de uma execução que permanecesse sem
+evolução. Dessa forma, o \textit{early stopping} foi utilizado como um mecanismo prático de
+controle da duração do treinamento, e não como uma garantia matemática de convergência.
+
+Esse procedimento está relacionado ao comportamento de convergência discutido na
+Seção~\ref{sec:analise-treinamentos}, em que a redução das perdas de treinamento e validação
+e a posterior estabilização das métricas foram utilizadas para caracterizar a evolução dos
+modelos. A análise também se relaciona aos conceitos apresentados na
+Seção~\ref{subsec:dimensionamento}, segundo os quais os treinamentos insuficientes poderiam levar ao
+\textit{underfitting}, enquanto a continuidade excessiva dos treinamentos poderiam favorecer o
+\textit{overfitting}. Assim, o critério adotado para o \textit{patience} representa uma
+decisão experimental destinada a equilibrar essas duas possibilidades, permitindo que os modelos
+continuassem seu processo de aprendizagem sem prolongar indefinidamente o treinamento após
+períodos de estagnação.
+
 % ------------------------------------------------------------
 % 5.5 Velocidade de Inferência
 % ------------------------------------------------------------
