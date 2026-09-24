@@ -352,6 +352,14 @@ evolução durante o número de épocas definido pelo parâmetro \textit{patienc
 \end{table}
 \vspace{-1em}
 
+As primeiras linhas das Tabelas~\ref{tab:convergencia-yolo5} a
+\ref{tab:convergencia-faster-rcnn} correspondem à etapa experimental inicial, realizada na GPU T4
+por meio da versão gratuita do Google Colab, que apresenta limitações de tempo de execução e
+recursos computacionais. Por esse motivo, os treinamentos tiveram duração reduzida e não seguiram o
+mesmo protocolo de \textit{early stopping} e da melhor época aplicado posteriormente na GPU
+G4. Assim, os campos \textit{patience} e melhor época foram representados por traços, indicando a
+ausência desses registros nas execuções iniciais.
+
 Os resultados evidenciam comportamentos distintos entre as arquiteturas. Nos modelos da família
 YOLO executados na G4 com \textit{batch size} 32, os melhores estados foram obtidos nas épocas
 125, 89 e 88 para YOLO5, YOLO8 e YOLO11, respectivamente. Nas configurações com
