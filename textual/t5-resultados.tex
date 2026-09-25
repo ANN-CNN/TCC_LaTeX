@@ -503,8 +503,9 @@ os modelos YOLO e produziu apenas uma diferença pequena no SSD. Assim, os resul
 velocidade de inferência esteve mais relacionada à arquitetura e ao hardware utilizado do que à
 variação do \textit{batch size} adotado nos treinamentos.
 
-Considerando o requisito de aproximadamente 30 quadros já apresentado na Seção~\ref{subsec:tempo-treinamento-inferencia}, o desempenho em tempo real variou expressivamente entre as arquiteturas
-avaliadas. Os modelos da família YOLO destacaram-se pela maior consistência em ambas as GPUs,
+Considerando o requisito de aproximadamente 30 quadros já apresentado na Seção~\ref{subsec:tempo-treinamento-inferencia}, 
+o desempenho em tempo real variou expressivamente entre as arquiteturas avaliadas. 
+Os modelos da família YOLO destacaram-se pela maior consistência em ambas as GPUs,
 seguidos pelo SSD, que apresentou desempenho inferior, mas ainda compatível com o limiar
 estabelecido. Já o Faster R-CNN demonstrou comportamento instável, atingindo a taxa esperada na
 GPU G4, porém sofrendo com alta latência na T4. Contudo, como o estudo utilizou \textit{hardwares} de elevado
