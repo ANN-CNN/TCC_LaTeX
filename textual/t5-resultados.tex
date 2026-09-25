@@ -393,6 +393,125 @@ períodos de estagnação.
 \section{Velocidade de Inferência}
 \label{sec:velocidade-inferencia}
 
+A velocidade de inferência é um aspecto importante na avaliação de modelos de detecção de objetos,
+pois está relacionada ao tempo necessário para processar uma imagem e realizar as respectivas
+predições. Dessa forma, essa análise permite comparar a eficiência computacional das arquiteturas
+avaliadas e verificar como o hardware utilizado influencia o tempo de processamento. Os resultados
+apresentados nesta seção consideram o tempo de inferência em milissegundos por imagem, permitindo
+estabelecer uma comparação entre os modelos, as GPUs e os tamanhos de lote utilizados durante o
+treinamento.
+
+% Tabela 11 - YOLO5
+\begin{table}[H]
+    \caption{Velocidade de inferência do YOLO5}
+    \label{tab:inferencia-yolo5}
+    \centering
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch size} & \textbf{Tempo de inferência (ms/imagem)} \\
+        \midrule
+        YOLO5 - T4  & 32  & 4,50 \\
+        YOLO5 - G4  & 32  & 0,70 \\
+        YOLO5 - G4  & 256 & 0,70 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 12 - YOLO8
+\begin{table}[H]
+    \caption{Velocidade de inferência do YOLO8}
+    \label{tab:inferencia-yolo8}
+    \centering
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch size} & \textbf{Tempo de inferência (ms/imagem)} \\
+        \midrule
+        YOLO8 - T4  & 32  & 7,80 \\
+        YOLO8 - G4  & 32  & 0,90 \\
+        YOLO8 - G4  & 256 & 0,90 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 13 - YOLO11
+\begin{table}[H]
+    \caption{Velocidade de inferência do YOLO11}
+    \label{tab:inferencia-yolo11}
+    \centering
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch size} & \textbf{Tempo de inferência (ms/imagem)} \\
+        \midrule
+        YOLO11 - T4  & 32  & 7,30 \\
+        YOLO11 - G4  & 32  & 1,00 \\
+        YOLO11 - G4  & 256 & 1,00 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 14 - SSD
+\begin{table}[H]
+    \caption{Velocidade de inferência do SSD}
+    \label{tab:inferencia-ssd}
+    \centering
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch size} & \textbf{Tempo de inferência (ms/imagem)} \\
+        \midrule
+        SSD - T4  & 32  & 14,70 \\
+        SSD - G4  & 32  & 2,29 \\
+        SSD - G4  & 256 & 2,34 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+% Tabela 15 - Faster R-CNN
+\begin{table}[H]
+    \caption{Velocidade de inferência do Faster R-CNN}
+    \label{tab:inferencia-faster-rcnn}
+    \centering
+    \small
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Configuração} & \textbf{Batch size} & \textbf{Tempo de inferência (ms/imagem)} \\
+        \midrule
+        Faster R-CNN - T4 & 8  & 138,32 \\
+        Faster R-CNN - G4 & 32 & 9,87 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+Os resultados evidenciam que a GPU G4 apresentou tempos de inferência inferiores aos da T4 em todas
+as arquiteturas avaliadas. Os modelos YOLO apresentaram os menores tempos de processamento, seguidos
+pelo SSD, enquanto o Faster R-CNN registrou a maior latência, principalmente na T4. Na G4, a
+alteração do \textit{batch size} de 32 para 256 não provocou mudanças nos tempos registrados para
+os modelos YOLO e produziu apenas uma diferença pequena no SSD. Assim, os resultados indicam que a
+velocidade de inferência esteve mais relacionada à arquitetura e ao hardware utilizado do que à
+variação do \textit{batch size} adotado nos treinamentos.
+
+Considerando o requisito de aproximadamente 30 quadros já apresentado na Seção~\ref{subsec:tempo-treinamento-inferencia}, o desempenho em tempo real variou expressivamente entre as arquiteturas
+avaliadas. Os modelos da família YOLO destacaram-se pela maior consistência em ambas as GPUs,
+seguidos pelo SSD, que apresentou desempenho inferior, mas ainda compatível com o limiar
+estabelecido. Já o Faster R-CNN demonstrou comportamento instável, atingindo a taxa esperada na
+GPU G4, porém sofrendo com alta latência na T4. Contudo, como o estudo utilizou \textit{hardwares} de elevado
+desempenho computacional, esses resultados não asseguram a mesma eficiência em dispositivos de
+borda ou ambientes com recursos limitados, evidenciando que apenas a família YOLO manteve
+viabilidade irrestrita para inferência em tempo real entre os cenários testados.
+
 % ------------------------------------------------------------
 % 5.6 Custo Computacional
 % ------------------------------------------------------------
