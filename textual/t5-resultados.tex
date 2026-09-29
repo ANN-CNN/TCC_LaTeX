@@ -519,6 +519,50 @@ viabilidade irrestrita para inferência em tempo real entre os cenários testado
 \section{Custo Computacional}
 \label{sec:custo-computacional}
 
+O custo computacional é um aspecto relevante na avaliação dos experimentos, pois permite
+relacionar o tempo de execução dos treinamentos ao consumo de Unidades de Computação (UC)
+disponibilizadas pelo Google Colab. Dessa forma, a análise considera tanto o custo horário
+das GPUs utilizadas quanto o tempo necessário para a execução das épocas de treinamento.
+Para essa comparação, foram considerados os valores informados pelo ambiente para a GPU
+Tesla T4 e para a Blackwell G4, permitindo estimar o custo de execuções com diferentes
+quantidades de épocas.
+
+\begin{table}[H]
+    \caption{Estimativa de tempo e custo computacional por quantidade de épocas}
+    \label{tab:custo-computacional}
+    \centering
+    \small
+    \begin{tabular}{rcccc}
+        \toprule
+        \textbf{Épocas} & \textbf{T4 - Tempo (min)} & \textbf{T4 - Custo (UC)}
+            & \textbf{G4 - Tempo (min)} & \textbf{G4 - Custo (UC)} \\
+        \midrule
+        1     &     3,00 &  0,05 &   0,42 &  0,06 \\
+        10    &    30,00 &  0,54 &   4,20 &  0,62 \\
+        100   &   300,00 &  5,35 &  42,00 &  6,23 \\
+        500   & 1.500,00 & 26,75 & 210,00 & 31,15 \\
+        1.000 & 3.000,00 & 53,50 & 420,00 & 62,30 \\
+        \bottomrule
+    \end{tabular}
+    \source{Autoria própria (2025).}
+\end{table}
+\vspace{-1em}
+
+Os valores de custo horário foram obtidos diretamente do ambiente Google Colab, que indicava
+consumo de 1,07 UC/h para a Tesla T4 e 8,90 UC/h para a Blackwell G4. Para avaliar o
+comportamento das duas GPUs em treinamentos de maior duração, foi realizada uma extrapolação
+matemática a partir do tempo observado para a execução de uma época do YOLO8 em cada
+\textit{hardware}. Na T4, uma época apresentou duração aproximada de 3 minutos, enquanto na
+G4 o tempo observado foi de aproximadamente 0,42 minuto. A partir desses valores, foram
+projetados o tempo total e o consumo de UC para diferentes quantidades de épocas.
+
+A extrapolação foi importante para a definição da infraestrutura utilizada nos experimentos,
+principalmente porque os treinamentos previstos poderiam alcançar até 200 épocas. Embora o
+custo por hora da G4 fosse superior ao da T4, a diferença no tempo de execução foi
+significativa. Na projeção para 100 épocas, por exemplo, a T4 necessitaria de aproximadamente
+300 minutos, enquanto a G4 realizaria o mesmo número de épocas em cerca de 42 minutos. Essa
+diferença tornou a G4 mais adequada às condições do nosso experimento.
+
 % ------------------------------------------------------------
 % 5.7 Comparação das Detecções
 % ------------------------------------------------------------
