@@ -26,7 +26,8 @@ simultaneamente em cada iteração de uma época de treinamento. Dessa forma, as
 combinações de configuração e \textit{batch size} representam as condições experimentais
 utilizadas para avaliar o desempenho das arquiteturas. Os resultados são apresentados por
 meio das métricas de Precisão, \textit{Recall}, \textit{F1-Score}, mAP@0.5 e
-mAP@0.5:0.95, obtidas sobre o conjunto de testes.
+mAP@0.5:0.95, obtidas sobre o conjunto de testes. Os resultados de cada arquitetura são
+apresentados nas Tabelas~\ref{tab:resultados-YOLO5} a~\ref{tab:resultados-faster-rcnn}.
 
 % Tabela 1 - YOLO5
 \begin{table}[H]
@@ -256,9 +257,11 @@ uma região de estabilização. Neste trabalho, a identificação desse comporta
 por meio do acompanhamento do desempenho de validação e do registro da época correspondente ao
 melhor estado obtido. Nos treinamentos submetidos ao \textit{early stopping}, considerou-se que
 não houve melhoria relevante quando a métrica utilizada para acompanhamento permaneceu sem
-evolução durante o número de épocas definido pelo parâmetro \textit{patience}.
+evolução durante o número de épocas definido pelo parâmetro \textit{patience}. Os resultados
+obtidos para cada arquitetura são apresentados nas Tabelas~\ref{tab:convergencia-yolo5}
+a~\ref{tab:convergencia-faster-rcnn}.
 
-% Tabela - YOLO5
+% Tabela 6 - YOLO5
 \begin{table}[H]
     \caption{Convergência do YOLO5}
     \label{tab:convergencia-yolo5}
@@ -277,7 +280,7 @@ evolução durante o número de épocas definido pelo parâmetro \textit{patienc
 \end{table}
 \vspace{-1em}
 
-% Tabela - YOLO8
+% Tabela 7 - YOLO8
 \begin{table}[H]
     \caption{Convergência do YOLO8}
     \label{tab:convergencia-yolo8}
@@ -296,7 +299,7 @@ evolução durante o número de épocas definido pelo parâmetro \textit{patienc
 \end{table}
 \vspace{-1em}
 
-% Tabela - YOLO11
+% Tabela 8 - YOLO11
 \begin{table}[H]
     \caption{Convergência do YOLO11}
     \label{tab:convergencia-yolo11}
@@ -315,7 +318,7 @@ evolução durante o número de épocas definido pelo parâmetro \textit{patienc
 \end{table}
 \vspace{-1em}
 
-% Tabela - SSD
+% Tabela 9 - SSD
 \begin{table}[H]
     \caption{Convergência do SSD}
     \label{tab:convergencia-ssd}
@@ -334,7 +337,7 @@ evolução durante o número de épocas definido pelo parâmetro \textit{patienc
 \end{table}
 \vspace{-1em}
 
-% Tabela - Faster R-CNN
+% Tabela 10 - Faster R-CNN
 \begin{table}[H]
     \caption{Convergência do Faster R-CNN}
     \label{tab:convergencia-faster-rcnn}
@@ -399,7 +402,8 @@ predições. Dessa forma, essa análise permite comparar a eficiência computaci
 avaliadas e verificar como o hardware utilizado influencia o tempo de processamento. Os resultados
 apresentados nesta seção consideram o tempo de inferência em milissegundos por imagem, permitindo
 estabelecer uma comparação entre os modelos, as GPUs e os tamanhos de lote utilizados durante o
-treinamento.
+treinamento. Os resultados são apresentados nas Tabelas~\ref{tab:inferencia-yolo5}
+a~\ref{tab:inferencia-faster-rcnn}.
 
 % Tabela 11 - YOLO5
 \begin{table}[H]
@@ -525,8 +529,9 @@ disponibilizadas pelo Google Colab. Dessa forma, a análise considera tanto o cu
 das GPUs utilizadas quanto o tempo necessário para a execução das épocas de treinamento.
 Para essa comparação, foram considerados os valores informados pelo ambiente para a GPU
 Tesla T4 e para a Blackwell G4, permitindo estimar o custo de execuções com diferentes
-quantidades de épocas.
+quantidades de épocas, conforme apresentado na Tabela~\ref{tab:custo-computacional}.
 
+% Tabela 16 - Custo Computacional
 \begin{table}[H]
     \caption{Estimativa de tempo e custo computacional por quantidade de épocas}
     \label{tab:custo-computacional}
@@ -568,9 +573,3 @@ diferença tornou a G4 mais adequada às condições do nosso experimento.
 % ------------------------------------------------------------
 \section{Comparação das Detecções}
 \label{sec:comparacao-deteccoes}
-
-% ------------------------------------------------------------
-% 5.8 Síntese Comparativa das Arquiteturas
-% ------------------------------------------------------------
-\section{Síntese Comparativa das Arquiteturas}
-\label{sec:sintese-comparativa}
