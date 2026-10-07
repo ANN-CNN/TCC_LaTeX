@@ -573,3 +573,47 @@ diferença tornou a G4 mais adequada às condições do nosso experimento.
 % ------------------------------------------------------------
 \section{Comparação das Detecções}
 \label{sec:comparacao-deteccoes}
+
+A comparação das detecções complementa a análise quantitativa apresentada nas seções
+anteriores, permitindo observar de forma mais detalhada o comportamento dos modelos na
+identificação e classificação dos objetos. Para isso, são analisadas as matrizes de
+confusão, as curvas Precisão-\textit{Recall} e exemplos visuais das detecções realizadas
+no conjunto de testes. Dessa forma, busca-se identificar diferenças no desempenho das
+arquiteturas quanto aos acertos, erros de classificação e capacidade de detecção das
+diferentes classes avaliadas.
+
+A matriz de confusão permite observar de forma detalhada o comportamento de cada modelo na
+classificação das classes avaliadas, evidenciando a distribuição dos acertos e dos erros de
+classificação. Sua análise possibilita identificar as classes com maior ocorrência de
+predições corretas, bem como possíveis confusões entre categorias. As matrizes de confusão
+dos modelos da família YOLO, SSD e Faster R-CNN são apresentadas, respectivamente, nas
+Figuras~\ref{fig:confusion-yolo8}, \ref{fig:confusion-ssd} e~\ref{fig:confusion-faster}.
+
+% Figura - Matriz de confusão YOLO8
+\begin{figure}[H]
+    \caption{Matriz de confusão do YOLO8}
+    \label{fig:confusion-yolo8}
+    \centering
+    \includegraphics[width=1.0\textwidth]{media/confusion_matrix_yolo8.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Matriz de confusão SSD
+\begin{figure}[H]
+    \caption{Matriz de confusão do SSD}
+    \label{fig:confusion-ssd}
+    \centering
+    \includegraphics[width=0.80\textwidth]{media/confusion_matrix_ssd.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Matriz de confusão Faster R-CNN
+\begin{figure}[H]
+    \caption{Matriz de confusão do Faster R-CNN}
+    \label{fig:confusion-faster}
+    \centering
+    \includegraphics[width=0.80\textwidth]{media/confusion_matrix_faster.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+To Be Continued ...
