@@ -683,12 +683,22 @@ a memorizar os dados de treino \cite{goodfellow2016deep}.
 % 2.9.2.2 Matriz de Confusão
 \subsubsection{Matriz de Confusão}
 
-A Matriz de Confusão é uma ferramenta de visualização que oferece uma visão detalhada do
-comportamento do modelo em relação a cada classe. A ideia central é contabilizar o número de
-vezes que instâncias da classe A são incorretamente classificadas como classe B
-\cite{geron2023maos}. Ela é especialmente útil para identificar erros sistemáticos, como a
-confusão entre categorias semanticamente próximas, e permite calcular métricas de precisão e
-recall individualmente por classe \cite{goodfellow2016deep}.
+A Matriz de Confusão é uma ferramenta de visualização que permite analisar detalhadamente o 
+comportamento do modelo na classificação das diferentes classes. Sua estrutura relaciona 
+os valores presentes no gabarito às respectivas predições, permitindo identificar tanto os 
+acertos quanto os erros de classificação. A diagonal principal representa as ocorrências em 
+que a classe predita corresponde àquela presente no gabarito, enquanto os demais elementos 
+representam ocorrências em que houve divergência entre o resultado esperado e o obtido. Dessa 
+forma, a matriz permite identificar erros sistemáticos e possíveis confusões entre classes 
+semanticamente próximas \cite{geron2023maos}.
+
+Quando apresentada de forma normalizada, os valores da matriz representam a proporção de
+ocorrências associadas a cada combinação entre classe real e classe predita, em vez da
+quantidade absoluta de ocorrências. Assim, a soma dos valores ao longo do eixo utilizado
+para a normalização corresponde a 1 (100\%), permitindo interpretar cada valor como a
+frequência relativa das classificações dentro daquela referência. Essa representação
+facilita a comparação do comportamento do modelo entre as diferentes classes, mesmo quando
+o número de ocorrências de cada classe é diferente \cite{goodfellow2016deep}.
 
 % 2.9.2.3 Análise Qualitativa por Amostragem
 \subsubsection{Análise Qualitativa por Amostragem}

@@ -616,4 +616,21 @@ Figuras~\ref{fig:confusion-yolo8}, \ref{fig:confusion-ssd} e~\ref{fig:confusion-
     \source{Autoria própria (2025).}
 \end{figure}
 
+As matrizes de confusão apresentadas nas Figuras~\ref{fig:confusion-yolo8},
+\ref{fig:confusion-ssd} e~\ref{fig:confusion-faster} permitem comparar o comportamento dos
+modelos YOLO8, SSD e Faster R-CNN em relação às classes avaliadas. O Faster R-CNN
+apresentou os maiores valores na diagonal principal, seguido pelo YOLO8, enquanto o SSD
+apresentou os menores valores. 
+
+Em relação ao \textit{background}, o SSD apresentou os maiores valores na linha correspondente, 
+variando de 0,30 a 0,66, indicando maior quantidade de objetos que deixaram de ser detectados. 
+No YOLO8, esses valores foram menores, variando de 0,23 a 0,50, enquanto o Faster R-CNN apresentou 
+comportamento mais preciso, com valores entre 0,05 e 0,14.
+
+As confusões entre as classes permaneceram reduzidas nos três modelos, com poucas
+ocorrências fora da diagonal principal. Dessa forma, o Faster R-CNN apresentou o
+comportamento mais consistente na classificação das classes, seguido pelo YOLO8, enquanto
+o SSD demonstrou maior dificuldade, principalmente na detecção dos objetos em relação ao
+\textit{background}.
+
 To Be Continued ...
