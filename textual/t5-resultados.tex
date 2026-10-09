@@ -633,4 +633,39 @@ comportamento mais consistente na classificação das classes, seguido pelo YOLO
 o SSD demonstrou maior dificuldade, principalmente na detecção dos objetos em relação ao
 \textit{background}.
 
+\clearpage % Força quebra de página, iniciando o parágrafo no topo da próxima página.
+As curvas Precisão--\textit{Recall} permitem analisar a relação entre precisão e recall para
+diferentes limiares de confiança, evidenciando como o desempenho dos modelos varia conforme
+o equilíbrio entre essas métricas. A análise considera as curvas individuais de cada classe
+e a curva conjunta, permitindo comparar o comportamento das arquiteturas na detecção das
+classes avaliadas. As curvas referentes aos modelos YOLO8, SSD e Faster R-CNN são apresentadas, 
+respectivamente, nas Figuras~\ref{fig:pr-yolo8}, \ref{fig:pr-ssd} e~\ref{fig:pr-faster}.
+
+% Figura - Curva PR YOLO8
+\begin{figure}[H]
+    \caption{Curva Precisão-\textit{Recall} do YOLO8}
+    \label{fig:pr-yolo8}
+    \centering
+    \includegraphics[width=1.1\textwidth]{media/PR_curve_yolo8.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Curva PR SSD
+\begin{figure}[H]
+    \caption{Curva Precisão-\textit{Recall} do SSD}
+    \label{fig:pr-ssd}
+    \centering
+    \includegraphics[width=1.1\textwidth]{media/PR_curve_ssd.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Curva PR Faster R-CNN
+\begin{figure}[H]
+    \caption{Curva Precisão-\textit{Recall} do Faster R-CNN}
+    \label{fig:pr-faster}
+    \centering
+    \includegraphics[width=1.1\textwidth]{media/PR_curve_faster.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
 To Be Continued ...
