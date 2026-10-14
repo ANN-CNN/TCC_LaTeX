@@ -692,4 +692,40 @@ uma parcela expressiva dos objetos mantendo uma proporção elevada de prediçõ
 uma ampla faixa de operação. O mAP@0.5 de 80,3\% confirma o melhor desempenho global do
 Faster R-CNN nessa comparação.
 
+A análise das detecções consiste na inspeção visual realizada pelos modelos em imagens do
+conjunto de testes, por meio da projeção das caixas delimitadoras preditas sobre as imagens
+originais e de sua comparação com as anotações reais. Essa abordagem permite examinar
+visualmente a correspondência entre as detecções e os objetos presentes nas imagens,
+complementando as métricas quantitativas apresentadas anteriormente e permitindo observar o
+comportamento das arquiteturas em amostras aleatórias do conjunto de testes. Os resultados
+dessa análise são apresentados para os modelos YOLO8, SSD e Faster R-CNN, respectivamente,
+nas Figuras~\ref{fig:val-yolo8}, \ref{fig:val-ssd} e~\ref{fig:val-faster}.
+
+% Figura - Detecções YOLO8
+\begin{figure}[H]
+    \caption{Amostras de detecções do YOLO8 no conjunto de testes}
+    \label{fig:val-yolo8}
+    \centering
+    \includegraphics[width=1.0\textwidth]{media/val_pred_yolo8.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Detecções SSD
+\begin{figure}[H]
+    \caption{Amostras de detecções do SSD no conjunto de testes}
+    \label{fig:val-ssd}
+    \centering
+    \includegraphics[width=1.0\textwidth]{media/val_pred_ssd.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
+% Figura - Detecções Faster R-CNN
+\begin{figure}[H]
+    \caption{Amostras de detecções do Faster R-CNN no conjunto de testes}
+    \label{fig:val-faster}
+    \centering
+    \includegraphics[width=1.0\textwidth]{media/val_pred_faster.png}
+    \source{Autoria própria (2025).}
+\end{figure}
+
 To Be Continued ...
