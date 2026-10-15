@@ -728,4 +728,43 @@ nas Figuras~\ref{fig:val-yolo8}, \ref{fig:val-ssd} e~\ref{fig:val-faster}.
     \source{Autoria própria (2025).}
 \end{figure}
 
-To Be Continued ...
+Inicialmente, observa-se uma diferença na forma de apresentação dos resultados. Nas
+Figuras~\ref{fig:val-ssd} e~\ref{fig:val-faster}, referentes aos modelos SSD e Faster
+R-CNN, cada amostra é apresentada em três painéis: a imagem original, as anotações reais
+(\textit{ground truth}) e as predições realizadas pelo modelo. Já na
+Figura~\ref{fig:val-yolo8}, referente ao YOLO8, as detecções são apresentadas em uma
+composição de múltiplas imagens, gerada por meio das ferramentas de visualização da
+biblioteca Ultralytics. Essa diferença está relacionada aos procedimentos utilizados para
+gerar e organizar as visualizações, não representando, por si só, uma diferença na
+capacidade de detecção das arquiteturas.
+
+Em relação ao YOLO8, destaca-se a identificação de diferentes classes de objetos, incluindo
+carro, motocicleta e pessoa, na imagem capturada pelo retrovisor central de um veículo. As
+predições apresentaram níveis elevados de confiança, evidenciando a capacidade do modelo de
+reconhecer objetos mesmo em condições de visualização menos convencionais. Esse resultado é
+particularmente relevante por demonstrar que o modelo pode identificar diferentes categorias
+em uma região visualmente restrita, embora a confiança da predição, isoladamente, não seja
+suficiente para comprovar a precisão da localização ou a correção da detecção.
+
+Quanto ao SSD, observa-se um comportamento distinto em relação ao tamanho e à distância dos
+objetos. Nas amostras analisadas, objetos maiores e mais evidentes apresentaram níveis de
+confiança elevados, entre 89\% e 100\%. Em contrapartida, objetos menores ou mais distantes
+demonstraram maior dificuldade de identificação, com níveis de confiança inferiores ou
+ausência de detecções. Esse comportamento é compatível com uma das limitações observadas em
+detectores dessa categoria, uma vez que a identificação de objetos pequenos pode ser
+prejudicada pela redução de informações espaciais durante o processamento das imagens. Assim,
+os resultados visuais indicam que o desempenho do SSD varia conforme as características dos
+objetos e as condições em que aparecem na cena.
+
+Por sua vez, o Faster R-CNN apresentou uma particularidade relevante ao identificar um
+automóvel que não possuía uma anotação correspondente no \textit{ground truth} utilizado na
+comparação. Esse caso demonstra a importância de analisar individualmente as predições dos
+modelos, uma vez que nem todas as detecções aparentemente corretas estão necessariamente
+representadas nas anotações de referência. Embora essas detecções demonstrem a capacidade do
+modelo de reconhecer objetos não contemplados pelo gabarito, a ausência de anotações pode
+afetar negativamente a avaliação de seu desempenho. Isso ocorre porque, durante o cálculo da
+precisão, uma detecção correta que não encontra uma anotação correspondente pode ser
+contabilizada como falso positivo. Dessa forma, os resultados reforçam a importância de
+complementar as métricas quantitativas com análises qualitativas das detecções, permitindo
+identificar particularidades do comportamento dos modelos que nem sempre são evidenciadas
+exclusivamente pelos indicadores numéricos.
