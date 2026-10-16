@@ -582,6 +582,10 @@ no conjunto de testes. Dessa forma, busca-se identificar diferenças no desempen
 arquiteturas quanto aos acertos, erros de classificação e capacidade de detecção das
 diferentes classes avaliadas.
 
+% 5.7.1 Matriz de Confusão
+\subsection{Matriz de Confusão}
+\label{subsec:matriz-confusao}
+
 A matriz de confusão permite observar de forma detalhada o comportamento de cada modelo na
 classificação das classes avaliadas, evidenciando a distribuição dos acertos e dos erros de
 classificação. Sua análise possibilita identificar as classes com maior ocorrência de
@@ -634,6 +638,10 @@ o SSD demonstrou maior dificuldade, principalmente na detecção dos objetos em 
 \textit{background}.
 
 \clearpage % Força quebra de página, iniciando o parágrafo no topo da próxima página.
+% 5.7.2 Curva Precisão-Recall
+\subsection[Curva Precisão-Recall]{Curva Precisão-\textit{Recall}}
+\label{subsec:curva-pr}
+
 As curvas Precisão--\textit{Recall} permitem analisar a relação entre precisão e
 \textit{recall} para diferentes limiares de confiança, evidenciando como o desempenho dos
 modelos varia conforme o equilíbrio entre essas métricas. A análise considera as curvas
@@ -691,6 +699,10 @@ níveis finais de \textit{recall}. Esse comportamento indica que o modelo conseg
 uma parcela expressiva dos objetos mantendo uma proporção elevada de predições corretas em
 uma ampla faixa de operação. O mAP@0.5 de 80,3\% confirma o melhor desempenho global do
 Faster R-CNN nessa comparação.
+
+% 5.7.3 Análise das Detecções
+\subsection{Análise das Detecções}
+\label{subsec:analise-deteccoes}
 
 A análise das detecções consiste na inspeção visual realizada pelos modelos em imagens do
 conjunto de testes, por meio da projeção das caixas delimitadoras preditas sobre as imagens
