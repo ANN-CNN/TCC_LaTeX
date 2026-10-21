@@ -17,6 +17,43 @@ que podem contribuir para o aprofundamento das análises.
 \section{Síntese do Estudo}
 \label{sec:sintese}
 
+Este trabalho teve como objetivo comparar diferentes arquiteturas de detecção de objetos,
+considerando seu desempenho na identificação de pessoas, bicicletas, carros, motocicletas e
+ônibus sob distintas configurações experimentais. Para isso, foram avaliados os modelos
+YOLO5, YOLO8, YOLO11, SSD e Faster R-CNN, utilizando métricas quantitativas de
+desempenho, tempos de treinamento e inferência, custo computacional, além de análise
+qualitativa das detecções realizadas no conjunto de testes.
+
+Os resultados demonstraram diferenças relevantes entre as arquiteturas avaliadas. Os modelos
+da família YOLO apresentaram os menores tempos de inferência, destacando-se pela velocidade
+de processamento e pela consistência nas configurações de \textit{hardware} testadas. O SSD
+apresentou desempenho inferior ao dos modelos YOLO nas principais métricas de detecção,
+além de demonstrar maior dificuldade na identificação de objetos menores ou mais distantes
+nas amostras analisadas. Por sua vez, o Faster R-CNN obteve os melhores resultados nas
+métricas de detecção consideradas na análise comparativa, embora tenha apresentado maior
+tempo de inferência e maior demanda computacional durante o treinamento.
+
+Também foi observado que o aumento do tamanho do lote de 32 para 256 imagens não favoreceu
+o desempenho dos modelos YOLO e SSD nas configurações avaliadas. Além disso, as diferenças
+na evolução do treinamento e na obtenção dos melhores resultados evidenciaram que o
+comportamento dos modelos depende tanto da arquitetura quanto dos hiperparâmetros e das
+condições experimentais adotadas.
+
+A análise qualitativa das detecções complementou os resultados numéricos ao evidenciar
+situações que exigem uma interpretação mais cuidadosa das métricas. Entre elas, destaca-se
+a identificação de um automóvel pelo Faster R-CNN sem uma anotação correspondente no
+\textit{ground truth}, demonstrando que a ausência de correspondência com as anotações de
+referência nem sempre significa que uma detecção esteja visualmente incorreta. Dessa forma,
+a avaliação dos modelos deve considerar não apenas os indicadores quantitativos, mas também
+o comportamento observado nas imagens analisadas.
+
+Em síntese, os resultados indicam que a escolha de uma arquitetura de detecção de objetos
+deve considerar os requisitos específicos de cada aplicação, especialmente o equilíbrio
+entre desempenho de detecção, velocidade de inferência e custo computacional. Enquanto os
+modelos da família YOLO se destacaram pela velocidade, o Faster R-CNN apresentou melhores
+resultados nas métricas de detecção analisadas, evidenciando que diferentes arquiteturas
+podem oferecer vantagens distintas conforme as condições de utilização.
+
 % ------------------------------------------------------------
 % 6.2 Trabalhos Futuros
 % ------------------------------------------------------------
