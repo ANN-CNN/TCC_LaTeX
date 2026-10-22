@@ -60,4 +60,50 @@ podem oferecer vantagens distintas conforme as condições de utilização.
 \section{Trabalhos Futuros}
 \label{sec:trabalhos-futuros}
 
+% 6.2.1 Avaliação em Vídeos
+\subsection{Avaliação em Vídeos}
+\label{subsec:avaliacao-videos}
+
+Como possibilidade de continuidade deste trabalho, propõe-se investigar o comportamento das
+arquiteturas de detecção de objetos em conjuntos de dados provenientes de vídeos. Embora a
+avaliação realizada tenha permitido comparar os modelos a partir de imagens individuais, a
+utilização de sequências de quadros possibilitaria analisar seu comportamento em situações
+nas quais os objetos se deslocam, mudam de posição ou aparecem sob diferentes condições ao
+longo do tempo. Nesse contexto, além das métricas de detecção, seria relevante investigar
+a estabilidade dos resultados entre quadros consecutivos, verificando a ocorrência de
+detecções inconsistentes e de falhas pontuais durante o processamento. Essa abordagem
+permitira aprofundar a análise do desempenho dos modelos em cenários dinâmicos,
+aproximando a avaliação das condições encontradas em aplicações como monitoramento de
+ambientes e sistemas de vigilância.
+
+% 6.2.2 Influência do Dimensionamento das Arquiteturas
+\subsection{Influência do Dimensionamento das Arquiteturas}
+\label{subsec:dimensionamento-arquiteturas}
+
+Outra possibilidade de investigação consiste em avaliar a influência do dimensionamento das
+arquiteturas sobre o desempenho dos modelos de detecção de objetos. Conforme apresentado na
+Seção~\ref{subsec:dimensionamento}, uma mesma arquitetura pode possuir variantes com
+diferentes níveis de complexidade, que apresentam distintas relações entre precisão de
+detecção e custo computacional. Nesse sentido, propõe-se comparar diferentes variantes de
+uma mesma família de modelos, considerando métricas de detecção, tempo de inferência,
+duração do treinamento e consumo de recursos computacionais. Essa análise permitiria
+investigar em que medida o aumento ou a redução do tamanho dos modelos afeta a qualidade
+das detecções e a eficiência de processamento, identificando possíveis vantagens e
+limitações de cada variante para diferentes requisitos de aplicação.
+
+% 6.2.3 Avaliação em Hardware com Recursos Limitados
+\subsection[Avaliação em Hardware com Recursos Limitados]{Avaliação em \textit{Hardware} com Recursos Limitados}
+\label{subsec:hardware-limitado}
+
+Por fim, sugere-se avaliar as arquiteturas em equipamentos com recursos computacionais mais
+limitados do que aqueles utilizados neste estudo, incluindo dispositivos com capacidade de
+processamento inferior à da GPU NVIDIA Tesla T4. Essa investigação permitiria verificar
+como a redução dos recursos de \textit{hardware} afeta o tempo de inferência, o consumo de
+memória e a viabilidade de execução dos modelos em diferentes condições. Também seria
+relevante analisar se as arquiteturas que apresentaram melhores resultados nas configurações
+experimentais atuais mantêm um desempenho adequado em equipamentos menos potentes. Dessa
+maneira, seria possível compreender melhor as limitações práticas de cada modelo e
+identificar alternativas mais apropriadas para aplicações que disponham de infraestrutura
+computacional restrita.
+
 % \glsaddall
