@@ -75,8 +75,10 @@ uma junção somadora, cujo resultado passa por uma função de ativação. Essa
 o neurônio será "ativado" e qual será o sinal de saída ($y$) a ser propagado para outros
 neurônios da rede \cite{andrade2011redes}.
 
-A \autoref{fig:perceptron} ilustra a estrutura básica de um neurônio artificial, mostrando as
-entradas, os pesos sinápticos, a função de soma e a função de ativação.
+A \autoref{fig:perceptron} ilustra a estrutura básica do Perceptron, considerado o modelo
+mais simples de neurônio artificial e um dos primeiros modelos de redes neurais artificiais,
+proposto por Frank Rosenblatt em 1957, com base nos estudos de McCulloch e Pitts de 1943
+\cite{rosenblatt1958}.
 
 %%%%%%%%%%%%%%%%%%%% Figure/Image Perceptron starts here %%%%%%%%%%%%%%%%%%%%
 
@@ -187,7 +189,7 @@ os dados de treino quanto para os de teste \cite{andrade2011redes}.
 % ------------------------------------------------------------
 \section{Redes Neurais Convolucionais (CNNs)}
 
-As Redes Neurais Convolucionais (CNNs) são uma classe de redes neurais profundas que se
+As Redes Neurais Convolucionais (CNNs) constituem uma classe de redes neurais profundas que se
 tornaram o padrão ouro para tarefas de análise de imagens, um status consolidado após
 resultados como os da AlexNet na competição ImageNet \cite{krizhevsky2012imagenet}.
 \citeonline{lecun2015deep}, em seu artigo seminal na revista \textit{Nature}, destacam que as
@@ -228,7 +230,7 @@ camadas iniciais (bordas, cores) até conceitos complexos e abstratos nas camada
 \subsection{Análise da Arquitetura LeNet-5}
 
 Uma das arquiteturas pioneiras e mais influentes no campo das Redes Neurais Convolucionais é a
-LeNet, apresentada por \cite{lecun1998gradient}. Desenvolvida inicialmente para a tarefa de
+LeNet, apresentada por \citeonline{lecun1998gradient}. Desenvolvida inicialmente para a tarefa de
 reconhecimento de caracteres manuscritos, sua estrutura estabeleceu um paradigma fundamental
 para a área, consistindo na alternância de camadas de convolução e subamostragem
 (\textit{pooling}) para a extração hierárquica de características, seguida por camadas
@@ -352,15 +354,6 @@ pesquisadores e desenvolvedores construir e implantar facilmente aplicações ba
 aprendizado de máquina em diversas plataformas, desde servidores a dispositivos móveis
 \cite{pytorch2026}.
 
-% 2.5.1 Utilização do Framework no Projeto
-\subsection{Utilização do \textit{Framework} no Projeto}
-
-Neste projeto, o PyTorch será o \textit{framework} utilizado para implementar, treinar e
-avaliar as arquiteturas de detecção de objetos selecionadas. Sua capacidade de construir
-grafos computacionais dinâmicos e otimizar operações para execução em Unidades de
-Processamento Gráfico (GPUs) é crucial para acelerar o tempo de treinamento dos modelos
-profundos, que pode levar de horas a dias.
-
 % ------------------------------------------------------------
 % 2.6 Ambiente de Desenvolvimento
 % ------------------------------------------------------------
@@ -396,16 +389,13 @@ seu treinamento \cite{goodfellow2016deep}. Para tarefas de detecção de objetos
 consiste em imagens e anotações que especificam a classe e as coordenadas da caixa
 delimitadora para cada objeto presente.
 
-% 2.7.1 Seleção e Pré-processamento dos Datasets
-\subsection{Seleção e Pré-processamento dos Datasets}
-
 Para uma comparação justa e relevante entre diferentes arquiteturas, a utilização de
-benchmarks padronizados é essencial. Esses datasets públicos e amplamente adotados permitem
+benchmarks padronizados é essencial. Existem datasets públicos e amplamente adotados que permitem
 que os resultados sejam reprodutíveis e comparáveis com outros trabalhos na área. A seguir,
-são descritos os principais datasets de referência que serão considerados para este estudo.
+são descritos os principais datasets de referência que serão considerados neste estudo.
 
-% 2.7.1.1 PASCAL VOC (Visual Object Classes)
-\subsubsection{PASCAL VOC (Visual Object Classes)}
+% 2.7.1 PASCAL VOC (Visual Object Classes)
+\subsection{PASCAL VOC (Visual Object Classes)}
 
 O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado
 a partir de um desafio anual que ocorreu entre 2005 e 2012. Ele
@@ -414,8 +404,8 @@ Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o torn
 para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para
 detecção, como a família R-CNN \cite{everingham2015pascal}.
 
-% 2.7.1.2 COCO (Common Objects in Context)
-\subsubsection{COCO (Common Objects in Context)}
+% 2.7.2 COCO (Common Objects in Context)
+\subsection{COCO (Common Objects in Context)}
 
 O COCO é atualmente o padrão ouro para benchmarking de detecção de objetos. Ele representa um
 avanço significativo em relação ao PASCAL VOC em termos de escala e complexidade, contendo 80
@@ -426,8 +416,8 @@ sobrepostos e de diferentes escalas. Além das caixas delimitadoras, o COCO tamb
 anotações de segmentação por pixel, permitindo o treinamento de modelos para tarefas mais
 refinadas \cite{lin2014microsoft}.
 
-% 2.7.1.3 Kaggle Datasets
-\subsubsection{Kaggle Datasets}
+% 2.7.3 Kaggle Datasets
+\subsection{Kaggle Datasets}
 
 O Kaggle é uma plataforma colaborativa de ciência de dados e aprendizado de máquina,
 amplamente conhecida por hospedar competições globais e um vasto repositório de conjuntos de
@@ -438,8 +428,8 @@ imagens altamente nichadas, permitindo o treinamento de modelos voltados para de
 do mundo real, como o diagnóstico por imagens médicas, identificação agrícola ou automação
 visual no varejo \cite{kaggle2024}.
 
-% 2.7.1.4 Variantes e Dimensionamento dos Modelos
-\subsubsection{Variantes e Dimensionamento dos Modelos}
+% 2.7.4 Variantes e Dimensionamento dos Modelos
+\subsection{Variantes e Dimensionamento dos Modelos}
 
 A evolução das arquiteturas de redes neurais profundas trouxe a necessidade de adaptar um
 mesmo modelo para diferentes restrições de hardware e requisitos de latência. Para atender a
