@@ -397,12 +397,27 @@ são descritos os principais datasets de referência que serão considerados nes
 % 2.7.1 PASCAL VOC (Visual Object Classes)
 \subsection{PASCAL VOC (Visual Object Classes)}
 
-O PASCAL VOC foi, por muitos anos, o principal benchmark para a detecção de objetos, originado
-a partir de um desafio anual que ocorreu entre 2005 e 2012. Ele
-contém imagens de 20 categorias de objetos comuns, como "carro", "pessoa" e "cachorro".
-Suas anotações incluem caixas delimitadoras e rótulos de classe, o que o tornou fundamental
-para o desenvolvimento e a avaliação das primeiras arquiteturas de \textit{deep learning} para
-detecção, como a família R-CNN \cite{everingham2015pascal}.
+O PASCAL VOC foi, por muitos anos, um dos principais \textit{benchmarks} para a detecção
+de objetos, originado a partir de um desafio anual realizado entre 2005 e 2012. O desafio
+tinha como objetivo estimular o desenvolvimento de métodos capazes de reconhecer e localizar
+diferentes categorias de objetos em imagens de cenários reais, promovendo a comparação entre
+as soluções propostas por diferentes grupos de pesquisa. Para isso, os organizadores
+disponibilizavam conjuntos de imagens previamente anotadas, ferramentas de avaliação e
+critérios padronizados, permitindo que os participantes treinassem seus algoritmos e
+submetessem os resultados para comparação \cite{everingham2010pascal}.
+
+As competições contemplavam inicialmente duas tarefas principais: classificação, responsável
+por identificar a presença ou ausência de determinada categoria de objeto em uma imagem, e
+detecção, que, além de reconhecer a categoria, deveria determinar a localização de cada objeto
+por meio de caixas delimitadoras (\textit{bounding boxes}) \cite{everingham2010pascal}.
+
+Em relação à sua composição, o dataset passou a contemplar 20 categorias de objetos comuns a
+partir da edição de 2007, incluindo classes como carro, pessoa e cachorro. Suas anotações
+incluem caixas delimitadoras e rótulos de classe, fornecendo informações necessárias tanto
+para o treinamento quanto para a avaliação dos algoritmos. Essas características contribuíram
+para consolidar o PASCAL VOC como uma importante referência no desenvolvimento de métodos de
+detecção de objetos, sendo utilizado em trabalhos que introduziram arquiteturas baseadas em
+redes neurais convolucionais, como a família R-CNN \cite{Girshick_2014_CVPR}.
 
 % 2.7.2 COCO (Common Objects in Context)
 \subsection{COCO (Common Objects in Context)}
@@ -458,6 +473,29 @@ original \cite{ultralytics2024yolo}. As principais escalas adotadas incluem:
     \item \textbf{Large (l) e Extra Large (x):} Redes massivas que priorizam a precisão
         máxima (mAP) em detrimento absoluto do tempo de inferência. São indicadas para
         aplicações computacionais robustas em nuvem que não operam restritas ao tempo real.
+\end{itemize}
+
+Diferentemente da família YOLO, o Faster R-CNN e o SSD não organizam suas escalas de complexidade
+por meio de variantes padronizadas (\textit{nano}, \textit{small}, \textit{medium}, \textit{large}
+e \textit{extra large}), as implementações dessas arquiteturas na biblioteca Torchvision definem 
+suas variantes a partir da combinação explícita entre o detector, o extrator de características e 
+a resolução de entrada.
+
+Além da definição estrutural, essas implementações disponibilizam diferentes estratégias de
+inicialização de parâmetros \cite{pytorch_torchvision_weights}. Entre as configurações de pesos 
+disponíveis, destacam-se:
+
+\begin{itemize}
+    \item \textbf{DEFAULT:} Seleciona automaticamente os pesos pré-treinados definidos como
+        padrão para cada arquitetura, oferecendo uma configuração de inicialização recomendada
+        pela biblioteca Torchvision.
+
+    \item \textbf{IMAGENET1K\_V1 e IMAGENET1K\_V2:} Inicializam a rede extratora de
+        características com pesos treinados no conjunto ImageNet, enquanto as camadas
+        específicas de detecção recebem inicialização independente.
+
+    \item \textbf{None:} Permite inicializar os parâmetros aleatoriamente, realizando o
+        treinamento a partir do zero.
 \end{itemize}
 
 A compreensão prévia dessas variantes é fundamental para a análise técnica de detectores,
