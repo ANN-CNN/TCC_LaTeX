@@ -672,16 +672,88 @@ significativamente.
 %%%%%%%%%%%%%%%%%%%% Figure/Image Médias Pitagóricas ends here %%%%%%%%%%%%%%%%%%%%
 
 % 2.9.1.5 Mean Average Precision (mAP)
-\subsubsection[mAP]{Mean Average Precision (mAP)}
+\subsubsection[mAP@0.5]{Média das Precisões Médias (\textit{Mean Average Precision}): mAP@0.5}
 
-Considerada o padrão-ouro na literatura de detecção de objetos, a \textit{Mean Average
+Considerado o padrão-ouro na literatura de detecção de objetos, o \textit{Mean Average
 Precision} (mAP) resume, em um único valor, o desempenho do modelo ao longo de todas as
-classes detectáveis. O mAP@0.5 foi popularizado pelo desafio PASCAL VOC e calcula a média
-da área sob a curva Precisão-Recall exigindo que a sobreposição (IoU) entre a predição e o
-dado real seja de no mínimo 50\% \cite{everingham2015pascal}. Já o mAP@0.5:0.95, consolidado
-pelo dataset COCO, é mais rigoroso: ele calcula a média do mAP em dez
-limiares crescentes de IoU (de 50\% a 95\%), exigindo que as caixas delimitadoras sejam
-progressivamente mais exatas em suas coordenadas espaciais \cite{lin2014microsoft}.
+classes detectáveis. Seu cálculo parte da \textit{Average Precision} (AP), que corresponde
+à área sob a curva Precisão-Revocação (\textit{Precision-Recall}), representando a relação
+entre essas duas métricas para uma determinada classe.
+
+Geometricamente, a área sob a curva pode ser aproximada pela soma das áreas de pequenos
+retângulos construídos ao longo do intervalo de revocação \cite{everingham2010pascal}. Para
+fins de ilustração, esses retângulos são representados graficamente na Figura~\ref{fig:map05},
+não fazendo parte da curva original, mas constituindo um recurso visual para demonstrar o
+princípio matemático utilizado no cálculo do AP. Para simplificar a notação geométrica,
+define-se cada retângulo $j$ por sua altura $h_j$ e sua largura $l_j$, onde $n$ representa a 
+cardinalidade do conjunto de retângulos. Assim, a soma das áreas desses retângulos fornece uma 
+aproximação da precisão média da classe $c$ ($AP_c$), conforme a Equação~\ref{eq:ap}:
+
+\begin{equation}
+    \label{eq:ap}
+    AP_c \approx \sum_{j=1}^{n} h_j \cdot l_j
+\end{equation}
+
+A Figura~\ref{fig:map05} apresenta uma representação geométrica dessa aproximação,
+ilustrando como a soma das áreas dos retângulos permite estimar a área sob uma curva
+Precisão-Revocação.
+
+\begin{figure}[htb]
+    \centering
+    \caption{Representação geométrica da área sob a curva Precisão-Revocação}
+    \label{fig:map05}
+    \includegraphics[width=1.0\textwidth]{media/MAP05.png}
+    \legend{Fonte: autoria própria.}
+\end{figure}
+
+Como a avaliação considera diferentes classes de objetos, o AP é calculado individualmente
+para cada uma delas. O resultado agregado, denominado \textit{mean Average Precision} (mAP),
+corresponde à média aritmética dos valores de AP obtidos para as $N$ classes avaliadas,
+conforme a Equação~\ref{eq:map05}:
+
+\begin{equation}
+    \label{eq:map05}
+    \text{mAP@0.5} = \frac{1}{N} \sum_{c=1}^{N} AP_c@0.5
+\end{equation}
+
+Em que $AP_c@0.5$ corresponde à precisão média da classe $c$, calculada considerando o limiar 
+de IoU igual a 0,5. Portanto, enquanto o AP representa a área sob a curva de uma classe específica,
+o mAP sintetiza os resultados de todas as classes em um único indicador \cite{everingham2010pascal,ultralytics_metrics}.
+
+% 2.9.1.6 Mean Average Precision (mAP@0.5:0.95)
+\subsubsection[mAP@0.5:0.95]{Média das Precisões Médias (\textit{Mean Average Precision}): mAP@0.5:0.95}
+
+O mAP@0.5:0.95, consolidado pelo \textit{dataset} COCO, adota um critério mais rigoroso,
+pois calcula a média dos resultados obtidos em dez limiares crescentes de IoU, variando de
+50\% a 95\%, em intervalos de 5\% \cite{lin2014microsoft}. Dessa forma, além de avaliar a
+capacidade de identificação dos objetos, essa métrica considera progressivamente a precisão
+do posicionamento das caixas delimitadoras. Seu cálculo pode ser representado por:
+
+\begin{equation}
+    \label{eq:map0595}
+    \text{mAP@0.50:0.95} =
+    \frac{
+        \text{mAP}_{0.50} +
+        \text{mAP}_{0.55} +
+        \cdots +
+        \text{mAP}_{0.95}
+    }{10}
+\end{equation}
+
+A Figura~\ref{fig:map05095} ilustra essa variação, apresentando os valores de AP obtidos em
+cada limiar de IoU. Observa-se uma redução progressiva dos resultados à medida que o limiar
+aumenta, indicando que critérios mais restritivos de sobreposição tornam a avaliação mais
+exigente. Assim, o mAP@0.5:0.95 fornece uma avaliação mais abrangente da qualidade das
+detecções, pois considera diferentes níveis de precisão no posicionamento das caixas
+delimitadoras.
+
+\begin{figure}[htb]
+    \centering
+    \caption{\textit{Average Precision} em diferentes limiares de IoU}
+    \label{fig:map05095}
+    \includegraphics[width=1.0\textwidth]{media/MAP05-095.png}
+    \legend{Fonte: autoria própria.}
+\end{figure}
 
 % 2.9.1.6 Tempo de Treinamento e Inferência
 \subsubsection{Tempo de Treinamento e Inferência}
