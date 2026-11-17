@@ -698,13 +698,15 @@ A Figura~\ref{fig:map05} apresenta uma representação geométrica dessa aproxim
 ilustrando como a soma das áreas dos retângulos permite estimar a área sob uma curva
 Precisão-Revocação.
 
-\begin{figure}[htb]
+%%%%%%%%%%%%%%%%%%%% Figure/Image MAP@05 starts here %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
     \centering
     \caption{Representação geométrica da área sob a curva Precisão-Revocação}
     \label{fig:map05}
     \includegraphics[width=1.0\textwidth]{media/MAP05.png}
     \legend{Fonte: autoria própria.}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%% Figure/Image MAP@05 ends here %%%%%%%%%%%%%%%%%%%%
 
 Como a avaliação considera diferentes classes de objetos, o AP é calculado individualmente
 para cada uma delas. O resultado agregado, denominado \textit{mean Average Precision} (mAP),
@@ -747,13 +749,15 @@ exigente. Assim, o mAP@0.5:0.95 fornece uma avaliação mais abrangente da quali
 detecções, pois considera diferentes níveis de precisão no posicionamento das caixas
 delimitadoras.
 
-\begin{figure}[htb]
+%%%%%%%%%%%%%%%%%%%% Figure/Image MAP05@095 starts here %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
     \centering
     \caption{\textit{Average Precision} em diferentes limiares de IoU}
     \label{fig:map05095}
     \includegraphics[width=1.0\textwidth]{media/MAP05-095.png}
     \legend{Fonte: autoria própria.}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%% Figure/Image MAP05@095 ends here %%%%%%%%%%%%%%%%%%%%
 
 % 2.9.1.6 Tempo de Treinamento e Inferência
 \subsubsection{Tempo de Treinamento e Inferência}
