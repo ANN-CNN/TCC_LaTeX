@@ -576,14 +576,44 @@ valores altos aumentam a precisão (cometendo menos alarmes falsos), mas reduzem
 % 2.8.6 Limiar de Interseção sobre União (IoU)
 \subsection[Limiar de Interseção sobre União]{Limiar de Interseção sobre União (\textit{Intersection over Union})}
 
-O \textit{Intersection over Union} (IoU) é o conceito que avalia a precisão da localização.
-É a métrica que mede o grau de sobreposição entre a caixa delimitadora prevista pela
-Inteligência Artificial (IA) e a caixa real anotada pelo humano (o gabarito, conhecido na
-literatura como \textit{ground truth}). Como hiperparâmetro, o limiar de IoU é fundamental
-para o algoritmo de Supressão de Não-Máximos, denominado \textit{Non-Maximum Suppression}
-(NMS) \cite{ren2017faster}. Ele define o grau de sobreposição aceitável para que múltiplas caixas
-redundantes apontando para o mesmo objeto sejam unificadas e filtradas em uma única detecção
-final \cite{ren2017faster}.
+O \textit{Intersection over Union} (IoU) é uma métrica utilizada para avaliar a precisão da
+localização de objetos, medindo o grau de sobreposição entre a caixa delimitadora prevista
+pelo modelo de detecção e a caixa real anotada manualmente, o gabarito, conhecido na
+literatura como \textit{ground truth}. Essa métrica define o grau de sobreposição aceitável
+para que múltiplas caixas redundantes apontando para o mesmo objeto sejam unificadas e
+filtradas em uma única detecção final \cite{ren2017faster}. Seu cálculo é realizado pela razão
+entre a área de interseção e a área de união dessas duas regiões, conforme a equação:
+
+\begin{equation}
+    \label{eq:iou}
+    \text{IoU} = \frac{\text{Área de Interseção}}{\text{Área de União}}
+\end{equation}
+
+A Figura~\ref{fig:threshold-iou} ilustra o funcionamento dessa métrica, demonstrando
+diferentes níveis de sobreposição entre duas caixas delimitadoras. Observa-se que valores
+próximos de zero indicam pouca ou nenhuma sobreposição, enquanto valores próximos de um
+representam uma correspondência maior entre as regiões avaliadas.
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image threshold-IOU starts here %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+    \centering
+    \caption{Representação visual do cálculo do \textit{Intersection over Union} (IoU)}
+    \label{fig:threshold-iou}
+    \includegraphics[width=1.0\textwidth]{media/threshold-IOU.png}
+    \legend{Fonte: \citeonline{shah2026map}.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%% Figure/Image threshold-IOU ends here %%%%%%%%%%%%%%%%%%%%
+
+Além de sua utilização na avaliação da qualidade das detecções, o IoU desempenha um papel
+importante no algoritmo de Supressão de Não Máximos, \textit{Non-Maximum Suppression} (NMS). 
+O algoritmo NMS elimina detecções duplicadas de um mesmo objeto. Para isso, seleciona
+a caixa delimitadora com maior confiança e calcula o IoU em relação às demais. Quando a
+sobreposição ultrapassa o limiar definido, as caixas com menor confiança são descartadas,
+por apresentarem sobreposição excessiva com a detecção selecionada. Por outro lado, as
+caixas cujo IoU permanece abaixo do limiar são mantidas para as próximas etapas do
+processamento, pois podem representar objetos distintos. Esse procedimento é repetido até
+que todas as detecções sejam avaliadas, buscando preservar as predições mais confiáveis e
+eliminar aquelas consideradas redundantes \cite{ren2017faster}.
 
 % ------------------------------------------------------------
 % 2.9 Métricas de Desempenho e Visualização
@@ -687,7 +717,7 @@ não fazendo parte da curva original, mas constituindo um recurso visual para de
 princípio matemático utilizado no cálculo do AP. Para simplificar a notação geométrica,
 define-se cada retângulo $j$ por sua altura $h_j$ e sua largura $l_j$, onde $n$ representa a 
 cardinalidade do conjunto de retângulos. Assim, a soma das áreas desses retângulos fornece uma 
-aproximação da precisão média da classe $c$ ($AP_c$), conforme a Equação~\ref{eq:ap}:
+aproximação da precisão média da classe $c$ ($AP_c$), conforme a equação:
 
 \begin{equation}
     \label{eq:ap}
@@ -711,7 +741,7 @@ Precisão-Revocação.
 Como a avaliação considera diferentes classes de objetos, o AP é calculado individualmente
 para cada uma delas. O resultado agregado, denominado \textit{mean Average Precision} (mAP),
 corresponde à média aritmética dos valores de AP obtidos para as $N$ classes avaliadas,
-conforme a Equação~\ref{eq:map05}:
+conforme a equação:
 
 \begin{equation}
     \label{eq:map05}
