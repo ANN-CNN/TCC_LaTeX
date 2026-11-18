@@ -809,10 +809,26 @@ comportamento da rede de maneira empírica:
 \subsubsection{Curvas de Loss}
 
 O gráfico de \textit{loss} exibe a evolução da função de perda ao longo das épocas de
-treinamento e validação. O ideal é que ambas as perdas diminuam progressivamente. Quando a
-perda de validação começa a aumentar enquanto a de treinamento continua a cair, isso configura
-um sinal claro de \textit{overfitting}, indicando que o modelo deixou de generalizar e passou
-a memorizar os dados de treino \cite{goodfellow2016deep}.
+treinamento e validação. Durante o treinamento, espera-se que ambas as perdas diminuam
+progressivamente. Inicialmente, a perda de validação tende a diminuir, indicando uma
+melhora na capacidade de generalização do modelo. Entretanto, ao longo das épocas, essa 
+curva pode apresentar uma estabilização e, posteriormente, começar a aumentar, enquanto 
+a perda de treinamento continua diminuindo. Esse comportamento caracteriza um \textit{overfitting}, 
+indicando que o modelo está se ajustando cada vez mais aos dados de treinamento, mas apresentando 
+dificuldades para generalizar para novos dados \cite{goodfellow2016deep}. 
+
+A Figura~\ref{fig:curva-loss} apresenta um exemplo da evolução das perdas durante o treinamento e 
+a validação de um modelo.
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image curva-loss starts here %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+    \centering
+    \caption{Evolução das perdas de treinamento e validação ao longo das épocas}
+    \label{fig:curva-loss}
+    \includegraphics[width=1.0\textwidth]{media/curva-loss.png}
+    \legend{Fonte: \citeonline{cristina2023trainingloss}.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%% Figure/Image curva-loss ends here %%%%%%%%%%%%%%%%%%%%
 
 % 2.9.2.2 Matriz de Confusão
 \subsubsection{Matriz de Confusão}
@@ -833,6 +849,21 @@ para a normalização corresponde a 1 (100\%), permitindo interpretar cada valor
 frequência relativa das classificações dentro daquela referência. Essa representação
 facilita a comparação do comportamento do modelo entre as diferentes classes, mesmo quando
 o número de ocorrências de cada classe é diferente \cite{goodfellow2016deep}.
+
+A Figura~\ref{fig:matrix-confusion-normalized} apresenta um exemplo de matriz de confusão
+normalizada por linha, na qual os valores representam a proporção de classificações para
+cada classe real, permitindo visualizar tanto os acertos, destacados na diagonal principal,
+quanto os erros de classificação entre as diferentes classes.
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image Matrix-confusion-row-normalized starts here %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+    \centering
+    \caption{Exemplo de matriz de confusão normalizada por linha}
+    \label{fig:matrix-confusion-normalized}
+    \includegraphics[width=0.9\textwidth]{media/Matrix-confusion-row-normalized.png}
+    \legend{Fonte: \citeonline{scidraw_confusion_matrix}.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%% Figure/Image Matrix-confusion-row-normalized ends here %%%%%%%%%%%%%%%%%%%%
 
 % 2.9.2.3 Análise Qualitativa por Amostragem
 \subsubsection{Análise Qualitativa por Amostragem}
