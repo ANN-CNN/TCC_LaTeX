@@ -3,14 +3,14 @@
 % ============================================================
 \chapter{MÉTODOS E RECURSOS}
 \label{cap:metodologia}
-Este capítulo apresenta os métodos e ferramentas que foram utilizados para o desenvolvimento
-do trabalho. Para alcançar os objetivos propostos, a pesquisa adotou uma abordagem que integra
+Este capítulo apresentou os métodos e ferramentas que foram utilizados para o desenvolvimento
+do trabalho. Para alcançar os objetivos propostos, a pesquisa adotou uma abordagem que integrou
 pesquisa bibliográfica e pesquisa experimental, focando na comparação do desempenho de
 arquiteturas de rede neural convolucional para detecção de objetos. O presente trabalho foi
 dividido em etapas, conforme o fluxograma na \autoref{fig:fluxograma}.
 
 \begin{figure}[H]
-\caption{Diagrama de processos do desenvolvimento do TCC}
+\caption{Diagrama do processo de desenvolvimento do TCC}
 \centering
 \includegraphics[width=0.965\textwidth]{media/fluxograma.png}
 \fonte{Elaborado pelo autor (2025)}
@@ -37,7 +37,7 @@ detecção de objetos: YOLO (\textit{You Only Look Once}), Faster R-CNN e SSD (\
 Shot MultiBox Detector}). A escolha desses modelos buscou representar as principais abordagens
 da área, abrangendo desde soluções otimizadas para velocidade em tempo real (YOLO e SSD) até
 aquelas tradicionalmente reconhecidas por priorizarem a alta precisão (Faster R-CNN). Esta
-etapa visa estabelecer os algoritmos a serem avaliados, garantindo uma comparação
+etapa visou estabelecer os algoritmos a serem avaliados, garantindo uma comparação
 representativa e relevante para a discussão sobre o equilíbrio entre desempenho e eficiência
 computacional.
 
@@ -45,7 +45,7 @@ computacional.
 \subsection{Arquiteturas Selecionadas da Família YOLO}
 
 Dentro da família YOLO, optou-se por avaliar as versões YOLOv5, YOLOv8 e YOLO11. Essa seleção
-permite observar a evolução empírica da arquitetura ao longo de suas recentes atualizações,
+permitiu observar a evolução empírica da arquitetura ao longo de suas recentes atualizações,
 testando como cada geração otimizou a extração de características e o processamento em relação
 às suas predecessoras.
 
@@ -61,7 +61,7 @@ si.
 Adotou-se exclusivamente a variante \textit{Small} (s) para a família YOLO, instanciada
 através dos pesos pré-treinados \texttt{yolov5s.pt}, \texttt{yolov8s.pt} e
 \texttt{yolo11s.pt}. Para os modelos SSD e Faster R-CNN, utilizou-se a configuração padrão
-(\texttt{DEFAULT}). Essa estruturação experimental atende a um rigoroso critério
+(\texttt{DEFAULT}). Essa estruturação experimental atendeu a um rigoroso critério
 metodológico: isolar a eficiência arquitetural e anular o viés da disparidade paramétrica.
 
 % ------------------------------------------------------------
@@ -71,7 +71,7 @@ metodológico: isolar a eficiência arquitetural e anular o viés da disparidade
 
 Para o treinamento e a avaliação dos modelos de detecção, selecionou-se o conjunto de dados
 COCO (\textit{Common Objects in Context}), versão 2017.
-A adoção deste \textit{dataset} justifica-se por ser amplamente reconhecido como um
+A adoção deste \textit{dataset} justificou-se por ser amplamente reconhecido como um
 \textit{benchmark} de referência na literatura de visão computacional e pela alta
 complexidade e variabilidade contextual de suas cenas.
 Visando adequar o volume da base original ao escopo da pesquisa, desenvolveu-se um
@@ -118,7 +118,7 @@ SSD, e a preservação do formato \texttt{.json} para o Faster R-CNN.
 % 4.3.5 Gerar Relatório
 \subsection{Gerar Relatório}
 Exibição de um sumário analítico diretamente na saída do terminal (\textit{console}).
-Esta etapa fornece uma validação quantitativa instantânea contendo a distribuição
+Esta etapa forneceu uma validação quantitativa instantânea contendo a distribuição
 estatística das classes, o total de imagens processadas, a contagem final de caixas
 delimitadoras (\textit{bounding boxes}) e a média de objetos por imagem, servindo como
 uma auditoria rápida para atestar a integridade do balanceamento antes do
@@ -143,7 +143,7 @@ Para o YOLO, gerou-se o arquivo \texttt{data.yaml}; para o SSD, o
 \subsection{Compactar o \textit{Dataset}}
 Agrupamento final dos diretórios de imagens, rótulos e arquivos de configuração em
 arquivos \texttt{.zip}.
-Esta etapa encerra o \textit{pipeline}, consolidando o \textit{dataset} otimizado
+Esta etapa encerrou o \textit{pipeline}, consolidando o \textit{dataset} otimizado
 para o envio eficiente à nuvem (Google Colaboratory).
 
 % ------------------------------------------------------------
@@ -172,10 +172,10 @@ infrastrutura foi migrada para o plano Colab Pro+, empregando a GPU NVIDIA Black
 
 A transição fundamentou-se em uma análise empírica de \textit{trade-off} entre o consumo de
 Unidades de Computação (UCs) e o tempo de execução. Embora o custo horário da G4 (8,90 UC/h)
-seja consideravelmente superior ao da T4 (1,07 UC/h), uma extrapolação matemática baseada na
+fosse consideravelmente superior ao da T4 (1,07 UC/h), uma extrapolação matemática baseada na
 cronometragem de uma única época do YOLOv8 demonstrou que a massiva capacidade de
-paralelização da máquina G4 compensa essa assimetria de custo operacional. O \textit{hardware} 
-superior conclui ciclos completos, como 100 a 200 épocas, em uma pequena fração do tempo que 
+paralelização da máquina G4 compensava essa assimetria de custo operacional. O \textit{hardware} 
+superior concluiu ciclos completos, como 100 a 200 épocas, em uma pequena fração do tempo que 
 seria exigido pela T4, consumindo um volume de créditos equivalente.
 Dessa forma, atestou-se a viabilidade técnica e econômica da migração para a arquitetura G4 
 visando a execução integral dos experimentos.
@@ -187,7 +187,7 @@ visando a execução integral dos experimentos.
 \section[Definição e Otimização dos Hiperparâmetros]{Definição e Otimização dos\\Hiperparâmetros}
 Nesta etapa, foi realizada a definição estruturada dos hiperparâmetros experimentais para as
 arquiteturas YOLOv5, YOLOv8, YOLO11, SSD e Faster R-CNN. A calibragem adequada dessas
-variáveis de controle é fundamental para otimizar o tempo de convergência, mitigar o risco de
+variáveis de controle foi fundamental para otimizar o tempo de convergência, mitigar o risco de
 sobreajuste (\textit{overfitting}) e adaptar a carga computacional à infraestrutura de
 \textit{hardware} selecionada. Para garantir a equidade na comparação de desempenho entre os
 algoritmos, os limiares lógicos de detecção foram rigorosamente padronizados. Tanto o limiar
@@ -324,7 +324,7 @@ identificação de problemas de redação, correção gramatical, reorganizaçã
 redução de repetições, aprimoramento da clareza e adequação à linguagem acadêmica. Os
 modelos também foram utilizados como instrumentos de apoio à geração e exploração de ideias,
 especialmente durante a estruturação das seções e identificação de possíveis relações entre
-os elementos que compõem a pesquisa.
+os elementos que compunham a pesquisa.
 
 As sugestões geradas foram avaliadas individualmente e incorporadas somente quando consideradas
 adequadas ao contexto da pesquisa. Informações, interpretações, resultados experimentais e
